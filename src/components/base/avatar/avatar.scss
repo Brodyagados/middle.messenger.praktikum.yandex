@@ -1,0 +1,11 @@
+@import '../../../assets/constants';
+
+.avatar {
+    $size: 47px;
+
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: $color-light-gray;
+    object-fit: cover;
+}
