@@ -1,0 +1,11 @@
+<div class="textbox{{#if class}} {{ class }}{{/if}}">
+    {{#if label}}
+        <div class="textbox__label">
+            {{ label }}
+        </div>
+    {{/if}}
+    {{> Input 
+        alignRight=alignRight placeholder=placeholder title=title 
+        readOnly=readOnly name=name type=type value=value
+    }}
+</div>
