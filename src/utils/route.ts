@@ -5,19 +5,17 @@ import * as Pages from '../pages';
 class Page {
     path: string;
     template: string;
-    routeData: object;
 
-    constructor(path: string, template: string, routeData: object = {}) {
+    constructor(path: string, template: string) {
         this.path = path;
         this.template = template;
-        this.routeData = routeData;
     };
 
-    route() {
+    route(routeData: object = {}) {
         const app = document.getElementById('app');
         const template = Handlebars.compile(this.template);
 
-        app!.innerHTML = template(this.routeData);
+        app!.innerHTML = template(routeData);
     }
 }
 
