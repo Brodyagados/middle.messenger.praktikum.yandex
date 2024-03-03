@@ -1,6 +1,5 @@
 import Handlebars from 'handlebars';
 
-import './style.css';
 import { page } from './utils/route';
 import * as Components from './components';
 
