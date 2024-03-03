@@ -26,5 +26,5 @@ export const page = {
     login: new Page('/login', 'login'),
     signIn: new Page('/sign-in', 'signIn'),
     notFound: new Page('/not-found', Pages.NotFoundErrorPage),
-    internalServerError: new Page('/internal-server-error', '5**')
+    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage)
 }
