@@ -1,0 +1,20 @@
+{{#> FormDialog }}
+    <form class="sign-in-page">
+        <div class="sign-in-page__header">
+            {{> PageTitle title="Регистрация" }}
+        </div>
+        <div class="sign-in-page__main">
+            {{> Textbox label="Почта" placeholder="Почта" name="email" }}
+            {{> Textbox label="Логин" placeholder="Логин" name="login" }}
+            {{> Textbox label="Имя" placeholder="Имя" name="first_name" }}
+            {{> Textbox label="Фамилия" placeholder="Фамилия" name="second_name" }}
+            {{> Textbox label="Телефон" placeholder="Телефон" name="phone" }}
+            {{> Textbox label="Пароль" placeholder="Пароль" name="password" type="password" }}
+            {{> Textbox label="Пароль еще раз" placeholder="Пароль еще раз" name="password_equal" type="password" }}
+        </div>
+        <div class="sign-in-page__footer">
+            {{> Button text="Зарегистрироваться" page="/login" }}
+            {{> Link text="Войти" page="/login" }}
+        </div>
+    </form>
+{{/ FormDialog }}
