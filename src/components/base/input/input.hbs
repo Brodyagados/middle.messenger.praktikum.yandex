@@ -3,5 +3,7 @@
     {{#if placeholder}} placeholder={{placeholder}}{{/if}}
     {{#if title}} title={{title}}{{/if}}
     {{#if readOnly}} readonly{{/if}}
-    name="{{ name }}" type="{{ type }}" value="{{ value }}"
+    {{#if value}} value={{value}}{{/if}}
+    type="{{#if type}}{{ type }}{{else}}text{{/if}}"
+    name="{{ name }}"
 >
