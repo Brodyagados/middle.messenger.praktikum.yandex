@@ -1,0 +1,19 @@
+.sign-in-page {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 300px;
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 180px;
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

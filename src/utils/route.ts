@@ -41,7 +41,7 @@ export const page = {
     /** Страница "Авторизация" */
     login: new Page('/login', Pages.LoginPage),
     /** Страница "Регистрация" */
-    signIn: new Page('/sign-in', 'signIn'),
+    signIn: new Page('/sign-in', Pages.SignInPage),
     /** Страница "Ошибка 404" */
     notFound: new Page('/not-found', Pages.NotFoundErrorPage),
     /** Страница "Ошибка 500" */
