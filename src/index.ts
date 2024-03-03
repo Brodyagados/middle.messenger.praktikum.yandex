@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 
-import { page } from './utils/route';
+import { Page, page } from './utils/route';
 import * as Components from './components';
 
 Object.entries(Components).forEach(([ name, component ]) => {
@@ -17,4 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   currentPage.route();
-})
+});
+
+document.addEventListener('click', (e) => {
+  if (!(e.target instanceof Element)) {
+    return;
+  }
+
+  const path = e.target.getAttribute('page');
+
+  if (path) {
+    Page.getByPath(path)?.route();
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+});

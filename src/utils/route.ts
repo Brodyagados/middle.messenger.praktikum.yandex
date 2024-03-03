@@ -3,7 +3,7 @@ import Handlebars from 'handlebars';
 import * as Pages from '../pages';
 
 /** Объект "Страница" */
-class Page {
+export class Page {
     /** ссылка на страницу */
     path: string;
     /** шаблон страницы */
@@ -23,6 +23,14 @@ class Page {
         const template = Handlebars.compile(this.template);
 
         app!.innerHTML = template(routeData);
+    }
+
+    /** 
+     * Метод получения страницы по ее ссылке
+     * @param {string} path ссылка на страницу
+     */
+    static getByPath(path: string) {
+        return Object.values(page).find((p) => p.path === path);
     }
 }
 
