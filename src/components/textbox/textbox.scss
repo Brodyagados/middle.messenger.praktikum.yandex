@@ -1,0 +1,10 @@
+@import '../../assets/constants';
+
+.textbox {
+    border-bottom: 1px solid $color-blue;
+
+    &__label {
+        font-size: 9px;
+        color: $color-gray;
+    }
+}
