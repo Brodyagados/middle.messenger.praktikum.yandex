@@ -39,7 +39,7 @@ export const page = {
     /** Страница "Чаты" */
     home: new Page('/', 'home'),
     /** Страница "Авторизация" */
-    login: new Page('/login', 'login'),
+    login: new Page('/login', Pages.LoginPage),
     /** Страница "Регистрация" */
     signIn: new Page('/sign-in', 'signIn'),
     /** Страница "Ошибка 404" */
