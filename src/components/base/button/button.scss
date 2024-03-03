@@ -1,0 +1,23 @@
+@import '../../../assets/constants';
+
+.button {
+    font: inherit;
+    font-size: 13px;
+    background-color: $color-blue;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid $color-blue;
+
+    &:not(:disabled):hover {
+        cursor: pointer;
+        background-color: white;
+        color: $color-blue;
+    }
+
+    &:disabled {
+        background-color: $color-gray;
+        border-color: $color-gray;
+    }
+}
