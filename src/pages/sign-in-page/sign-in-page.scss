@@ -4,14 +4,14 @@
     gap: 40px;
     width: 300px;
 
-    &__main {
+    .sign-in__main {
         display: flex;
         flex-direction: column;
         gap: 10px;
         min-height: 180px;
     }
 
-    &__footer {
+    .sign-in__footer {
         display: flex;
         flex-direction: column;
         gap: 10px;

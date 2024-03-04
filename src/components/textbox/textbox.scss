@@ -1,10 +1,33 @@
 @import '../../assets/constants';
 
 .textbox {
-    border-bottom: 1px solid $color-blue;
+    $font-size: 16px;
 
-    &__label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid $color-blue;
+    font-size: $font-size;
+
+    .textbox__label {
         font-size: 9px;
         color: $color-gray;
+    }
+
+    &.textbox_inline {
+        gap: 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .textbox__label {
+            font-weight: 500;
+            font-size: $font-size;
+            color: $color-black;
+        }
+
+        .input {
+            text-align: end;
+        }
     }
 }
