@@ -1,0 +1,18 @@
+<div class="user-setting-page">
+    {{> Avatar }}
+    {{#if name}}
+        {{> PageTitle title=name }}
+        {{> Textbox class="textbox_inline" label="Почта" placeholder="Почта" name="email" value=email disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Логин" placeholder="Логин" name="login" value=email disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Имя" placeholder="Имя" name="first_name" value=email disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Фамилия" placeholder="Фамилия" name="second_name" value=email disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Телефон" placeholder="Телефон" name="phone" value=email disabled=disabled }}
+    {{else}}
+        {{> PageTitle title="Иван" }}
+        {{> Textbox class="textbox_inline" label="Почта" placeholder="Почта" name="email" value="pochta@yandex.ru" disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Логин" placeholder="Логин" name="login" value="ivanivanov" disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Имя" placeholder="Имя" name="first_name" value="Иван" disabled=true }}
+        {{> Textbox class="textbox_inline" label="Фамилия" placeholder="Фамилия" name="second_name" value="Иванов" disabled=disabled }}
+        {{> Textbox class="textbox_inline" label="Телефон" placeholder="Телефон" name="phone" value="+7 (909) 967 30 30" disabled=disabled }}
+    {{/if}}
+</div>
