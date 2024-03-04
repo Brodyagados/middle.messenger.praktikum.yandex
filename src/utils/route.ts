@@ -37,7 +37,7 @@ export class Page {
 /** Страница */
 export const page = {
     /** Страница "Чаты" */
-    home: new Page('/', 'home'),
+    home: new Page('/', Pages.ChatPage),
     /** Страница "Авторизация" */
     login: new Page('/login', Pages.LoginPage),
     /** Страница "Регистрация" */

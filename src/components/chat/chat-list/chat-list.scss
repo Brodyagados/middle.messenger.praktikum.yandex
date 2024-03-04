@@ -1,0 +1,14 @@
+@import '../../../assets/constants';
+
+.chat-list {
+    $chat-color: #fbfbfb;
+
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    height: 100%;
+    gap: 10px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    background-color: $chat-color;
+}
