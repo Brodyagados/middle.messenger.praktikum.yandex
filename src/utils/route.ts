@@ -45,5 +45,7 @@ export const page = {
     /** Страница "Ошибка 404" */
     notFound: new Page('/not-found', Pages.NotFoundErrorPage),
     /** Страница "Ошибка 500" */
-    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage)
+    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage),
+    /** Страница "Настройки пользователя" */
+    userSetting: new Page('/user-setting', Pages.UserSettingPage)
 }
