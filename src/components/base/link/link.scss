@@ -1,5 +1,15 @@
+@import '../../../assets/constants';
+
 .link {
     text-align: center;
     font-size: 13px;
     text-decoration: none;
+
+    &, &:visited {
+        color: $color-blue;
+    }
+
+    &.link_color_red {
+        color: $color-red;
+    }
 }
