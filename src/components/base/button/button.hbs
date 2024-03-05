@@ -1,7 +1,9 @@
 <button 
-    class="button{{#if class}} {{class}}{{/if}}"
-    {{#if page}} page="{{page}}"{{/if}}
-    {{#if disabled}} disabled{{/if}}
+    class="button{{#if class }} {{ class }}{{/if}}"
+    {{#if page }} page="{{ page }}"{{/if}}
+    {{#if disabled }} disabled{{/if}}
+    {{#if title }} title="{{ title }}"{{/if}}
 >
-    {{ text }}
+    {{#if img }}<img src="{{ img }}">{{/if}}
+    {{#if text }}{{ text }}{{/if}}
 </button>

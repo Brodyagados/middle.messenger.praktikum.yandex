@@ -6,6 +6,8 @@
     gap: 10px;
     color: $color-gray;
     padding: 0 10px;
+    user-select: none;
+    cursor: pointer;
 
     &::before,
     &:last-child::after {

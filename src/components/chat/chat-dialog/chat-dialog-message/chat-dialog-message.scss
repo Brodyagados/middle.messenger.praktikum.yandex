@@ -1,0 +1,32 @@
+@import '../../../../assets/constants';
+
+.chat-dialog__message {
+    $border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-self: flex-start;
+    padding: 10px;
+    font-size: 12px;
+    line-height: 15px;
+    background-color: $color-light-gray;
+    max-width: 400px;
+    border: 1px solid $color-light-gray;
+    border-radius: $border-radius;
+    border-top-left-radius: 0;
+
+    &.chat-dialog__message_owner {
+        align-self: flex-end;
+        border-top-left-radius: $border-radius;
+        border-end-end-radius: 0;
+        background-color: $color-light-blue;
+    }
+
+    .chat-dialog__message-time {
+        align-self: flex-end;
+        font-size: 9px;
+        color: $color-gray;
+        line-height: 1;
+    }
+}

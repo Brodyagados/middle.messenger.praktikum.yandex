@@ -1,0 +1,17 @@
+@import '../../../assets/constants';
+
+.chat-list__account-link {
+    margin: 10px;
+    text-align: right;
+    color: $color-gray;
+    font-size: 12px;
+
+    .link {
+        color: $color-gray;
+    }
+
+    &::after {
+        content: " >";
+        font-size: 13px;
+    }
+}
