@@ -1,8 +1,9 @@
 <div class="chat-page">
     {{#> ChatList }}
-    {{> ChatListHeader }}
-    {{#each (chatPageListDataSource)}}
-    {{> ChatListItem }}
-    {{/each}}
+        {{> ChatListAccountLink }}
+        {{> ChatListHeader }}
+        {{#each (chatPageListDataSource)}}
+            {{> ChatListItem }}
+        {{/each}}
     {{/ ChatList }}
 </div>
