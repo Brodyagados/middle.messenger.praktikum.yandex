@@ -6,4 +6,21 @@
             {{> ChatListItem }}
         {{/each}}
     {{/ ChatList }}
+    {{#> ChatDialog }}
+        {{#> DialogHeader }}
+            {{> Avatar }}
+            <div class="chat-user">Вадим</div>
+            {{> Button img="../assets/icons/vertical-dotes.svg" title="Дополнительно" }}
+        {{/ DialogHeader }}
+        {{#> DialogMain }}
+            {{#each (chatPageDialogDataSource)}}
+                {{> ChatDialogMessage }}
+            {{/each}}
+        {{/ DialogMain }}
+        {{#> DialogFooter }}
+            {{> Button img="../assets/icons/attachment.svg" title="Прикрепить файл" }}
+            {{> ChatDialogMessageInput }}
+            {{> Button class="button_color_blue button_circle" img="../assets/icons/arrow-right.svg" title="Отправить" }}
+        {{/ DialogFooter }}
+    {{/ ChatDialog }}
 </div>

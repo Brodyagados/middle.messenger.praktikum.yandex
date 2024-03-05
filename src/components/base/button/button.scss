@@ -1,23 +1,34 @@
 @import '../../../assets/constants';
 
 .button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font: inherit;
     font-size: 13px;
-    background-color: $color-blue;
-    color: white;
     text-align: center;
     border-radius: 8px;
-    padding: 10px;
-    border: 2px solid $color-blue;
+    border: unset;
+    background-color: transparent;
+    padding: 0;
+
+    &.button_color_blue {
+        padding: 10px;
+        background-color: $color-blue;
+        border: 2px solid $color-blue;
+        color: white;
+
+        &:disabled {
+            background-color: $color-gray;
+            border-color: $color-gray;
+        }
+    }
+
+    &.button_circle {
+        border-radius: 30px;
+    }
 
     &:not(:disabled):hover {
         cursor: pointer;
-        background-color: white;
-        color: $color-blue;
-    }
-
-    &:disabled {
-        background-color: $color-gray;
-        border-color: $color-gray;
     }
 }
