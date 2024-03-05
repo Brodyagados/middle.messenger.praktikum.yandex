@@ -5,6 +5,7 @@
     border: none;
     padding: $indent 0;
     width: 100%;
+    box-sizing: border-box;
 
     .input_align_right {
         text-align: right;
