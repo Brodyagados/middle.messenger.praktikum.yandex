@@ -1,0 +1,15 @@
+{{#> AccountDialog }}
+<form class="login-page">
+    {{#> DialogHeader }}
+    {{> PageTitle title="Вход" }}
+    {{/ DialogHeader }}
+    {{#> DialogMain }}
+    {{> AccountTextbox label="Логин" placeholder="Логин" name="login" }}
+    {{> AccountTextbox label="Пароль" placeholder="Пароль" name="password" type="password" }}
+    {{/ DialogMain }}
+    {{#> DialogFooter }}
+    {{> AccountButton text="Войти" page="/" }}
+    {{> AccountLink text="Зарегистрироваться" page="/sign-in" }}
+    {{/ DialogFooter }}
+</form>
+{{/ AccountDialog }}

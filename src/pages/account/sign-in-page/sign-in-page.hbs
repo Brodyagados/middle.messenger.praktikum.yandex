@@ -1,0 +1,20 @@
+{{#> AccountDialog }}
+<form class="sign-in-page">
+    {{#> DialogHeader }}
+    {{> PageTitle title="Регистрация" }}
+    {{/ DialogHeader }}
+    {{#> DialogMain }}
+    {{> AccountTextbox label="Почта" placeholder="Почта" name="email" }}
+    {{> AccountTextbox label="Логин" placeholder="Логин" name="login" }}
+    {{> AccountTextbox label="Имя" placeholder="Имя" name="first_name" }}
+    {{> AccountTextbox label="Фамилия" placeholder="Фамилия" name="second_name" }}
+    {{> AccountTextbox label="Телефон" placeholder="Телефон" name="phone" }}
+    {{> AccountTextbox label="Пароль" placeholder="Пароль" name="password" type="password" }}
+    {{> AccountTextbox label="Пароль еще раз" placeholder="Пароль еще раз" name="password_equal" type="password" }}
+    {{/ DialogMain }}
+    {{#> DialogFooter }}
+    {{> AccountButton text="Зарегистрироваться" page="/login" }}
+    {{> AccountLink text="Войти" page="/login" }}
+    {{/ DialogFooter }}
+</form>
+{{/ AccountDialog }}
