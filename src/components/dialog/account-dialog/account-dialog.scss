@@ -4,4 +4,15 @@
     box-shadow: $shadow;
     padding: 40px;
     border-radius: 12px;
+    
+    .button {
+        font-size: 13px;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .link {
+        font-size: 11px;
+    }
 }
