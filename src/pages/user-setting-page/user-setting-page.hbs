@@ -1,18 +1,20 @@
+{{#userSettingData}}
 <div class="user-setting-page">
     {{#> DialogHeader}}
-        {{> Avatar }}
-        {{> PageTitle title="Иван" }}
+    {{> Avatar }}
+    {{> PageTitle title=first_name }}
     {{/ DialogHeader}}
     {{#> DialogMain}}
-        {{> Textbox class="textbox_inline" label="Почта" name="email" value="pochta@yandex.ru" disabled=disabled }}
-        {{> Textbox class="textbox_inline" label="Логин" name="login" value="ivanivanov" disabled=disabled }}
-        {{> Textbox class="textbox_inline" label="Имя" name="first_name" value="Иван" disabled=disabled }}
-        {{> Textbox class="textbox_inline" label="Фамилия" name="second_name" value="Иванов" disabled=disabled }}
-        {{> Textbox class="textbox_inline" label="Телефон" name="phone" value="+7 (909) 967 30 30" disabled=disabled }}
+    {{> Textbox class="textbox_inline" label="Почта" name="email" value=email disabled=disabled }}
+    {{> Textbox class="textbox_inline" label="Логин" name="login" value=login disabled=disabled }}
+    {{> Textbox class="textbox_inline" label="Имя" name="first_name" value=first_name disabled=disabled }}
+    {{> Textbox class="textbox_inline" label="Фамилия" name="second_name" value=second_name disabled=disabled }}
+    {{> Textbox class="textbox_inline" label="Телефон" name="phone" value=phone disabled=disabled }}
     {{/ DialogMain}}
     {{#> DialogFooter }}
-        {{> Link text="Изменить данные" page="" }}
-        {{> Link text="Изменить пароль" page="" }}
-        {{> Link class="link_color_red" text="Выйти" page="/login" }}
+    {{> Link text="Изменить данные" }}
+    {{> Link text="Изменить пароль" }}
+    {{> Link class="link_color_red" text="Выйти" page="/login" }}
     {{/ DialogFooter}}
 </div>
+{{/userSettingData}}
