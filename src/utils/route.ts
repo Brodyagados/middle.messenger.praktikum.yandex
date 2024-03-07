@@ -16,13 +16,13 @@ export class Page {
 
     /** 
      * Метод перехода на страницу
-     * @param {object} routeData данные для перехода на страницу
+     * @param {object} context контекст
      */
-    route(routeData: object = {}) {
+    route(context: object = {}) {
         const app = document.getElementById('app');
         const template = Handlebars.compile(this.template);
 
-        app!.innerHTML = template(routeData);
+        app!.innerHTML = template(context);
     }
 
     /** 
