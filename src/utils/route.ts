@@ -42,5 +42,6 @@ export const page = {
     signIn: new Page('/sign-in', Pages.SignInPage),
     notFound: new Page('/not-found', Pages.NotFoundErrorPage),
     internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage),
-    userSetting: new Page('/user-setting', Pages.UserSettingPage)
+    userSetting: new Page('/user-setting', Pages.UserSettingPage),
+    userSettingEdit: new Page('/user-setting-edit', Pages.UserSettingEditPage)
 }
