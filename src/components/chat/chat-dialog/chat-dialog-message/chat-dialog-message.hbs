@@ -1,6 +1,6 @@
 <div class="chat-dialog__message{{#if isOwner}} chat-dialog__message_owner{{/if}}">
     {{#if img }}
-        <img class="chat-dialog__message" src="{{ img }}">
+        <img class="chat-dialog__message" src="{{ img }}" alt="Изображение в сообщении.">
     {{/if }}
     {{#if text }}{{ text }}{{/if}}
     <div class="chat-dialog__message-time">{{ time }}</div>

@@ -11,9 +11,13 @@
     {{/ ChatList }}
     {{#> ChatDialog }}
         {{#> DialogHeader }}
-            {{> Avatar }}
+            {{> Avatar alt="Аватар текущего чата." }}
             <div class="chat-user">Вадим</div>
-            {{> Button img=additionalButtonIconSrc title="Дополнительно" }}
+            {{> Button 
+                img=additionalButtonIconSrc 
+                title="Дополнительно" 
+                alt="Кнопка открытия меню дополнительных действий с чатом." 
+            }}
         {{/ DialogHeader }}
         {{#> DialogMain }}
             {{#each (chatPageDialogDataSource)}}
@@ -21,9 +25,18 @@
             {{/each}}
         {{/ DialogMain }}
         {{#> DialogFooter }}
-            {{> Button img=attachmentButtonIconSrc title="Прикрепить файл" }}
+            {{> Button 
+                img=attachmentButtonIconSrc 
+                title="Прикрепить файл" 
+                alt="Кнопка прикрепления файла для отправки в чат." 
+            }}
             {{> ChatDialogMessageInput }}
-            {{> Button class="button_color_blue button_circle" img=sendButtonIconSrc title="Отправить" }}
+            {{> Button 
+                class="button_color_blue button_circle" 
+                img=sendButtonIconSrc 
+                title="Отправить" 
+                alt="Кнопка отправки сообщения в чат." 
+            }}
         {{/ DialogFooter }}
     {{/ ChatDialog }}
 </div>
