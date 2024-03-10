@@ -1,0 +1,5 @@
+@import '../mixins';
+
+.user-setting-edit-page {
+    @include user-setting-page;
+}
