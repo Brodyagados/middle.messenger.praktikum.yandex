@@ -1,0 +1,60 @@
+@import '../../../assets/constants';
+
+.user-setting-dialog {
+    $indent: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    flex-grow: 1;
+    padding: $indent;
+    max-width: 500px;
+
+    .avatar {
+        $size: 130px;
+
+        width: $size;
+        height: $size;
+    }
+
+    .link {
+        font-size: 16px;
+    }
+
+    .dialog__main,
+    .dialog__footer {
+        > :nth-child(n) {
+            width: 100%;
+        }
+
+        > :not(:first-child) {
+            border-top: 1px solid $color-light-gray;
+            padding-top: $indent;
+        }
+    }
+
+    .dialog__main {
+        $main-indent: $indent * 0.5;
+
+        gap: $main-indent;
+        padding-top: $main-indent;
+        padding-bottom: $main-indent;
+
+        > :not(:first-child) {
+            padding-top: $main-indent;
+        }
+    }
+
+    .dialog__footer {
+        align-items: start;
+
+        .link {
+            text-align: start;
+        }
+    }
+
+    .textbox {
+        border: unset;
+    }
+}

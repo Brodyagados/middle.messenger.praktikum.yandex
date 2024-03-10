@@ -1,20 +1,22 @@
 {{#userSettingData}}
     <div class="user-setting-page">
-        {{#> DialogHeader}}
-            {{> Avatar }}
-            {{> PageTitle title=first_name }}
-        {{/ DialogHeader}}
-        {{#> DialogMain}}
-            {{> Textbox class="textbox_inline" label="Почта" name="email" value=email disabled=disabled }}
-            {{> Textbox class="textbox_inline" label="Логин" name="login" value=login disabled=disabled }}
-            {{> Textbox class="textbox_inline" label="Имя" name="first_name" value=first_name disabled=disabled }}
-            {{> Textbox class="textbox_inline" label="Фамилия" name="second_name" value=second_name disabled=disabled }}
-            {{> Textbox class="textbox_inline" label="Телефон" name="phone" value=phone disabled=disabled }}
-        {{/ DialogMain}}
-        {{#> DialogFooter }}
-            {{> Link text="Изменить данные" }}
-            {{> Link text="Изменить пароль" }}
-            {{> Link class="link_color_red" text="Выйти" page="/login" }}
-        {{/ DialogFooter}}
+        {{#> UserSettingDialog }}
+            {{#> DialogHeader}}
+                {{> Avatar }}
+                {{> PageTitle title=first_name }}
+            {{/ DialogHeader}}
+            {{#> DialogMain}}
+                {{> UserSettingTextbox label="Почта" name="email" value=email disabled="true" }}
+                {{> UserSettingTextbox label="Логин" name="login" value=login disabled="true" }}
+                {{> UserSettingTextbox label="Имя" name="first_name" value=first_name disabled="true" }}
+                {{> UserSettingTextbox label="Фамилия" name="second_name" value=second_name disabled="true" }}
+                {{> UserSettingTextbox label="Телефон" name="phone" value=phone disabled="true" }}
+            {{/ DialogMain}}
+            {{#> DialogFooter }}
+                {{> Link text="Изменить данные" }}
+                {{> Link text="Изменить пароль" }}
+                {{> Link class="link_color_red" text="Выйти" page="/login" }}
+            {{/ DialogFooter}}
+        {{/ UserSettingDialog }}
     </div>
 {{/userSettingData}}
