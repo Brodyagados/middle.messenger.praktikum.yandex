@@ -21,9 +21,10 @@
         align-items: center;
 
         .textbox__label {
-            font-weight: 500;
+            font-weight: 400;
             font-size: $font-size;
             color: $color-black;
+            flex-shrink: 0;
         }
 
         .input {
