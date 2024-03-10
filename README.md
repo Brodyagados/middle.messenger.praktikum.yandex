@@ -17,6 +17,8 @@
 - Регистрация - [/sign-in](https://loquacious-sunshine-ca5dba.netlify.app/sign-in)
 - Чаты - [/](https://loquacious-sunshine-ca5dba.netlify.app)
 - Настройки пользователя - [/user-setting](https://loquacious-sunshine-ca5dba.netlify.app/user-setting)
+- Редактирование настроек пользователя - [/user-setting-edit](https://loquacious-sunshine-ca5dba.netlify.app/user-setting-edit)
+- Смена пароля - [/change-password](https://loquacious-sunshine-ca5dba.netlify.app/change-password)
 - Ошибка "404" - [/not-found](https://loquacious-sunshine-ca5dba.netlify.app/not-found)
 - Ошибка "500" - [/internal-server-error](https://loquacious-sunshine-ca5dba.netlify.app/internal-server-error)
 
