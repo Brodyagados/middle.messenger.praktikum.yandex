@@ -47,9 +47,8 @@
     }
 
     .dialog__footer {
-        align-items: start;
-
         .link {
+            align-self: flex-start;
             text-align: start;
         }
     }
