@@ -1,6 +1,6 @@
-@import '../../assets/constants';
+@import '../../../assets/constants';
 
-.user-setting-page {
+.user-setting-dialog {
     $indent: 10px;
 
     display: flex;
@@ -47,9 +47,8 @@
     }
 
     .dialog__footer {
-        align-items: start;
-
         .link {
+            align-self: flex-start;
             text-align: start;
         }
     }

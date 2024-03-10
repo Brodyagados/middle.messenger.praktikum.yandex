@@ -10,8 +10,12 @@
     cursor: pointer;
 
     &::before,
-    &:last-child::after {
+    &::after {
         content: "";
+    }
+
+    &::before,
+    &:last-child::after {
         border-top: 1px solid $color-light-gray;
     }
 

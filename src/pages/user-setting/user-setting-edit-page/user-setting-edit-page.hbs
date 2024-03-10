@@ -1,0 +1,19 @@
+{{#userSettingData}}
+    <div class="user-setting-edit-page">
+        {{#> UserSettingDialog }}
+            {{#> DialogHeader}}
+                {{> Avatar }}
+            {{/ DialogHeader}}
+            {{#> DialogMain}}
+                {{> UserSettingTextbox label="Почта" name="email" value=email }}
+                {{> UserSettingTextbox label="Логин" name="login" value=login }}
+                {{> UserSettingTextbox label="Имя" name="first_name" value=first_name }}
+                {{> UserSettingTextbox label="Фамилия" name="second_name" value=second_name }}
+                {{> UserSettingTextbox label="Телефон" name="phone" value=phone }}
+            {{/ DialogMain}}
+            {{#> DialogFooter }}
+                {{> UserSettingButton text="Сохранить" page="/user-setting" }}
+            {{/ DialogFooter}}
+        {{/ UserSettingDialog }}
+    </div>
+{{/userSettingData}}
