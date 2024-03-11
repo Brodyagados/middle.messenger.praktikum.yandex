@@ -2,7 +2,7 @@
 Самостоятельный проект курса [«Мидл фронтенд-разработчик»](https://practicum.yandex.ru/middle-frontend/?from=catalog)
 
 ## PR
-- Sprint 1
+- [Sprint 1](https://github.com/Brodyagados/middle.messenger.praktikum.yandex/pull/39)
 - Sprint 2
 - Sprint 3
 - Sprint 4
