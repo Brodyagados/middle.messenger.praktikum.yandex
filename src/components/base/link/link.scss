@@ -1,0 +1,13 @@
+@import '../../../assets/constants';
+
+.link {
+    text-decoration: none;
+
+    &, &:visited {
+        color: $color-blue;
+    }
+
+    &.link_color_red {
+        color: $color-red;
+    }
+}

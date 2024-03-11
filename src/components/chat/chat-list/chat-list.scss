@@ -1,0 +1,26 @@
+@import '../../../assets/constants';
+@import '../../../assets/mixins';
+
+.chat-list {
+    $chat-color: #fbfbfb;
+
+    @include vertical-scroll;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 310px;
+    height: 100vh;
+    gap: 10px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    background-color: $chat-color;
+
+    li {
+        list-style-type: none; 
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0;
+   }
+}

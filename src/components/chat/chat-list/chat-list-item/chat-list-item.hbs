@@ -1,0 +1,15 @@
+<li class="chat-list__item{{#if isActive}} chat-list__item_active{{/if}}">
+    <div class="chat-list__item-content">
+        {{> Avatar alt="Аватар чата." }}
+        <div class="chat-list__item-content-main">
+            <div class="chat-list__item-user">{{ user }}</div>
+            <div class="chat-list__item-message{{#if isOwner}} chat-list__item-message_owner{{/if}}">{{ message }}</div>
+        </div>
+        <div class="chat-list__item-content-additional">
+            <div class="chat-list__item-date">{{ date }}</div>
+            {{#if count}}
+                <div class="chat-list__item-count">{{ count }}</div>
+            {{/if}}
+        </div>
+    </div>
+</li>

@@ -1,0 +1,21 @@
+.input {
+    $indent: 5px;
+
+    font: inherit;
+    border: none;
+    padding: $indent 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    .input_align_right {
+        text-align: right;
+    }
+
+    &:focus {
+        padding: $indent;
+    }
+
+    &:disabled {
+        background-color: unset;
+    }
+}

@@ -1,0 +1,39 @@
+@import '../../../assets/constants';
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: inherit;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 8px;
+    border: unset;
+    background-color: transparent;
+    padding: 0;
+    max-width: 280px;
+
+    &.button_color_blue {
+        padding: 10px;
+        background-color: $color-blue;
+        border: 2px solid $color-blue;
+        color: white;
+
+        &:disabled {
+            background-color: $color-gray;
+            border-color: $color-gray;
+        }
+    }
+
+    &.button_circle {
+        border-radius: 30px;
+    }
+
+    &.button_text_center {
+        justify-content: center;
+    }
+
+    &:not(:disabled):hover {
+        cursor: pointer;
+    }
+}

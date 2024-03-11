@@ -1,0 +1,9 @@
+<input 
+    class="input{{#if alignRight}} input_align_right{{/if}}"
+    {{#if placeholder}} placeholder="{{placeholder}}"{{/if}}
+    {{#if title}} title="{{title}}"{{/if}}
+    {{#if disabled}} disabled{{/if}}
+    {{#if value}} value="{{value}}"{{/if}}
+    type="{{#if type}}{{ type }}{{else}}text{{/if}}"
+    name="{{ name }}"
+>

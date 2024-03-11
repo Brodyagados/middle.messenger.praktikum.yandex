@@ -1,0 +1,5 @@
+@import '../mixins';
+
+.dialog__footer {
+    @include base-dialog-element;
+}

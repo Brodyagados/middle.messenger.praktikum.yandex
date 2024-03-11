@@ -1,0 +1,6 @@
+@import '../mixins';
+
+.dialog__main {
+    @include base-dialog-element;
+    min-height: 180px;
+}

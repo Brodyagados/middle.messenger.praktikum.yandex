@@ -1,0 +1,16 @@
+@import '../../../../assets/constants';
+
+.chat-list__search {
+    margin: 0 10px;
+
+    .input {
+        background-color: $color-light-gray;
+        border-radius: 5px;
+
+        &::placeholder {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }  
+}

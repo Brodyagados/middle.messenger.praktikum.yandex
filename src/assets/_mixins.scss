@@ -1,0 +1,27 @@
+@mixin vertical-scroll {
+    @include scroll;
+    overflow-y: auto;
+}
+
+@mixin horizontal-scroll {
+    @include scroll;
+    overflow-x: auto;
+}
+
+@mixin scroll {
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+      
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(155, 155, 155, 0.5);
+        border-radius: 20px;
+        border: transparent;
+    }
+}

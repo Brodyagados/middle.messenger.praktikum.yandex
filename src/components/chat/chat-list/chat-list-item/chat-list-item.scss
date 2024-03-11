@@ -1,0 +1,98 @@
+@import '../../../../assets/constants';
+
+.chat-list__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: $color-gray;
+    padding: 0 10px;
+    user-select: none;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+        content: "";
+    }
+
+    &::before,
+    &:last-child::after {
+        border-top: 1px solid $color-light-gray;
+    }
+
+    &.chat-list__item_active {
+        background-color: $color-light-blue;
+    }
+
+    .chat-list__item-content {
+        display: flex;
+        gap: 10px;
+
+        .chat-list__item-content-main {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex-grow: 1;
+        }
+
+        .chat-list__item-content-additional {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+    }
+
+    .chat-list__item-user {
+        color: $color-black;
+        font: {
+            size: 13px;
+            weight: 600;
+        }
+    }
+
+    .chat-list__item-message {
+        $line-count: 2;
+
+        -webkit-line-clamp: $line-count;
+        line-clamp: $line-count;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font: {
+            size: 12px;
+        }
+
+        &.chat-list__item-message_owner {
+            &::before {
+                content: 'Вы: ';
+                color: $color-black;
+            }
+        }
+    }
+
+    .chat-list__item-date {
+        font: {
+            size: 9px;
+            weight: 500;
+        }
+    }
+
+    .chat-list__item-count {
+        $size: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: $size;
+        background-color: $color-blue;
+        color: white;
+        min-width: $size;
+        max-width: max-content;
+        height: $size;
+        line-height: 12px;
+        font: {
+            size: 11px;
+            weight: 500;
+        }
+    }
+}
