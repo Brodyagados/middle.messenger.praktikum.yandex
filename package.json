@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --port 3000 --host",
     "build": "tsc && vite build",
-    "start": "tsc && vite build && node ./server.js"
+    "start": "npm run build && node ./server.js"
   },
   "devDependencies": {
     "sass": "^1.71.1",
