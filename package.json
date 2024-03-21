@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "lint": "eslint . --fix",
+    "prebuild": "tsc --noEmit",
     "dev": "npm run lint && vite --port 3000 --host",
-    "build": "tsc && vite build",
+    "build": "npm run prebuild && tsc && vite build",
     "start": "npm run build && node ./server.js"
   },
   "devDependencies": {
