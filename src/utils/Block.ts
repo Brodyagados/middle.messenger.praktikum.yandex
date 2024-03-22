@@ -9,8 +9,8 @@ export default class Block {
     };
 
     _element: HTMLElement | null = null;
-    _meta: object | null = null;
-    _props: { [key: string]: any };
+    _meta: { tagName: string, props: object } | null = null;
+    _props: Record<string, any>;
     _eventBus: () => EventBus;
 
     constructor(tagName: string = 'div', props: object = {}) {
@@ -50,6 +50,7 @@ export default class Block {
     }
 
     init() {
+        this._element = this._createDocumentElement(this._meta!.tagName)
         this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
@@ -75,7 +76,7 @@ export default class Block {
         return true;
     }
 
-    setProps(nextProps: { [key: string]: unknown }) {
+    setProps(nextProps: Record<string, unknown>) {
         if (!nextProps) {
             return;
         }
@@ -104,7 +105,7 @@ export default class Block {
 
     _makePropsProxy(props: object) {
         return new Proxy(props, {
-            get(target: { [key: string]: unknown }, prop: string) {
+            get(target: Record<string, unknown>, prop: string) {
                 if (prop.indexOf('_') === 0) {
                     throw new Error('No access');
                 }
@@ -112,7 +113,7 @@ export default class Block {
                 const value = target[prop];
                 return typeof value === 'function' ? value.bind(target) : value;
             },
-            set(target: { [key: string]: unknown }, prop: string, value: unknown) {
+            set(target: Record<string, unknown>, prop: string, value: unknown) {
                 target[prop] = value;
                 return true;
             },
@@ -127,10 +128,10 @@ export default class Block {
     }
 
     show() {
-        this.getContent()!.style.display = "block";
+        this.getContent()!.style.display = 'block';
     }
 
     hide() {
-        this.getContent()!.style.display = "none";
+        this.getContent()!.style.display = 'none';
     }
 }
