@@ -2,15 +2,15 @@ import EventBus from './EventBus';
 
 export default class Block {
     static EVENTS = {
-        INIT: "init",
-        FLOW_CDM: "flow:component-did-mount",
-        FLOW_CDU: "flow:component-did-update",
-        FLOW_RENDER: "flow:render"
+        INIT: 'init',
+        FLOW_CDM: 'flow:component-did-mount',
+        FLOW_CDU: 'flow:component-did-update',
+        FLOW_RENDER: 'flow:render'
     };
 
     _element: HTMLElement | null = null;
     _meta: object | null = null;
-    _props: { [key: string]: any};
+    _props: { [key: string]: any };
     _eventBus: () => EventBus;
 
     constructor(tagName: string = 'div', props: object = {}) {
@@ -20,10 +20,10 @@ export default class Block {
             tagName,
             props
         };
-    
+
         this._props = this._makePropsProxy(props);
         this._eventBus = () => eventBus;
-    
+
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
     }
@@ -57,7 +57,7 @@ export default class Block {
         this.componentDidMount();
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
     dispatchComponentDidMount() {
         this._eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -104,7 +104,7 @@ export default class Block {
 
     _makePropsProxy(props: object) {
         return new Proxy(props, {
-            get(target: {[key: string]: unknown}, prop: string) {
+            get(target: { [key: string]: unknown }, prop: string) {
                 if (prop.indexOf('_') === 0) {
                     throw new Error('No access');
                 }
@@ -112,7 +112,7 @@ export default class Block {
                 const value = target[prop];
                 return typeof value === 'function' ? value.bind(target) : value;
             },
-            set(target: {[key: string]: unknown}, prop: string, value: unknown) {
+            set(target: { [key: string]: unknown }, prop: string, value: unknown) {
                 target[prop] = value;
                 return true;
             },
