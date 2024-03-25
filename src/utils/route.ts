@@ -41,11 +41,7 @@ export const page = {
     home: new Page('/', Pages.ChatPage),
     login: new Page('/login', Pages.LoginPage),
     signIn: new Page('/sign-in', Pages.SignInPage),
-    notFound: new Page('/not-found', new Pages.NotFoundErrorPage({ 
-        title: new PageTitle({ text: '404' }).render(),
-        description: new PageDescription({ text: 'Страница не найдена' }).render(),
-        homeLink: new Link({ page: '/', text: 'Назад к чатам'}).render()
-    }).render()),
+    notFound: new Page('/not-found', Pages.NotFoundErrorPage()),
     internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage),
     userSetting: new Page('/user-setting', Pages.UserSettingPage),
     userSettingEdit: new Page('/user-setting-edit', Pages.UserSettingEditPage),

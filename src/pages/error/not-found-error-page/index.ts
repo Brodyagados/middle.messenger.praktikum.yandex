@@ -1,21 +1,13 @@
-import Block from '../../../utils/Block';
-import template from './not-found-error-page.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
+import { Link, PageDescription, PageTitle } from '../../../components';
+import { ErrorPage } from '..';
 
 
-interface INotFoundErrorPage {
-    title: string,
-    description: string,
-    homeLink: string
-}
+const context = {
+    title: new PageTitle({ text: '404' }).render(),
+    description: new PageDescription({ text: 'Страница не найдена' }).render(),
+    homeLink: new Link({ page: '/', text: 'Назад к чатам' }).render()
+};
 
-export class NotFoundErrorPage extends Block {
-    constructor(props: INotFoundErrorPage) {
-        super('div', props);
-        this._props = props;
-    }
-
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
-}
+export const NotFoundErrorPage = () => (
+    new ErrorPage(context).render()
+);
