@@ -4,7 +4,7 @@ import template from './input.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
 
-interface IInput {
+export interface IInput {
     isAlignRight?: boolean,
     placeholder?: string,
     title?: string,

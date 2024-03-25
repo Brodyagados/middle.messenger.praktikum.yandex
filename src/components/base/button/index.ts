@@ -4,7 +4,7 @@ import template from './button.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
 
-interface IButton {
+export interface IButton {
     class?: string,
     page?: string,
     disabled?: boolean,

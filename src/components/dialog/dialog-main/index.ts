@@ -1,4 +1,5 @@
 import Block from '../../../utils/Block';
+import './dialog-main.scss';
 import template from './dialog-main.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
