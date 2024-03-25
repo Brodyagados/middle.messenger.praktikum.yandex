@@ -6,6 +6,7 @@ import renderTemplate from '../../utils/render-template';
 
 export { ChangePasswordPage } from './change-password-page';
 export { UserSettingPage } from './user-setting-page';
+export { UserSettingEditPage } from './user-setting-edit-page';
 
 
 export interface IUserData {
