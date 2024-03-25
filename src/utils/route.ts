@@ -1,7 +1,6 @@
 import Handlebars from 'handlebars';
 
 import * as Pages from '../pages';
-import { Link, PageDescription, PageTitle } from '../components';
 
 /** Объект "Страница" */
 export class Page {
@@ -42,7 +41,7 @@ export const page = {
     login: new Page('/login', Pages.LoginPage),
     signIn: new Page('/sign-in', Pages.SignInPage),
     notFound: new Page('/not-found', Pages.NotFoundErrorPage()),
-    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage),
+    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage()),
     userSetting: new Page('/user-setting', Pages.UserSettingPage),
     userSettingEdit: new Page('/user-setting-edit', Pages.UserSettingEditPage),
     changePassword: new Page('/change-password', Pages.UserSettingChangePasswordPage)
