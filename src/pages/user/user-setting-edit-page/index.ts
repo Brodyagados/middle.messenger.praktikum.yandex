@@ -1,4 +1,4 @@
-import { Avatar, Link, PageTitle, TextBox } from '../../../components';
+import { Avatar, Button, TextBox } from '../../../components';
 import { IUserData, UserPage } from '..';
 
 
