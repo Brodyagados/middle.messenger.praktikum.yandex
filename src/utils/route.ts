@@ -39,7 +39,7 @@ export class Page {
 export const page = {
     home: new Page('/', Pages.ChatPage),
     login: new Page('/login', Pages.LoginPage()),
-    signIn: new Page('/sign-in', Pages.SignInPage),
+    signIn: new Page('/sign-in', Pages.SignInPage()),
     notFound: new Page('/not-found', Pages.NotFoundErrorPage()),
     internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage()),
     userSetting: new Page('/user-setting', Pages.UserSettingPage),
