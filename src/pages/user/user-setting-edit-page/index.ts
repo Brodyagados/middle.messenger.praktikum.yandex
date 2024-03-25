@@ -21,7 +21,7 @@ const context = (userData: IUserData) => {
             new TextBox({ label: 'Телефон', name: 'phone', value: phone, ...textBoxProps }).render()
         ],
         footer: [
-            new Link({ text: 'Сохранить', page: '/user-setting' }).render()
+            new Button({ class: 'button_color_blue button_text_center', text: 'Сохранить', page: '/user-setting' }).render()
         ]
     }
 };
