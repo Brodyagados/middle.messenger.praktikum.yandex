@@ -35,6 +35,17 @@ export class Page {
     }
 }
 
+// TODO: Тестовые данные. Убрать после реализации работы с API
+const testData = {
+    user: {
+        email: 'pochta@yandex.ru',
+        login: 'ivanivanov',
+        firstName: 'Иван',
+        secondName: 'Иванов',
+        phone: '+7 (909) 967 30 30'
+    }
+};
+
 /** Страница */
 export const page = {
     home: new Page('/', Pages.ChatPage),
@@ -42,7 +53,7 @@ export const page = {
     signIn: new Page('/sign-in', Pages.SignInPage()),
     notFound: new Page('/not-found', Pages.NotFoundErrorPage()),
     internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage()),
-    userSetting: new Page('/user-setting', Pages.UserSettingPage),
+    userSetting: new Page('/user-setting', Pages.UserSettingPage(testData.user)),
     userSettingEdit: new Page('/user-setting-edit', Pages.UserSettingEditPage),
     changePassword: new Page('/change-password', Pages.ChangePasswordPage())
 }
