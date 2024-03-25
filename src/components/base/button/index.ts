@@ -7,7 +7,7 @@ import renderTemplate from '../../../utils/render-template';
 interface IButton {
     class?: string,
     page?: string,
-    disabled?: string,
+    disabled?: boolean,
     title?: string,
     img?: {
         src: string,
