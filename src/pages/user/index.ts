@@ -5,7 +5,16 @@ import template from './user-page.hbs?raw';
 import renderTemplate from '../../utils/render-template';
 
 export { ChangePasswordPage } from './change-password-page';
+export { UserSettingPage } from './user-setting-page';
 
+
+export interface IUserData {
+    firstName: string,
+    secondName: string,
+    email: string,
+    login: string,
+    phone: string
+}
 
 interface IUserPage {
     header?: string[],
