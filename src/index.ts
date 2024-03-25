@@ -1,11 +1,4 @@
-import Handlebars from 'handlebars';
-
 import { Page, page } from './utils/route';
-import * as Components from './components';
-
-Object.entries(Components).forEach(([ name, component ]) => {
-  Handlebars.registerPartial(name, component);
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname;
