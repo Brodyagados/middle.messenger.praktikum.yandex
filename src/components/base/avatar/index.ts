@@ -1,11 +1,23 @@
-import Handlebars from 'handlebars';
-
+import Block from '../../../utils/Block';
 import './avatar.scss';
-import baseAvatarSrc from '../../../assets/icons/base-avatar.svg'
-export { default as Avatar } from './avatar.hbs?raw';
+import baseSrc from '../../../assets/icons/base-avatar.svg'
+import template from './avatar.hbs?raw';
+import renderTemplate from '../../../utils/render-template';
 
-Handlebars.registerHelper('baseAvatarSrc', (options) => {
-    return options.fn({
-        baseSrc: baseAvatarSrc
-    })
-});
+
+interface IAvatar {
+    src?: string,
+    alt: string
+}
+
+export class Avatar extends Block {
+    constructor(props: IAvatar) {
+        super('img', props);
+        this._props = { baseSrc, ...props };
+    }
+
+    render(): string {
+        return renderTemplate(template, this._props);
+    }
+}
+
