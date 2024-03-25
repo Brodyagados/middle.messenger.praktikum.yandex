@@ -44,5 +44,5 @@ export const page = {
     internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage()),
     userSetting: new Page('/user-setting', Pages.UserSettingPage),
     userSettingEdit: new Page('/user-setting-edit', Pages.UserSettingEditPage),
-    changePassword: new Page('/change-password', Pages.UserSettingChangePasswordPage)
+    changePassword: new Page('/change-password', Pages.ChangePasswordPage())
 }
