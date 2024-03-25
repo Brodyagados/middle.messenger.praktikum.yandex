@@ -1,19 +1,15 @@
 @import '../../assets/constants';
 
 .account-page {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    width: 300px;
+    box-shadow: $shadow;
+    padding: 40px;
+    border-radius: 12px;
 
     form {
         display: flex;
         flex-direction: column;
         gap: 40px;
         width: 300px;
-        box-shadow: $shadow;
-        padding: 40px;
-        border-radius: 12px;
 
         .button {
             font-size: 13px;
