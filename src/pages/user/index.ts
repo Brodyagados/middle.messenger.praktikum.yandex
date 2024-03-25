@@ -4,8 +4,6 @@ import Block from '../../utils/Block';
 import template from './user-page.hbs?raw';
 import renderTemplate from '../../utils/render-template';
 
-export { UserSettingPage } from './user-setting-page';
-export { UserSettingEditPage } from './user-setting-edit-page';
 export { ChangePasswordPage } from './change-password-page';
 
 
