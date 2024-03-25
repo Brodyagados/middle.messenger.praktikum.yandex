@@ -22,7 +22,7 @@ export class ErrorPage extends Block {
 
     render(): string {
         const context = {
-            dialogMain: new DialogMain({ content: Object.values(this._props).join('') }).render()
+            main: new DialogMain({ content: Object.values(this._props).join('') }).render()
         };
 
         return renderTemplate(template, context);
