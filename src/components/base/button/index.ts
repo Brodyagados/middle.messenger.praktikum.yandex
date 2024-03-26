@@ -13,7 +13,7 @@ export interface IButton {
         src: string,
         alt: string
     },
-    text: string
+    text?: string
 }
 
 export class Button extends Block {
