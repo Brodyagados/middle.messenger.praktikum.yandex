@@ -13,7 +13,7 @@ export class ChatListAccountLink extends Block {
 
     render(): string {
         const context = {
-            input: new Link(this._props as ILink).render()
+            link: new Link(this._props as ILink).render()
         };
 
         return renderTemplate(template, context);
