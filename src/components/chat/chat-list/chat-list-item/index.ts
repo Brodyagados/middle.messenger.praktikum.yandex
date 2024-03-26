@@ -25,7 +25,7 @@ export class ChatListItem extends Block {
         const { avatarSrc, ...itemProps } = this._props;
         const context = {
             ...itemProps,
-            avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' })
+            avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' }).render()
         };
 
         return renderTemplate(template, context);
