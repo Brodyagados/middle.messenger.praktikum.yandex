@@ -5,7 +5,7 @@ import renderTemplate from '../../../utils/render-template';
 import { DialogFooter, DialogHeader, DialogMain } from '../../../components';
 
 
-interface IChatDialog {
+export interface IChatDialog {
     header: string[],
     main: string[],
     footer: string[]
