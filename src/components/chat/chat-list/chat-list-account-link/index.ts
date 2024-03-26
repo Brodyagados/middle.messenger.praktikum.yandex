@@ -6,14 +6,13 @@ import Block from '../../../../utils/Block';
 
 
 export class ChatListAccountLink extends Block {
-    constructor(props: ILink) {
-        super('div', props);
-        this._props = props;
+    constructor() {
+        super('div');
     }
 
     render(): string {
         const context = {
-            link: new Link(this._props as ILink).render()
+            link: new Link({ text: 'Профиль', page: '/user-setting' }).render()
         };
 
         return renderTemplate(template, context);

@@ -1,15 +1,16 @@
 import './chat-list.scss';
 import Block from '../../../utils/Block';
-import template from './chat-dialog.hbs?raw';
+import template from './chat-list.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
-import { DialogFooter, DialogHeader, DialogMain } from '../../../components';
-import { ChatListItem } from './chat-list-item';
+export { ChatListAccountLink } from './chat-list-account-link';
+export { ChatListHeader } from './chat-list-header';
+export { ChatListItem } from './chat-list-item';
 
 
-interface IChatList {
+export interface IChatList {
     accountLink: string,
     header: string,
-    items: string[]
+    items: string
 }
 
 export class ChatList extends Block {

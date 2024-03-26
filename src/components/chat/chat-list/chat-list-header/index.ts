@@ -2,13 +2,12 @@ import './chat-list-header.scss';
 import template from './chat-list-header.hbs?raw';
 import renderTemplate from '../../../../utils/render-template';
 import Block from '../../../../utils/Block';
-import { ChatListSearch } from '..';
+import { ChatListSearch } from '../chat-list-search';
 
 
 export class ChatListHeader extends Block {
-    constructor(props: never) {
-        super('div', props);
-        this._props = props;
+    constructor() {
+        super('div');
     }
 
     render(): string {
