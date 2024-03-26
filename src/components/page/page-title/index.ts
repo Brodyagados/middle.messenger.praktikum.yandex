@@ -1,7 +1,7 @@
-import Block from '../../utils/Block';
+import Block from '../../../utils/Block';
 import './page-title.scss';
 import template from './page-title.hbs?raw';
-import renderTemplate from '../../utils/render-template';
+import renderTemplate from '../../../utils/render-template';
 
 
 interface IPageTitle {

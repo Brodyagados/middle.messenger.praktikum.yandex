@@ -1,7 +1,7 @@
-import Block from '../../utils/Block';
+import Block from '../../../utils/Block';
 import './page-description.scss';
 import template from './page-description.hbs?raw';
-import renderTemplate from '../../utils/render-template';
+import renderTemplate from '../../../utils/render-template';
 
 
 interface IPageDescription {
