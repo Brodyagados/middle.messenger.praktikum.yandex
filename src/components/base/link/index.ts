@@ -4,7 +4,7 @@ import template from './link.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
 
-interface ILink {
+export interface ILink {
     url?: string,
     class?: string,
     page?: string,
