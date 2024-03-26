@@ -13,7 +13,7 @@ export class ChatDialogInput extends Block {
 
     render(): string {
         const context = {
-            input: new Input({ placeholder: 'Сообщение', name: 'message' }).render()
+            input: new Input(this._props as IInput).render()
         };
 
         return renderTemplate(template, context);
