@@ -1,3 +1,10 @@
-<input class="input{{#if isAlignRight}} input_align_right{{/if}}" {{#if placeholder}} placeholder="{{placeholder}}"
-    {{/if}} {{#if title}} title="{{title}}" {{/if}} {{#if disabled}} disabled{{/if}} {{#if value}} value="{{value}}"
-    {{/if}} type="{{#if type}}{{ type }}{{else}}text{{/if}}" name="{{ name }}">
+<input 
+    class="input{{#if isAlignRight}} input_align_right{{/if}}" 
+    type="{{#if type}}{{ type }}{{else}}text{{/if}}" 
+    name="{{ name }}" 
+    {{#if placeholder}} placeholder="{{placeholder}}" {{/if}}
+    {{#if title}} title="{{title}}" {{/if}}
+    {{#if disabled}} disabled {{/if}}
+    {{#if value}} value="{{value}}" {{/if}}
+    {{#if validationType}} data-validation-type="{{validationType}}" {{/if}}
+>

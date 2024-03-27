@@ -11,7 +11,8 @@ export interface IInput {
     disabled?: boolean,
     value?: string,
     type?: string,
-    name: string
+    name: string,
+    validationType?: string
 }
 
 export class Input extends Block {
