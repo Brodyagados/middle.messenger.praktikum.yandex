@@ -1,5 +1,3 @@
-import Handlebars from 'handlebars';
-
 import testImgSrc from '../assets/icons/base-avatar.svg'
 import * as Pages from '../pages';
 
@@ -7,12 +5,12 @@ import * as Pages from '../pages';
 export class Page {
     /** ссылка на страницу */
     path: string;
-    /** шаблон страницы */
-    template: string;
+    /** контент страницы */
+    content: (context?: object) => HTMLElement | null;
 
-    constructor(path: string, template: string) {
+    constructor(path: string, content: (context?: object) => HTMLElement | null) {
         this.path = path;
-        this.template = template;
+        this.content = content;
     };
 
     /** 
@@ -20,10 +18,14 @@ export class Page {
      * @param {object} context контекст
      */
     route(context: object = {}) {
+        const content = this.content(context);
+        if (!content) {
+            return;
+        }
+        
         const app = document.getElementById('app');
-        const template = Handlebars.compile(this.template);
 
-        app!.innerHTML = template(context);
+        app!.replaceChildren(content);
     }
 
     /** 
@@ -69,12 +71,12 @@ const testData = {
 
 /** Страница */
 export const page = {
-    home: new Page('/', Pages.ChatPage(testData.chats, testData.chatDialogMessages)),
-    login: new Page('/login', Pages.LoginPage()),
-    signIn: new Page('/sign-in', Pages.SignInPage()),
-    notFound: new Page('/not-found', Pages.NotFoundErrorPage()),
-    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage()),
-    userSetting: new Page('/user-setting', Pages.UserSettingPage(testData.user)),
-    userSettingEdit: new Page('/user-setting-edit', Pages.UserSettingEditPage(testData.user)),
-    changePassword: new Page('/change-password', Pages.ChangePasswordPage())
+    home: new Page('/', () => Pages.ChatPage(testData.chats, testData.chatDialogMessages)),
+    login: new Page('/login', Pages.LoginPage),
+    signIn: new Page('/sign-in', Pages.SignInPage),
+    notFound: new Page('/not-found', Pages.NotFoundErrorPage),
+    internalServerError: new Page('/internal-server-error', Pages.InternalServerErrorPage),
+    userSetting: new Page('/user-setting', () => Pages.UserSettingPage(testData.user)),
+    userSettingEdit: new Page('/user-setting-edit', () => Pages.UserSettingEditPage(testData.user)),
+    changePassword: new Page('/change-password', Pages.ChangePasswordPage)
 }

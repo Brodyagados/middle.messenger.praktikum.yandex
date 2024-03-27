@@ -14,5 +14,5 @@ const context = {
 };
 
 export const ChangePasswordPage = () => (
-    new UserPage(context).render()
+    new UserPage(context).getContent()
 );

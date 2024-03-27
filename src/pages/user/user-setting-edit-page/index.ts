@@ -27,5 +27,5 @@ const context = (userData: IUserData) => {
 };
 
 export const UserSettingEditPage = (userData: IUserData) => (
-    new UserPage(context(userData)).render()
+    new UserPage(context(userData)).getContent()
 );

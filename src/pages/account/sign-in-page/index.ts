@@ -22,5 +22,5 @@ const context = {
 };
 
 export const SignInPage = () => (
-    new AccountPage(context).render()
+    new AccountPage(context).getContent()
 );

@@ -9,5 +9,5 @@ const context = {
 };
 
 export const InternalServerErrorPage = () => (
-    new ErrorPage(context).render()
+    new ErrorPage(context).getContent()
 );

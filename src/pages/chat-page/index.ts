@@ -50,5 +50,5 @@ const context = (chats: IChatListItem[], chatDialogMessages: IChatMessage[]) => 
 };
 
 export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessage[]) => (
-  new Page(context(chats, chatDialogMessages)).render()
+  new Page(context(chats, chatDialogMessages)).getContent()
 );

@@ -17,5 +17,5 @@ const context = {
 };
 
 export const LoginPage = () => (
-    new AccountPage(context).render()
+    new AccountPage(context).getContent()
 );
