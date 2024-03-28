@@ -1,5 +1,6 @@
 import { Avatar, Button, TextBox } from '../../../components';
 import { IUserData, UserPage } from '..';
+import { Validation, ValidationType } from '../../../utils/ValidationType';
 
 
 export const UserSettingEditPage = (userData: IUserData) => {
@@ -15,17 +16,44 @@ export const UserSettingEditPage = (userData: IUserData) => {
                 new Avatar({ alt: 'Аватар пользователя.' }).getContentAsString()
             ],
             main: [
-                new TextBox({ label: 'Почта', name: 'email', value: email, ...textBoxProps }).getContentAsString(),
-                new TextBox({ label: 'Логин', name: 'login', value: login, ...textBoxProps }).getContentAsString(),
-                new TextBox({ label: 'Имя', name: 'first_name', value: firstName, ...textBoxProps }).getContentAsString(),
-                new TextBox({ label: 'Фамилия', name: 'second_name', value: secondName, ...textBoxProps }).getContentAsString(),
-                new TextBox({ label: 'Телефон', name: 'phone', value: phone, ...textBoxProps }).getContentAsString()
+                new TextBox({
+                    label: 'Почта', name: 'email',
+                    value: email, ...textBoxProps,
+                    validationType: ValidationType.EMAIL
+                }).getContentAsString(),
+                new TextBox({
+                    label: 'Логин', name: 'login',
+                    value: login, ...textBoxProps,
+                    validationType: ValidationType.LOGIN
+                }).getContentAsString(),
+                new TextBox({
+                    label: 'Имя', name: 'first_name',
+                    value: firstName, ...textBoxProps,
+                    validationType: ValidationType.USER
+                }).getContentAsString(),
+                new TextBox({
+                    label: 'Фамилия', name: 'second_name',
+                    value: secondName, ...textBoxProps,
+                    validationType: ValidationType.USER
+                }).getContentAsString(),
+                new TextBox({
+                    label: 'Телефон', name: 'phone',
+                    value: phone, ...textBoxProps,
+                    validationType: ValidationType.PHONE
+                }).getContentAsString()
             ],
             footer: [
-                new Button({ class: 'button_color_blue button_text_center', text: 'Сохранить', page: '/user-setting' }).getContentAsString()
+                new Button({
+                    class: 'button_color_blue button_text_center',
+                    text: 'Сохранить', page: '/user-setting', type: 'submit'
+                }).getContentAsString()
             ]
         }
     };
 
-    return new UserPage(context(userData)).getContentAsString();
+    const page = new UserPage(context(userData)).getContent();
+    const form = page.querySelector('form');
+    Validation.formValidate(form);
+
+    return page;
 };

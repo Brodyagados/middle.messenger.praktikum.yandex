@@ -50,5 +50,5 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
     }
   };
 
-  return new Page(context(chats, chatDialogMessages)).getContentAsString();
+  return new Page(context(chats, chatDialogMessages)).getContent();
 };

@@ -5,4 +5,9 @@
     </div>
     {{/if}}
     {{{ input }}}
+    {{#if error}}
+    <div class="textbox__error">
+        {{ error }}
+    </div>
+    {{/if}}
 </div>

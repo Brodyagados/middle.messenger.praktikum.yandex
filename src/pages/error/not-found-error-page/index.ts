@@ -9,5 +9,5 @@ export const NotFoundErrorPage = () => {
         homeLink: new Link({ page: '/', text: 'Назад к чатам' }).getContentAsString()
     };
 
-    return new ErrorPage(context).getContentAsString();
+    return new ErrorPage(context).getContent();
 };
