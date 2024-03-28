@@ -1,7 +1,17 @@
 {
-    "extends": "stylelint-config-standard",
+    "extends": [
+        "stylelint-config-standard"
+    ],
+    "plugins": [
+        "stylelint-scss"
+    ],
     "rules": {
-        "color-hex-case": "lower"
+        "import-notation": "string",
+        "at-rule-no-unknown": null,
+        "selector-class-pattern": null,
+        "declaration-empty-line-before": null,
+        "scss/at-rule-no-unknown": true,
+        "scss/selector-no-redundant-nesting-selector": true
     },
     "ignoreFiles": [
         "dist/*",
