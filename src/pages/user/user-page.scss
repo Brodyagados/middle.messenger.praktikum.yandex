@@ -4,15 +4,17 @@
     $indent: 10px;
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    flex-grow: 1;
-    padding: $indent;
-    max-width: 500px;
+    justify-content: center;
+    width: 100%;
 
     form {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        flex-grow: 1;
+        padding: $indent;
+        max-width: 500px;
     }
 
     .avatar {
