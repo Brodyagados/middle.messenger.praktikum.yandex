@@ -1,13 +1,13 @@
+type TCallback = (...args: unknown[]) => void;
+
 export default class EventBus {
-    listeners: {
-        [key: string]: any[]
-    }
+    listeners: Record<string, TCallback[]>;
 
     constructor() {
         this.listeners = {};
     }
 
-    on(event: string, callback: (...args: unknown[]) => void) {
+    on(event: string, callback: TCallback) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -15,7 +15,7 @@ export default class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event: string, callback: (...args: unknown[]) => void) {
+    off(event: string, callback: TCallback) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }
