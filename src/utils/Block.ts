@@ -31,14 +31,14 @@ export default class Block {
     _addEvents() {
         const { events = {} } = this._props;
         Object.keys(events).forEach((eventName) => {
-            this._element?.firstChild?.addEventListener(eventName, events[eventName])
+            this._element?.firstChild?.addEventListener(eventName, events[eventName]);
         });
     }
 
     _removeEvents() {
         const { events = {} } = this._props;
         Object.keys(events).forEach((eventName) => {
-            this._element?.firstChild?.removeEventListener(eventName, events[eventName])
+            this._element?.firstChild?.removeEventListener(eventName, events[eventName]);
         });
     }
 
@@ -91,6 +91,7 @@ export default class Block {
     _render() {
         this._removeEvents();
         const block = this.render();
+        console.trace()
         this._element!.innerHTML = block;
         this._addEvents();
     }
