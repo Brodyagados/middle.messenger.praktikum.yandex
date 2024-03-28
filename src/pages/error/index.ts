@@ -16,13 +16,13 @@ interface IErrorPage {
 
 export class ErrorPage extends Block {
     constructor(props: IErrorPage) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
     render(): string {
         const context = {
-            main: new DialogMain({ content: Object.values(this._props).join('') }).render()
+            main: new DialogMain({ content: Object.values(this._props).join('') }).getContentAsString()
         };
 
         return renderTemplate(template, context);

@@ -2,12 +2,12 @@ import { Link, PageDescription, PageTitle } from '../../../components';
 import { ErrorPage } from '..';
 
 
-const context = {
-    title: new PageTitle({ text: '404' }).render(),
-    description: new PageDescription({ text: 'Страница не найдена' }).render(),
-    homeLink: new Link({ page: '/', text: 'Назад к чатам' }).render()
-};
+export const NotFoundErrorPage = () => {
+    const context = {
+        title: new PageTitle({ text: '404' }).getContentAsString(),
+        description: new PageDescription({ text: 'Страница не найдена' }).getContentAsString(),
+        homeLink: new Link({ page: '/', text: 'Назад к чатам' }).getContentAsString()
+    };
 
-export const NotFoundErrorPage = () => (
-    new ErrorPage(context).render()
-);
+    return new ErrorPage(context).getContentAsString();
+};

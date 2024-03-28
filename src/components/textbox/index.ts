@@ -17,7 +17,7 @@ interface ITextBox extends IInput {
 
 export class TextBox extends Block {
     constructor(props: ITextBox) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
@@ -26,8 +26,7 @@ export class TextBox extends Block {
         const context = {
             class: cssClass,
             label,
-            validation,
-            input: new Input({ ...inputProps, validationType: validation?.type } as IInput).render()
+            input: new Input({ ...inputProps, validationType: validation?.type } as IInput).getContentAsString()
         };
 
         return renderTemplate(template, context);

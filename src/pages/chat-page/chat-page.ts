@@ -28,15 +28,15 @@ interface IChatPage {
 
 export default class ChatPage extends Block {
   constructor(props: IChatPage) {
-    super('div', props);
+    super(props);
     this._props = props;
   }
 
   render(): string {
     const { list, dialog } = this._props;
     const context = {
-      list: new ChatList(list).render(),
-      dialog: new ChatDialog(dialog).render()
+      list: new ChatList(list).getContentAsString(),
+      dialog: new ChatDialog(dialog).getContentAsString()
     };
 
     return renderTemplate(template, context);

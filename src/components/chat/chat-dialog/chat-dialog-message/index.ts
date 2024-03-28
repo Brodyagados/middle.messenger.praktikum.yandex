@@ -13,7 +13,7 @@ interface IChatDialogMessage {
 
 export class ChatDialogMessage extends Block {
     constructor(props: IChatDialogMessage) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

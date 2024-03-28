@@ -10,7 +10,7 @@ interface IPageDescription {
 
 export class PageDescription extends Block {
     constructor(props: IPageDescription) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

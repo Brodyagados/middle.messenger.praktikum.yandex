@@ -6,13 +6,9 @@ import { ChatListSearch } from '../chat-list-search';
 
 
 export class ChatListHeader extends Block {
-    constructor() {
-        super('div');
-    }
-
     render(): string {
         const context = {
-            search: new ChatListSearch({ placeholder: 'Поиск', name: 'search' }).render()
+            search: new ChatListSearch({ placeholder: 'Поиск', name: 'search' }).getContentAsString()
         };
 
         return renderTemplate(template, context);

@@ -15,7 +15,7 @@ export interface IChatList {
 
 export class ChatList extends Block {
     constructor(props: IChatList) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

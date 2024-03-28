@@ -18,7 +18,7 @@ export interface IButton {
 
 export class Button extends Block {
     constructor(props: IButton) {
-        super('button', props);
+        super(props);
         this._props = props;
     }
 

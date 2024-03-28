@@ -2,12 +2,12 @@ import { Link, PageDescription, PageTitle } from '../../../components';
 import { ErrorPage } from '..';
 
 
-const context = {
-    title: new PageTitle({ text: '500' }).render(),
-    description: new PageDescription({ text: 'Внутренная ошибка сервера' }).render(),
-    homeLink: new Link({ page: '/', text: 'Назад к чатам' }).render()
-};
+export const InternalServerErrorPage = () => {
+    const context = {
+        title: new PageTitle({ text: '500' }).getContentAsString(),
+        description: new PageDescription({ text: 'Внутренная ошибка сервера' }).getContentAsString(),
+        homeLink: new Link({ page: '/', text: 'Назад к чатам' }).getContentAsString()
+    };
 
-export const InternalServerErrorPage = () => (
-    new ErrorPage(context).render()
-);
+    return new ErrorPage(context).getContentAsString();
+};

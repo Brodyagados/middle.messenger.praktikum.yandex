@@ -25,16 +25,16 @@ interface IUserPage {
 
 export class UserPage extends Block {
     constructor(props: IUserPage) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
     render(): string {
         const { header, main, footer } = this._props;
         const context = {
-            header: header ? new DialogHeader({ content: Object.values(header).join('') }).render() : header,
-            main: new DialogMain({ content: Object.values(main).join('') }).render(),
-            footer: new DialogFooter({ content: Object.values(footer).join('') }).render()
+            header: header ? new DialogHeader({ content: Object.values(header).join('') }).getContentAsString() : header,
+            main: new DialogMain({ content: Object.values(main).join('') }).getContentAsString(),
+            footer: new DialogFooter({ content: Object.values(footer).join('') }).getContentAsString()
         };
 
         return renderTemplate(template, context);
