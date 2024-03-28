@@ -30,5 +30,5 @@ export const UserSettingPage = (userData: IUserData) => {
         }
     };
 
-    return new UserPage(context(userData)).getContentAsString();
+    return new UserPage(context(userData)).getContent();
 };

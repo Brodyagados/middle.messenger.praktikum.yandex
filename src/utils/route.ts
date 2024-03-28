@@ -6,9 +6,9 @@ export class Page {
     /** ссылка на страницу */
     path: string;
     /** контент страницы */
-    content: (context?: object) => string | undefined;
+    content: (context?: object) => HTMLElement | undefined;
 
-    constructor(path: string, content: (context?: object) => string | undefined) {
+    constructor(path: string, content: (context?: object) => HTMLElement | undefined) {
         this.path = path;
         this.content = content;
     };
@@ -24,7 +24,7 @@ export class Page {
         }
 
         const app = document.getElementById('app');
-        app!.innerHTML = content;
+        app!.replaceChildren(content);
     }
 
     /** 
