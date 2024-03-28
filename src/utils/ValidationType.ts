@@ -89,7 +89,7 @@ export class Validation {
 const validationTypes = [
     new Validation(
         ValidationType.USER,
-        /^[A-Z][a-z-]+$/i,
+        /^[А-ЯЁ][a-яё-]+$/,
         'Поле должно содержать заглавную первую букву, не содержать пробелов, цифр и спецсимволов (кроме дефиса)'
     ),
     new Validation(
