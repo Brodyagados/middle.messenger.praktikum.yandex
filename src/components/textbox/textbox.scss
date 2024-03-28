@@ -40,20 +40,27 @@
     }
 
     &.textbox_inline {
-        gap: 10px;
-        flex-direction: row;
-        justify-content: space-between;
+        column-gap: 10px;
+        display: grid;
+        grid-template-areas: 'label input' 'error error';
+        grid-template-columns: 2fr 3fr;
         align-items: center;
 
         .textbox__label {
+            grid-area: label;
             font-weight: 400;
             font-size: $font-size;
             color: $color-black;
-            flex-shrink: 0;
         }
 
         .input {
+            grid-area: input;
             text-align: end;
+            border: unset;
+        }
+
+        .textbox__error {
+            grid-area: error;
         }
     }
 }

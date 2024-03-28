@@ -4,15 +4,13 @@ import template from './textbox.hbs?raw';
 import renderTemplate from '../../utils/render-template';
 import { Input } from '..';
 import { IInput } from '../base/input';
+import { Validation } from '../../utils/ValidationType';
 
 
 interface ITextBox extends IInput {
     class?: string,
     label?: string,
-    validation?: {
-        type: string,
-        error: string
-    }
+    validationType?: string
 }
 
 export class TextBox extends Block {
@@ -22,11 +20,12 @@ export class TextBox extends Block {
     }
 
     render(): string {
-        const { class: cssClass, label, validation, ...inputProps } = this._props;
+        const { class: cssClass, label, ...inputProps } = this._props;
+        const error = Validation.getByType(inputProps.validationType)?.message;
         const context = {
             class: cssClass,
-            label,
-            input: new Input({ ...inputProps, validationType: validation?.type } as IInput).getContentAsString()
+            label, error,
+            input: new Input(inputProps as IInput).getContentAsString()
         };
 
         return renderTemplate(template, context);
