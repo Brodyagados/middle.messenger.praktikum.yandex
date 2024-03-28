@@ -1,17 +1,30 @@
-import Handlebars from 'handlebars';
-
 import './chat-dialog.scss';
-import additionalButtonIconSrc from '../../../assets/icons/vertical-dotes.svg'
-import attachmentButtonIconSrc from '../../../assets/icons/attachment.svg'
-import sendButtonIconSrc from '../../../assets/icons/arrow-right.svg'
-export { default as ChatDialog } from './chat-dialog.hbs?raw';
-export { ChatDialogMessage } from './chat-dialog-message';
-export { ChatDialogMessageInput } from './chat-dialog-message-input';
+import Block from '../../../utils/Block';
+import template from './chat-dialog.hbs?raw';
+import renderTemplate from '../../../utils/render-template';
+import { DialogFooter, DialogHeader, DialogMain } from '../../../components';
 
-Handlebars.registerHelper('chatImages', (options) => {
-    return options.fn({
-        additionalButtonIconSrc,
-        attachmentButtonIconSrc,
-        sendButtonIconSrc
-    })
-});
+
+export interface IChatDialog {
+    header: string[],
+    main: string[],
+    footer: string[]
+}
+
+export class ChatDialog extends Block {
+    constructor(props: IChatDialog) {
+        super(props);
+        this._props = props;
+    }
+
+    render(): string {
+        const { header, main, footer } = this._props;
+        const context = {
+            header: new DialogHeader({ content: Object.values(header).join('') }).getContentAsString(),
+            main: new DialogMain({ content: Object.values(main).join('') }).getContentAsString(),
+            footer: new DialogFooter({ content: Object.values(footer).join('') }).getContentAsString()
+        };
+
+        return renderTemplate(template, context);
+    }
+}
