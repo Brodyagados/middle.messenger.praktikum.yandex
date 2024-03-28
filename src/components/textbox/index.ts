@@ -6,7 +6,6 @@ import { Input } from '..';
 import { IInput } from '../base/input';
 import { Validation } from '../../utils/ValidationType';
 
-
 interface ITextBox extends IInput {
     class?: string,
     label?: string,
@@ -14,20 +13,21 @@ interface ITextBox extends IInput {
 }
 
 export class TextBox extends Block {
-    constructor(props: ITextBox) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: ITextBox) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        const { class: cssClass, label, ...inputProps } = this._props;
-        const error = Validation.getByType(inputProps.validationType)?.message;
-        const context = {
-            class: cssClass,
-            label, error,
-            input: new Input(inputProps as IInput).getContentAsString()
-        };
+  render(): string {
+    const { class: cssClass, label, ...inputProps } = this._props;
+    const error = Validation.getByType(inputProps.validationType)?.message;
+    const context = {
+      class: cssClass,
+      label,
+      error,
+      input: new Input(inputProps as IInput).getContentAsString(),
+    };
 
-        return renderTemplate(template, context);
-    }
+    return renderTemplate(template, context);
+  }
 }

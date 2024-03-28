@@ -8,7 +8,6 @@ export { ChangePasswordPage } from './change-password-page';
 export { UserSettingPage } from './user-setting-page';
 export { UserSettingEditPage } from './user-setting-edit-page';
 
-
 export interface IUserData {
     firstName: string,
     secondName: string,
@@ -24,19 +23,19 @@ interface IUserPage {
 }
 
 export class UserPage extends Block {
-    constructor(props: IUserPage) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IUserPage) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        const { header, main, footer } = this._props;
-        const context = {
-            header: header ? new DialogHeader({ content: Object.values(header).join('') }).getContentAsString() : header,
-            main: new DialogMain({ content: Object.values(main).join('') }).getContentAsString(),
-            footer: new DialogFooter({ content: Object.values(footer).join('') }).getContentAsString()
-        };
+  render(): string {
+    const { header, main, footer } = this._props;
+    const context = {
+      header: header ? new DialogHeader({ content: Object.values(header).join('') }).getContentAsString() : header,
+      main: new DialogMain({ content: Object.values(main).join('') }).getContentAsString(),
+      footer: new DialogFooter({ content: Object.values(footer).join('') }).getContentAsString(),
+    };
 
-        return renderTemplate(template, context);
-    }
+    return renderTemplate(template, context);
+  }
 }

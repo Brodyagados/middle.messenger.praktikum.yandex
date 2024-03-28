@@ -4,7 +4,6 @@ import renderTemplate from '../../../../utils/render-template';
 import Block from '../../../../utils/Block';
 import { Avatar } from '../../..';
 
-
 interface IChatListItem {
     isActive?: boolean,
     avatarSrc?: string,
@@ -16,18 +15,18 @@ interface IChatListItem {
 }
 
 export class ChatListItem extends Block {
-    constructor(props: IChatListItem) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IChatListItem) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        const { avatarSrc, ...itemProps } = this._props;
-        const context = {
-            ...itemProps,
-            avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' }).getContentAsString()
-        };
+  render(): string {
+    const { avatarSrc, ...itemProps } = this._props;
+    const context = {
+      ...itemProps,
+      avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' }).getContentAsString(),
+    };
 
-        return renderTemplate(template, context);
-    }
+    return renderTemplate(template, context);
+  }
 }

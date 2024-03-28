@@ -3,7 +3,6 @@ import './link.scss';
 import template from './link.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
-
 export interface ILink {
     url?: string,
     class?: string,
@@ -12,12 +11,12 @@ export interface ILink {
 }
 
 export class Link extends Block {
-    constructor(props: ILink) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: ILink) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+  render(): string {
+    return renderTemplate(template, this._props);
+  }
 }

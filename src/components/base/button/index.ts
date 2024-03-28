@@ -3,7 +3,6 @@ import './button.scss';
 import template from './button.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
-
 export interface IButton {
     class?: string,
     page?: string,
@@ -18,12 +17,12 @@ export interface IButton {
 }
 
 export class Button extends Block {
-    constructor(props: IButton) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IButton) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+  render(): string {
+    return renderTemplate(template, this._props);
+  }
 }

@@ -4,7 +4,6 @@ import { ChatDialog, ChatList, IChatDialog, IChatList } from '../../components';
 import Block from '../../utils/Block';
 import renderTemplate from '../../utils/render-template';
 
-
 export interface IChatListItem {
   user: string,
   message: string,
@@ -36,7 +35,7 @@ export default class ChatPage extends Block {
     const { list, dialog } = this._props;
     const context = {
       list: new ChatList(list).getContentAsString(),
-      dialog: new ChatDialog(dialog).getContentAsString()
+      dialog: new ChatDialog(dialog).getContentAsString(),
     };
 
     return renderTemplate(template, context);

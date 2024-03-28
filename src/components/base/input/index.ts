@@ -3,7 +3,6 @@ import './input.scss';
 import template from './input.hbs?raw';
 import renderTemplate from '../../../utils/render-template';
 
-
 export interface IInput {
     isAlignRight?: boolean,
     placeholder?: string,
@@ -16,12 +15,12 @@ export interface IInput {
 }
 
 export class Input extends Block {
-    constructor(props: IInput) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IInput) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+  render(): string {
+    return renderTemplate(template, this._props);
+  }
 }

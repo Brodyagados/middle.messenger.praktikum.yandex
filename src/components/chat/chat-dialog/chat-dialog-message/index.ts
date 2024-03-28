@@ -3,7 +3,6 @@ import template from './chat-dialog-message.hbs?raw';
 import renderTemplate from '../../../../utils/render-template';
 import Block from '../../../../utils/Block';
 
-
 interface IChatDialogMessage {
     isOwner?: boolean,
     imgSrc?: string,
@@ -12,12 +11,12 @@ interface IChatDialogMessage {
 }
 
 export class ChatDialogMessage extends Block {
-    constructor(props: IChatDialogMessage) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IChatDialogMessage) {
+    super(props);
+    this._props = props;
+  }
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+  render(): string {
+    return renderTemplate(template, this._props);
+  }
 }

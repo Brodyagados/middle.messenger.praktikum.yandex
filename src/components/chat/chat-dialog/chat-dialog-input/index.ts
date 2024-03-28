@@ -4,13 +4,12 @@ import renderTemplate from '../../../../utils/render-template';
 import { Input } from '../../../base/input';
 import Block from '../../../../utils/Block';
 
-
 export class ChatDialogInput extends Block {
-    render(): string {
-        const context = {
-            input: new Input({ placeholder: 'Сообщение', name: 'message' }).getContentAsString()
-        };
+  render(): string {
+    const context = {
+      input: new Input({ placeholder: 'Сообщение', name: 'message' }).getContentAsString(),
+    };
 
-        return renderTemplate(template, context);
-    }
+    return renderTemplate(template, context);
+  }
 }
