@@ -10,7 +10,7 @@ interface IPageTitle {
 
 export class PageTitle extends Block {
     constructor(props: IPageTitle) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

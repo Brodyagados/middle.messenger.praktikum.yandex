@@ -13,7 +13,7 @@ export interface ILink {
 
 export class Link extends Block {
     constructor(props: ILink) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

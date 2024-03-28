@@ -6,13 +6,9 @@ import Block from '../../../../utils/Block';
 
 
 export class ChatDialogInput extends Block {
-    constructor() {
-        super('div');
-    }
-
     render(): string {
         const context = {
-            input: new Input({ placeholder: 'Сообщение', name: 'message' }).render()
+            input: new Input({ placeholder: 'Сообщение', name: 'message' }).getContentAsString()
         };
 
         return renderTemplate(template, context);

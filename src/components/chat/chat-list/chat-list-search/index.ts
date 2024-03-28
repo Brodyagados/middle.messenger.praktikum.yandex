@@ -7,13 +7,13 @@ import Block from '../../../../utils/Block';
 
 export class ChatListSearch extends Block {
     constructor(props: IInput) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
     render(): string {
         const context = {
-            input: new Input(this._props as IInput).render()
+            input: new Input(this._props as IInput).getContentAsString()
         };
 
         return renderTemplate(template, context);

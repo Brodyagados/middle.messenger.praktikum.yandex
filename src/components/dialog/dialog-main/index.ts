@@ -10,7 +10,7 @@ interface IDialogMain {
 
 export class DialogMain extends Block {
     constructor(props: IDialogMain) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

@@ -17,7 +17,7 @@ interface IChatListItem {
 
 export class ChatListItem extends Block {
     constructor(props: IChatListItem) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
@@ -25,7 +25,7 @@ export class ChatListItem extends Block {
         const { avatarSrc, ...itemProps } = this._props;
         const context = {
             ...itemProps,
-            avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' }).render()
+            avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' }).getContentAsString()
         };
 
         return renderTemplate(template, context);
