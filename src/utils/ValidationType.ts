@@ -1,8 +1,22 @@
-export class ValidationType {
+import { Page } from './route';
+
+export enum ValidationType {
+    USER = 'user',
+    LOGIN = 'login',
+    PASSOWRD = 'password',
+    EQUAL_PASSWORD = 'equal-password',
+    PHONE = 'phone',
+    EMAIL = 'email',
+    MESSAGE = 'message'
+}
+
+export class Validation {
+    type: ValidationType;
     rule: RegExp;
     message: string;
 
-    constructor(rule: RegExp, message: string) {
+    constructor(type: ValidationType, rule: RegExp, message: string) {
+        this.type = type;
         this.rule = rule;
         this.message = message;
     };
@@ -12,29 +26,23 @@ export class ValidationType {
     }
 
     static getByType(type: string) {
-        const entry = Object.entries(validationType).find(([key]) => key === type);
-        if (!entry) {
-            return null;
-        }
-
-        const [_, entryType] = entry;
-        return entryType;
+        return validationTypes.find((item) => item.type === type);
     }
 
     static inputValidate(input: HTMLInputElement) {
-        const typeName = input.dataset['validation-type'];
+        const typeName = input.getAttribute('data-validation-type');
         if (!typeName) {
             return true;
         }
 
-        const type = ValidationType.getByType(typeName);
+        const type = Validation.getByType(typeName);
         if (!type) {
             return false;
         }
 
         const validateErrorClass = 'textbox_error_visible';
         const textbox = input.closest('.textbox');
-        const isValid = !type.rule.test(input.value);
+        const isValid = type.rule.test(input.value);
 
         isValid
             ? textbox?.classList.remove(validateErrorClass)
@@ -42,31 +50,70 @@ export class ValidationType {
 
         return isValid;
     }
+
+    static formValidate(form: HTMLFormElement | null) {
+        if (!form) {
+            return;
+        }
+
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach((input) => {
+            input.addEventListener('blur', () => this.inputValidate(input));
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData: Record<string, string | null> = {};
+
+            inputs.forEach((input) => {
+                const isValid = this.inputValidate(input);
+                formData[input.name] = isValid ? input.value : null;
+            })
+
+            console.log(formData);
+
+            if (Object.values(formData).includes(null) || !e.submitter) {
+                return;
+            }
+
+            const path = e.submitter.getAttribute('page');
+            if (path) {
+                Page.getByPath(path)?.route();
+            }
+        })
+    }
 }
 
-export const validationType = {
-    user: new ValidationType(
+const validationTypes = [
+    new Validation(
+        ValidationType.USER,
         /^[A-Z][a-z-]+$/i,
-        'Поле должно содержать заглавную первую букву, не содержать пробелов, цифр и спецсимволов (кроме дефиса)' 
+        'Поле должно содержать заглавную первую букву, не содержать пробелов, цифр и спецсимволов (кроме дефиса)'
     ),
-    login: new ValidationType(
+    new Validation(
+        ValidationType.LOGIN,
         /^(?=.+[a-z])[a-z\d-_\s]{3,20}$/i,
-        'Поле должно содержать от 3 до 20 символов, минимум одну латинскую букву, может содержать цифры, дефис и нижнее подчеркивание' 
+        'Логин должен содержать от 3 до 20 символов, минимум одну латинскую букву, может содержать цифры, дефис и нижнее подчеркивание'
     ),
-    password: new ValidationType(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/,
-        'Пароль должен содержать от 8 до 40 символов, минимум одну заглавную букву и цифру' 
+    new Validation(
+        ValidationType.PASSOWRD,
+        /^(?=.*\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/g,
+        'Пароль должен содержать от 8 до 40 символов, минимум одну заглавную букву и цифру'
     ),
-    phone: new ValidationType(
-        /^((\+7|7|8)+([0-9]){10,15})$/, 
-        'Телефон должен содержать от 10 до 15 символов и состоять из цифр (может начинается с плюса)' 
+    new Validation(
+        ValidationType.PHONE,
+        /^((\+7|7|8)+([0-9]){10,15})$/,
+        'Телефон должен содержать от 10 до 15 символов и состоять из цифр (может начинается с плюса)'
     ),
-    email: new ValidationType(
-        /^[^\s@]+@[^\s@]+$/, 
-        'Некорректный формат email`а' 
+    new Validation(
+        ValidationType.EMAIL,
+        /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/,
+        'Некорректный формат email`а'
     ),
-    message: new ValidationType(
-        /^\s*$/, 
-        'Поле не должно быть пустым' 
+    new Validation(
+        ValidationType.MESSAGE,
+        /^\s*$/,
+        'Поле не должно быть пустым'
     )
-}
+]
