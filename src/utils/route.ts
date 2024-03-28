@@ -1,6 +1,7 @@
 import testImgSrc from '../assets/icons/base-avatar.svg'
 import * as Pages from '../pages';
 
+
 /** Объект "Страница" */
 export class Page {
     /** ссылка на страницу */

@@ -21,4 +21,3 @@ export class Avatar extends Block {
         return renderTemplate(template, context);
     }
 }
-

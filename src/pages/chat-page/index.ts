@@ -7,6 +7,7 @@ import Page, { IChatListItem, IChatMessage } from './chat-page';
 import { ChatDialogMessage } from '../../components/chat/chat-dialog/chat-dialog-message';
 import { ChatListAccountLink, ChatListHeader, ChatListItem } from '../../components/chat/chat-list';
 
+
 export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessage[]) => {
   const context = (chats: IChatListItem[], chatDialogMessages: IChatMessage[]) => {
     return {

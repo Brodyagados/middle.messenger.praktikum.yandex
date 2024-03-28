@@ -1,5 +1,6 @@
 import { Page } from './route';
 
+
 export enum ValidationType {
     USER = 'user',
     LOGIN = 'login',

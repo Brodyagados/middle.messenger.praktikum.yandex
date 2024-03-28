@@ -1,7 +1,12 @@
-<button class="button{{#if class }} {{ class }}{{/if}}" {{#if page }} page="{{ page }}" {{/if}} {{#if disabled }}
-    disabled{{/if}} title="{{#if title }}{{ title }}{{else}}{{ text }}{{/if}}" {{#if type }}type="{{ type }}" {{/if}}>
-    {{#if img }}
-    <img src="{{ img.src }}" alt="{{ img.alt }}">
+<button 
+    class="button{{#if class}} {{class}}{{/if}}"
+    {{#if page}} page="{{page}}" {{/if}}
+    {{#if disabled}} disabled {{/if}}
+    title="{{#if title}}{{title}}{{else}}{{text}}{{/if}}"
+    {{#if type}} type="{{type}}" {{/if}}
+>
+    {{#if img}}
+        <img src="{{img.src}}" alt="{{img.alt}}">
     {{/if}}
-    {{#if text }}{{ text }}{{/if}}
+    {{#if text}}{{text}}{{/if}}
 </button>

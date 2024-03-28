@@ -3,8 +3,6 @@ import { Button, Link, PageTitle, TextBox } from '../../../components';
 import { Validation, ValidationType } from '../../../utils/ValidationType';
 
 
-
-
 export const LoginPage = () => {
     const context = {
         header: [
