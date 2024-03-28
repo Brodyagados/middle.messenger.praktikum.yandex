@@ -8,11 +8,11 @@ enum HttpMethod {
 interface IOptions {
     method?: HttpMethod,
     headers?: Record<string, string>,
-    data?: any, //заранее неизвестно, какого типа отправляемые данные на сервер
+    data?: Record<string, unknown>,
     timeout?: number
 }
 
-function queryStringify(data: Record<string, unknown> = {}) {
+function queryStringify(data: Record<string, unknown>) {
     return Object.entries(data)
         .map(([key, value]) => `${key}=${value}`)
         .join('&');
@@ -62,7 +62,7 @@ export default class ApiClient {
             xhr.onabort = reject;
             xhr.onerror = reject;
 
-            method === HttpMethod.GET
+            method === HttpMethod.GET || !!data
                 ? xhr.send()
                 : xhr.send(data);
         })
