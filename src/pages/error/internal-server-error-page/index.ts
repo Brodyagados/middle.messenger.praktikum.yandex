@@ -4,10 +4,10 @@ import { ErrorPage } from '..';
 
 export const InternalServerErrorPage = () => {
     const context = {
-        title: new PageTitle({ text: '500' }).render(),
-        description: new PageDescription({ text: 'Внутренная ошибка сервера' }).render(),
-        homeLink: new Link({ page: '/', text: 'Назад к чатам' }).render()
+        title: new PageTitle({ text: '500' }).getContentAsString(),
+        description: new PageDescription({ text: 'Внутренная ошибка сервера' }).getContentAsString(),
+        homeLink: new Link({ page: '/', text: 'Назад к чатам' }).getContentAsString()
     };
 
-    return new ErrorPage(context).getContent();
+    return new ErrorPage(context).getContentAsString();
 };

@@ -12,12 +12,13 @@ interface IAvatar {
 
 export class Avatar extends Block {
     constructor(props: IAvatar) {
-        super('img', props);
-        this._props = { baseSrc, ...props };
+        super(props);
+        this._props = props;
     }
 
     render(): string {
-        return renderTemplate(template, this._props);
+        const context = { ...this._props, src: this._props.src ?? baseSrc };
+        return renderTemplate(template, context);
     }
 }
 

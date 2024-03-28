@@ -10,7 +10,7 @@ interface IDialogHeader {
 
 export class DialogHeader extends Block {
     constructor(props: IDialogHeader) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 

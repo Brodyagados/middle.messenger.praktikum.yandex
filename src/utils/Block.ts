@@ -13,7 +13,7 @@ export default class Block {
     _props: Record<string, any>;
     _eventBus: () => EventBus;
 
-    constructor(tagName: string = 'div', props: object = {}) {
+    constructor(props: object = {}, tagName: string = 'div') {
         const eventBus = new EventBus();
 
         this._meta = {
@@ -91,7 +91,6 @@ export default class Block {
     _render() {
         this._removeEvents();
         const block = this.render();
-        console.trace()
         this._element!.innerHTML = block;
         this._addEvents();
     }
@@ -101,7 +100,11 @@ export default class Block {
     }
 
     getContent() {
-        return this._element;
+        return this._element!.firstChild as HTMLElement;
+    }
+
+    getContentAsString() {
+        return this._element!.innerHTML;
     }
 
     _makePropsProxy(props: object) {

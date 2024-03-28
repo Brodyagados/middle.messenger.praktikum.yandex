@@ -12,20 +12,20 @@ export const UserSettingEditPage = (userData: IUserData) => {
 
         return {
             header: [
-                new Avatar({ alt: 'Аватар пользователя.' }).render()
+                new Avatar({ alt: 'Аватар пользователя.' }).getContentAsString()
             ],
             main: [
-                new TextBox({ label: 'Почта', name: 'email', value: email, ...textBoxProps }).render(),
-                new TextBox({ label: 'Логин', name: 'login', value: login, ...textBoxProps }).render(),
-                new TextBox({ label: 'Имя', name: 'first_name', value: firstName, ...textBoxProps }).render(),
-                new TextBox({ label: 'Фамилия', name: 'second_name', value: secondName, ...textBoxProps }).render(),
-                new TextBox({ label: 'Телефон', name: 'phone', value: phone, ...textBoxProps }).render()
+                new TextBox({ label: 'Почта', name: 'email', value: email, ...textBoxProps }).getContentAsString(),
+                new TextBox({ label: 'Логин', name: 'login', value: login, ...textBoxProps }).getContentAsString(),
+                new TextBox({ label: 'Имя', name: 'first_name', value: firstName, ...textBoxProps }).getContentAsString(),
+                new TextBox({ label: 'Фамилия', name: 'second_name', value: secondName, ...textBoxProps }).getContentAsString(),
+                new TextBox({ label: 'Телефон', name: 'phone', value: phone, ...textBoxProps }).getContentAsString()
             ],
             footer: [
-                new Button({ class: 'button_color_blue button_text_center', text: 'Сохранить', page: '/user-setting' }).render()
+                new Button({ class: 'button_color_blue button_text_center', text: 'Сохранить', page: '/user-setting' }).getContentAsString()
             ]
         }
     };
 
-    return new UserPage(context(userData)).getContent();
+    return new UserPage(context(userData)).getContentAsString();
 };

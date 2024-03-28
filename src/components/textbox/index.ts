@@ -20,7 +20,7 @@ interface ITextBox {
 
 export class TextBox extends Block {
     constructor(props: ITextBox) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
@@ -29,7 +29,7 @@ export class TextBox extends Block {
         const context = {
             class: cssClass,
             label,
-            input: new Input(inputProps as IInput).render()
+            input: new Input(inputProps as IInput).getContentAsString()
         };
 
         return renderTemplate(template, context);

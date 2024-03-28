@@ -12,7 +12,7 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
     return {
       dialog: {
         header: [
-          new Avatar({ alt: 'Аватар текущего чата.' }).render(),
+          new Avatar({ alt: 'Аватар текущего чата.' }).getContentAsString(),
           '<div class="chat-user">Вадим</div>',
           new Button({
             img: {
@@ -20,9 +20,9 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
               alt: 'Кнопка открытия меню дополнительных действий с чатом.'
             },
             title: 'Дополнительно'
-          }).render()
+          }).getContentAsString()
         ],
-        main: chatDialogMessages.map((message) => new ChatDialogMessage(message).render()),
+        main: chatDialogMessages.map((message) => new ChatDialogMessage(message).getContentAsString()),
         footer: [
           new Button({
             img: {
@@ -30,8 +30,8 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
               alt: 'Кнопка прикрепления файла для отправки в чат.'
             },
             title: 'Прикрепить файл'
-          }).render(),
-          new ChatDialogInput().render(),
+          }).getContentAsString(),
+          new ChatDialogInput().getContentAsString(),
           new Button({
             img: {
               src: sendButtonIconSrc,
@@ -39,16 +39,16 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
             },
             class: 'button_color_blue button_circle',
             title: 'Отправить'
-          }).render()
+          }).getContentAsString()
         ]
       },
       list: {
-        accountLink: new ChatListAccountLink().render(),
-        header: new ChatListHeader().render(),
-        items: chats.map((item) => new ChatListItem(item).render()).join('')
+        accountLink: new ChatListAccountLink().getContentAsString(),
+        header: new ChatListHeader().getContentAsString(),
+        items: chats.map((item) => new ChatListItem(item).getContentAsString()).join('')
       }
     }
   };
 
-  return new Page(context(chats, chatDialogMessages)).getContent();
+  return new Page(context(chats, chatDialogMessages)).getContentAsString();
 };

@@ -5,25 +5,20 @@ import { Button, Link, PageTitle, TextBox } from '../../../components';
 export const LoginPage = () => {
     const context = {
         header: [
-            // new PageTitle({ text: 'Вход' }).render()
+            new PageTitle({ text: 'Вход' }).getContentAsString()
         ],
         main: [
+            new TextBox({ label: 'Логин', placeholder: 'Логин', name: 'login' }).getContentAsString(),
             new TextBox({
-                label: 'Логин', placeholder: 'Логин', name: 'login'
-            }).render(),
-            // new TextBox({
-            //     label: 'Пароль', placeholder: 'Пароль', name: 'password', type: 'password',
-            //     events: { focus: () => console.log('password textbox focus') }
-            // }).render()
+                label: 'Пароль', placeholder: 'Пароль',
+                name: 'password', type: 'password'
+            }).getContentAsString()
         ],
         footer: [
-            // new Button({
-            //     class: 'button_color_blue', text: 'Войти', page: '/',
-            //     events: { click: () => console.log('button click') }
-            // }).render(),
-            // new Link({ text: 'Зарегистрироваться', page: '/sign-in' }).render()
+            new Button({ class: 'button_color_blue', text: 'Войти', page: '/' }).getContentAsString(),
+            new Link({ text: 'Зарегистрироваться', page: '/sign-in' }).getContentAsString()
         ]
     };
 
-    return new AccountPage(context).getContent();
+    return new AccountPage(context).getContentAsString();
 };

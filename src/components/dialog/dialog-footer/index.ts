@@ -10,7 +10,7 @@ interface IDialogFooter {
 
 export class DialogFooter extends Block {
     constructor(props: IDialogFooter) {
-        super('div', props);
+        super(props);
         this._props = props;
     }
 
