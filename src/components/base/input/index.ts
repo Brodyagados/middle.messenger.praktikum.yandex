@@ -25,9 +25,9 @@ export class Input extends Block {
         ...props.attr,
         class: `input${isAlignRight ? ' input_align_right' : ''}`,
       },
-      events: props.attr.validation 
+      events: props.attr.validation
         ? { blur: ({ target }: Event) => Validation.validateInput(target as HTMLInputElement) }
-        : {}
+        : {},
     }, 'input');
   }
 
