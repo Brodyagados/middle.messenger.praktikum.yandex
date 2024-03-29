@@ -1,5 +1,3 @@
-import { Page } from './route';
-
 export enum ValidationType {
     USER = 'user',
     LOGIN = 'login',
@@ -50,42 +48,22 @@ export class Validation {
       ? textbox?.classList.remove(validateErrorClass)
       : textbox?.classList.add(validateErrorClass);
 
-    input.setAttribute('data-valid', isValid.toString())
-
     return isValid;
   }
 
-  static validateForm(form: HTMLFormElement | null) {
-    if (!form) {
-      return;
-    }
+  static validateForm(form: HTMLFormElement) {
+    const formData: Record<string, string | null> = {};
 
     const inputs = form.querySelectorAll('input');
     inputs.forEach((input) => {
-      input.addEventListener('blur', () => this.validateInput(input));
+      const isValid = this.validateInput(input);
+      formData[input.name] = isValid ? input.value : null;
     });
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    console.log(formData);
 
-      const formData: Record<string, string | null> = {};
-
-      inputs.forEach((input) => {
-        const isValid = this.validateInput(input);
-        formData[input.name] = isValid ? input.value : null;
-      });
-
-      console.log(formData);
-
-      if (Object.values(formData).includes(null) || !e.submitter) {
-        return;
-      }
-
-      const path = e.submitter.getAttribute('page');
-      if (path) {
-        Page.getByPath(path)?.route();
-      }
-    });
+    const isValid = !Object.values(formData).includes(null);
+    return isValid;
   }
 }
 
