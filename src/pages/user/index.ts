@@ -1,4 +1,4 @@
-import { DialogFooter, DialogHeader, DialogMain } from '../../components';
+import { Form } from '../../components';
 import './user-page.scss';
 import Block from '../../utils/Block';
 import template from './user-page.hbs?raw';
@@ -16,19 +16,15 @@ export interface IUserData {
 }
 
 interface IUserPage {
-    header?: Block[],
-    main: Block[],
-    footer: Block[]
+  form: Block[]
 }
 
 export class UserPage extends Block {
   constructor(props: IUserPage) {
-    const { header, main, footer } = props;
+    const { form } = props;
 
     super({
-      header: header ? new DialogHeader({ content: Object.values(header) }) : null,
-      main: new DialogMain({ content: Object.values(main) }),
-      footer: new DialogFooter({ content: Object.values(footer) }),
+      form: new Form({ content: form }),
       attr: { class: 'user-page' },
     });
   }
