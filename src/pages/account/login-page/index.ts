@@ -1,6 +1,6 @@
 import { AccountPage } from '..';
 import { Button, Link, PageTitle, TextBox } from '../../../components';
-import { Validation, ValidationType } from '../../../utils/ValidationType';
+import { ValidationType } from '../../../utils/ValidationType';
 
 export const LoginPage = () => {
   const context = {
@@ -37,7 +37,7 @@ export const LoginPage = () => {
           class: 'button_color_blue',
           page: '/',
           type: 'submit',
-        }
+        },
       }),
       new Link({ text: 'Зарегистрироваться', attr: { page: '/sign-in' } }),
     ],
