@@ -1,25 +1,26 @@
 import './chat-list.scss';
 import Block from '../../../utils/Block';
 import template from './chat-list.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
 
 export { ChatListAccountLink } from './chat-list-account-link';
 export { ChatListHeader } from './chat-list-header';
 export { ChatListItem } from './chat-list-item';
 
 export interface IChatList {
-    accountLink: string,
-    header: string,
-    items: string
+    accountLink: Block,
+    header: Block,
+    items: Block[]
 }
 
 export class ChatList extends Block {
   constructor(props: IChatList) {
-    super(props);
-    this._props = props;
+    super({
+      ...props,
+      attr: { class: 'chat-list' },
+    }, 'nav');
   }
 
-  render(): string {
-    return renderTemplate(template, this._props);
+  render() {
+    return this.compile(template, this._props);
   }
 }

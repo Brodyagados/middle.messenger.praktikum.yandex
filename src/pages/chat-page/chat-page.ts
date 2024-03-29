@@ -2,7 +2,6 @@ import './chat-page.scss';
 import template from './chat-page.hbs?raw';
 import { ChatDialog, ChatList, IChatDialog, IChatList } from '../../components';
 import Block from '../../utils/Block';
-import renderTemplate from '../../utils/render-template';
 
 export interface IChatListItem {
   user: string,
@@ -27,17 +26,16 @@ interface IChatPage {
 
 export default class ChatPage extends Block {
   constructor(props: IChatPage) {
-    super(props);
-    this._props = props;
+    const { list, dialog } = props;
+
+    super({
+      list: new ChatList(list),
+      dialog: new ChatDialog(dialog),
+      attr: { class: 'chat-page' },
+    });
   }
 
-  render(): string {
-    const { list, dialog } = this._props;
-    const context = {
-      list: new ChatList(list).getContentAsString(),
-      dialog: new ChatDialog(dialog).getContentAsString(),
-    };
-
-    return renderTemplate(template, context);
+  render() {
+    return this.compile(template, this._props);
   }
 }

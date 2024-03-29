@@ -1,15 +1,17 @@
 import './chat-dialog-input.scss';
 import template from './chat-dialog-input.hbs?raw';
-import renderTemplate from '../../../../utils/render-template';
-import { Input } from '../../../base/input';
+import { IInput, Input } from '../../../base/input';
 import Block from '../../../../utils/Block';
 
 export class ChatDialogInput extends Block {
-  render(): string {
-    const context = {
-      input: new Input({ placeholder: 'Сообщение', name: 'message' }).getContentAsString(),
-    };
+  constructor(props: IInput) {
+    super({
+      input: new Input(props),
+      attr: { class: 'chat-dialog__input' },
+    });
+  }
 
-    return renderTemplate(template, context);
+  render() {
+    return this.compile(template, this._props);
   }
 }
