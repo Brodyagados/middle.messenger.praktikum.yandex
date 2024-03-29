@@ -8,63 +8,80 @@ export const UserSettingEditPage = (userData: IUserData) => {
       firstName, secondName,
       email, login, phone,
     } = userData;
-    const textBoxProps = { class: 'textbox_inline' };
 
     return {
       header: [
-        new Avatar({ alt: 'Аватар пользователя.' }).getContentAsString(),
+        new Avatar({ attr: { alt: 'Аватар пользователя.' } })
       ],
       main: [
         new TextBox({
           label: 'Почта',
-          name: 'email',
-          value: email,
-          ...textBoxProps,
-          validationType: ValidationType.EMAIL,
-        }).getContentAsString(),
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'email',
+              value: email,
+              validation: ValidationType.EMAIL,
+            }
+          }
+        }),
         new TextBox({
           label: 'Логин',
-          name: 'login',
-          value: login,
-          ...textBoxProps,
-          validationType: ValidationType.LOGIN,
-        }).getContentAsString(),
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'login',
+              value: login,
+              validation: ValidationType.LOGIN,
+            }
+          }
+        }),
         new TextBox({
           label: 'Имя',
-          name: 'first_name',
-          value: firstName,
-          ...textBoxProps,
-          validationType: ValidationType.USER,
-        }).getContentAsString(),
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'first_name',
+              value: firstName,
+              validation: ValidationType.USER,
+            }
+          }
+        }),
         new TextBox({
           label: 'Фамилия',
-          name: 'second_name',
-          value: secondName,
-          ...textBoxProps,
-          validationType: ValidationType.USER,
-        }).getContentAsString(),
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'second_name',
+              value: secondName,
+              validation: ValidationType.USER,
+            }
+          }
+        }),
         new TextBox({
           label: 'Телефон',
-          name: 'phone',
-          value: phone,
-          ...textBoxProps,
-          validationType: ValidationType.PHONE,
-        }).getContentAsString(),
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'phone',
+              value: phone,
+              validation: ValidationType.PHONE,
+            }
+          }
+        }),
       ],
       footer: [
         new Button({
-          class: 'button_color_blue button_text_center',
           text: 'Сохранить',
-          page: '/user-setting',
-          type: 'submit',
-        }).getContentAsString(),
+          attr: {
+            class: 'button_color_blue button_text_center',
+            page: '/user-setting',
+            type: 'submit',
+          }
+        }),
       ],
     };
   };
 
-  const page = new UserPage(context(userData)).getContent();
-  const form = page.querySelector('form');
-  Validation.validateForm(form);
-
-  return page;
+  return new UserPage(context(userData)).getContent();
 };

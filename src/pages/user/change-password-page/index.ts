@@ -1,45 +1,55 @@
 import { Button, TextBox } from '../../../components';
 import { UserPage } from '..';
-import { Validation, ValidationType } from '../../../utils/ValidationType';
+import { ValidationType } from '../../../utils/ValidationType';
 
 export const ChangePasswordPage = () => {
   const context = {
     main: [
       new TextBox({
-        class: 'textbox_inline',
         label: 'Старый пароль',
-        name: 'oldPassword',
-        type: 'password',
-        validationType: ValidationType.PASSOWRD,
-      }).getContentAsString(),
+        attr: { class: 'textbox_inline' },
+        inputProps: {
+          attr: {
+            name: 'oldPassword',
+            type: 'password',
+            validation: ValidationType.PASSOWRD,
+          }
+        },
+      }),
       new TextBox({
-        class: 'textbox_inline',
         label: 'Новый пароль',
-        name: 'newPassword',
-        type: 'password',
-        validationType: ValidationType.PASSOWRD,
-      }).getContentAsString(),
+        attr: { class: 'textbox_inline' },
+        inputProps: {
+          attr: {
+            name: 'newPassword',
+            type: 'password',
+            validation: ValidationType.PASSOWRD,
+          }
+        },
+      }),
       new TextBox({
-        class: 'textbox_inline',
         label: 'Новый пароль еще раз',
-        name: 'newPassword_equal',
-        type: 'password',
-        validationType: ValidationType.PASSOWRD,
-      }).getContentAsString(),
+        attr: { class: 'textbox_inline' },
+        inputProps: {
+          attr: {
+            name: 'newPassword_equal',
+            type: 'password',
+            validation: ValidationType.PASSOWRD,
+          }
+        },
+      }),
     ],
     footer: [
       new Button({
-        class: 'button_color_blue button_text_center',
         text: 'Сохранить',
-        page: '/user-setting',
-        type: 'submit',
-      }).getContentAsString(),
+        attr: {
+          class: 'button_color_blue button_text_center',
+          page: '/user-setting',
+          type: 'submit',
+        }
+      }),
     ],
   };
 
-  const page = new UserPage(context).getContent();
-  const form = page.querySelector('form');
-  Validation.validateForm(form);
-
-  return page;
+  return new UserPage(context).getContent();
 };

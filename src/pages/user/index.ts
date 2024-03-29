@@ -17,25 +17,24 @@ export interface IUserData {
 }
 
 interface IUserPage {
-    header?: string[],
-    main: string[],
-    footer: string[]
+    header?: Block[],
+    main: Block[],
+    footer: Block[]
 }
 
 export class UserPage extends Block {
   constructor(props: IUserPage) {
-    super(props);
-    this._props = props;
+    const { header, main, footer } = props;
+    
+    super({
+      header: header ? new DialogHeader({ content: Object.values(header) }) : null,
+      main: new DialogMain({ content: Object.values(main) }),
+      footer: new DialogFooter({ content: Object.values(footer) }),
+      attr: { class: 'user-page' }
+    });
   }
 
-  render(): string {
-    const { header, main, footer } = this._props;
-    const context = {
-      header: header ? new DialogHeader({ content: Object.values(header).join('') }).getContentAsString() : header,
-      main: new DialogMain({ content: Object.values(main).join('') }).getContentAsString(),
-      footer: new DialogFooter({ content: Object.values(footer).join('') }).getContentAsString(),
-    };
-
-    return renderTemplate(template, context);
+  render() {
+    return this.compile(template, this._props);
   }
 }

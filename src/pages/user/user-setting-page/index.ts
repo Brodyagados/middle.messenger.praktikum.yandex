@@ -7,24 +7,73 @@ export const UserSettingPage = (userData: IUserData) => {
       firstName, secondName,
       email, login, phone,
     } = userData;
-    const textBoxProps = { class: 'textbox_inline', disabled: true };
 
     return {
       header: [
-        new Avatar({ alt: 'Аватар пользователя.' }).getContentAsString(),
-        new PageTitle({ text: firstName }).getContentAsString(),
+        new Avatar({ attr: { alt: 'Аватар пользователя.' } }),
+        new PageTitle({ text: firstName }),
       ],
       main: [
-        new TextBox({ label: 'Почта', name: 'email', value: email, ...textBoxProps }).getContentAsString(),
-        new TextBox({ label: 'Логин', name: 'login', value: login, ...textBoxProps }).getContentAsString(),
-        new TextBox({ label: 'Имя', name: 'first_name', value: firstName, ...textBoxProps }).getContentAsString(),
-        new TextBox({ label: 'Фамилия', name: 'second_name', value: secondName, ...textBoxProps }).getContentAsString(),
-        new TextBox({ label: 'Телефон', name: 'phone', value: phone, ...textBoxProps }).getContentAsString(),
+        new TextBox({
+          label: 'Почта',
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'email',
+              value: email,
+              disabled: true
+            }
+          }
+        }),
+        new TextBox({
+          label: 'Логин',
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'login',
+              value: login,
+              disabled: true
+            }
+          }
+        }),
+        new TextBox({
+          label: 'Имя',
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'first_name',
+              value: firstName,
+              disabled: true
+            }
+          }
+        }),
+        new TextBox({
+          label: 'Фамилия',
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'second_name',
+              value: secondName,
+              disabled: true
+            }
+          }
+        }),
+        new TextBox({
+          label: 'Телефон',
+          attr: { class: 'textbox_inline' },
+          inputProps: {
+            attr: {
+              name: 'phone',
+              value: phone,
+              disabled: true
+            }
+          }
+        }),
       ],
       footer: [
-        new Link({ text: 'Изменить данные', page: '/user-setting-edit' }).getContentAsString(),
-        new Link({ text: 'Изменить пароль', page: '/change-password' }).getContentAsString(),
-        new Link({ class: 'link_color_red', text: 'Выйти', page: '/login' }).getContentAsString(),
+        new Link({ text: 'Изменить данные', attr: { page: '/user-setting-edit' } }),
+        new Link({ text: 'Изменить пароль', attr: { page: '/change-password' } }),
+        new Link({ text: 'Выйти', attr: { class: 'link_color_red', page: '/login' } }),
       ],
     };
   };
