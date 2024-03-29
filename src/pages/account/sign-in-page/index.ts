@@ -1,72 +1,98 @@
 import { AccountPage } from '..';
 import { Button, Link, PageTitle, TextBox } from '../../../components';
-import { Validation, ValidationType } from '../../../utils/ValidationType';
+import { ValidationType } from '../../../utils/ValidationType';
 
 export const SignInPage = () => {
   const context = {
     header: [
-      new PageTitle({ text: 'Регистрация' }).getContentAsString(),
+      new PageTitle({ text: 'Регистрация' }),
     ],
     main: [
       new TextBox({
         label: 'Почта',
-        placeholder: 'Почта',
-        name: 'email',
-        validationType: ValidationType.EMAIL,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Почта',
+            name: 'email',
+            validation: ValidationType.EMAIL,
+          },
+        },
+      }),
       new TextBox({
         label: 'Логин',
-        placeholder: 'Логин',
-        name: 'login',
-        validationType: ValidationType.LOGIN,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Логин',
+            name: 'login',
+            validation: ValidationType.LOGIN,
+          },
+        },
+      }),
       new TextBox({
         label: 'Имя',
-        placeholder: 'Имя',
-        name: 'first_name',
-        validationType: ValidationType.USER,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Имя',
+            name: 'first_name',
+            validation: ValidationType.USER,
+          },
+        },
+      }),
       new TextBox({
         label: 'Фамилия',
-        placeholder: 'Фамилия',
-        name: 'second_name',
-        validationType: ValidationType.USER,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Фамилия',
+            name: 'second_name',
+            validation: ValidationType.USER,
+          },
+        },
+      }),
       new TextBox({
         label: 'Телефон',
-        placeholder: 'Телефон',
-        name: 'phone',
-        validationType: ValidationType.PHONE,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Телефон',
+            name: 'phone',
+            validation: ValidationType.PHONE,
+          },
+        },
+      }),
       new TextBox({
         label: 'Пароль',
-        placeholder: 'Пароль',
-        name: 'password',
-        type: 'password',
-        validationType: ValidationType.PASSOWRD,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Пароль',
+            name: 'password',
+            type: 'password',
+            validation: ValidationType.PASSOWRD,
+          },
+        },
+      }),
       new TextBox({
         label: 'Пароль еще раз',
-        placeholder: 'Пароль еще раз',
-        name: 'password_equal',
-        type: 'password',
-        validationType: ValidationType.EQUAL_PASSWORD,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Пароль еще раз',
+            name: 'password_equal',
+            type: 'password',
+            validation: ValidationType.EQUAL_PASSWORD,
+          },
+        },
+      }),
     ],
     footer: [
       new Button({
-        class: 'button_color_blue',
         text: 'Зарегистрироваться',
-        page: '/login',
-        type: 'submit',
-      }).getContentAsString(),
-      new Link({ text: 'Войти', page: '/login' }).getContentAsString(),
+        attr: {
+          class: 'button_color_blue',
+          page: '/login',
+          type: 'submit',
+        },
+      }),
+      new Link({ text: 'Войти', attr: { page: '/login' } }),
     ],
   };
 
-  const page = new AccountPage(context).getContent();
-  const form = page.querySelector('form');
-  Validation.validateForm(form);
-
-  return page;
+  return new AccountPage(context).getContent();
 };

@@ -5,37 +5,43 @@ import { Validation, ValidationType } from '../../../utils/ValidationType';
 export const LoginPage = () => {
   const context = {
     header: [
-      new PageTitle({ text: 'Вход' }).getContentAsString(),
+      new PageTitle({ text: 'Вход' }),
     ],
     main: [
       new TextBox({
         label: 'Логин',
-        placeholder: 'Логин',
-        name: 'login',
-        validationType: ValidationType.LOGIN,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Логин',
+            name: 'login',
+            validation: ValidationType.LOGIN,
+          },
+        },
+      }),
       new TextBox({
         label: 'Пароль',
-        placeholder: 'Пароль',
-        name: 'password',
-        type: 'password',
-        validationType: ValidationType.PASSOWRD,
-      }).getContentAsString(),
+        inputProps: {
+          attr: {
+            placeholder: 'Пароль',
+            name: 'password',
+            type: 'password',
+            validation: ValidationType.PASSOWRD,
+          },
+        },
+      }),
     ],
     footer: [
       new Button({
-        class: 'button_color_blue',
         text: 'Войти',
-        page: '/',
-        type: 'submit',
-      }).getContentAsString(),
-      new Link({ text: 'Зарегистрироваться', page: '/sign-in' }).getContentAsString(),
+        attr: {
+          class: 'button_color_blue',
+          page: '/',
+          type: 'submit',
+        }
+      }),
+      new Link({ text: 'Зарегистрироваться', attr: { page: '/sign-in' } }),
     ],
   };
 
-  const page = new AccountPage(context).getContent();
-  const form = page.querySelector('form');
-  Validation.validateForm(form);
-
-  return page;
+  return new AccountPage(context).getContent();
 };
