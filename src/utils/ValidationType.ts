@@ -1,5 +1,3 @@
-import { Page } from './route';
-
 export enum ValidationType {
     USER = 'user',
     LOGIN = 'login',
@@ -32,7 +30,7 @@ export class Validation {
   }
 
   static validateInput(input: HTMLInputElement) {
-    const typeName = input.getAttribute('data-validation-type');
+    const typeName = input.getAttribute('validation');
     if (!typeName) {
       return true;
     }
@@ -53,37 +51,19 @@ export class Validation {
     return isValid;
   }
 
-  static validateForm(form: HTMLFormElement | null) {
-    if (!form) {
-      return;
-    }
+  static validateForm(form: HTMLFormElement) {
+    const formData: Record<string, string | null> = {};
 
     const inputs = form.querySelectorAll('input');
     inputs.forEach((input) => {
-      input.addEventListener('blur', () => this.validateInput(input));
+      const isValid = this.validateInput(input);
+      formData[input.name] = isValid ? input.value : null;
     });
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    console.log(formData);
 
-      const formData: Record<string, string | null> = {};
-
-      inputs.forEach((input) => {
-        const isValid = this.validateInput(input);
-        formData[input.name] = isValid ? input.value : null;
-      });
-
-      console.log(formData);
-
-      if (Object.values(formData).includes(null) || !e.submitter) {
-        return;
-      }
-
-      const path = e.submitter.getAttribute('page');
-      if (path) {
-        Page.getByPath(path)?.route();
-      }
-    });
+    const isValid = !Object.values(formData).includes(null);
+    return isValid;
   }
 }
 
@@ -100,7 +80,7 @@ const validationTypes = [
   ),
   new Validation(
     ValidationType.PASSOWRD,
-    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/g,
+    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/,
     'Пароль должен содержать от 8 до 40 символов, минимум одну заглавную букву и цифру',
   ),
   new Validation(

@@ -7,9 +7,9 @@ export class Page {
   path: string;
 
   /** контент страницы */
-  content: (context?: object) => HTMLElement | undefined;
+  content: (context?: object) => HTMLElement | null;
 
-  constructor(path: string, content: (context?: object) => HTMLElement | undefined) {
+  constructor(path: string, content: (context?: object) => HTMLElement | null) {
     this.path = path;
     this.content = content;
   }

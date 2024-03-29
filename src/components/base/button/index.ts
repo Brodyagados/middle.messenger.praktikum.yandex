@@ -1,28 +1,36 @@
 import Block from '../../../utils/Block';
 import './button.scss';
 import template from './button.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
 
 export interface IButton {
+  text?: string,
+  img?: {
+    src: string,
+    alt: string
+  },
+  attr: {
     class?: string,
     page?: string,
     disabled?: boolean,
     title?: string,
-    img?: {
-        src: string,
-        alt: string
-    },
-    text?: string,
     type?: string
+  }
 }
 
 export class Button extends Block {
   constructor(props: IButton) {
-    super(props);
-    this._props = props;
+    const { attr: { class: cssClass = '' } } = props;
+
+    super({
+      ...props,
+      attr: {
+        ...props.attr,
+        class: `button ${cssClass}`,
+      },
+    }, 'button');
   }
 
-  render(): string {
-    return renderTemplate(template, this._props);
+  render() {
+    return this.compile(template, this._props);
   }
 }

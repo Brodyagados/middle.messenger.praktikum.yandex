@@ -1,7 +1,6 @@
 import Block from '../../../utils/Block';
 import './page-title.scss';
 import template from './page-title.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
 
 interface IPageTitle {
     text: string
@@ -9,11 +8,13 @@ interface IPageTitle {
 
 export class PageTitle extends Block {
   constructor(props: IPageTitle) {
-    super(props);
-    this._props = props;
+    super({
+      ...props,
+      attr: { class: 'page__title' },
+    }, 'h1');
   }
 
-  render(): string {
-    return renderTemplate(template, this._props);
+  render() {
+    return this.compile(template, this._props);
   }
 }

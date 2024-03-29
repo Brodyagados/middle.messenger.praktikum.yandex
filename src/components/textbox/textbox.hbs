@@ -1,13 +1,11 @@
-<div class="textbox{{#if class}} {{class}}{{/if}}">
-    {{#if label}}
-        <div class="textbox__label">
-            {{label}}
-        </div>
-    {{/if}}
-    {{{input}}}
-    {{#if error}}
-        <div class="textbox__error">
-            {{error}}
-        </div>
-    {{/if}}
-</div>
+{{#if label}}
+    <div class="textbox__label">
+        {{label}}
+    </div>
+{{/if}}
+{{{input}}}
+{{#if error}}
+    <div class="textbox__error">
+        {{error}}
+    </div>
+{{/if}}
