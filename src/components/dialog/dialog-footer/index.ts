@@ -10,7 +10,7 @@ export class DialogFooter extends Block {
   constructor(props: IDialogFooter) {
     super({
       ...props,
-      attr: { class: 'dialog__footer'}
+      attr: { class: 'dialog__footer' },
     });
   }
 

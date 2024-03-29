@@ -10,10 +10,10 @@ export class PageDescription extends Block {
   constructor(props: IPageDescription) {
     super({
       ...props,
-      attr: { class: 'page__description' }
+      attr: { class: 'page__description' },
     }, 'h2');
   }
-  
+
   render() {
     return this.compile(template, this._props);
   }

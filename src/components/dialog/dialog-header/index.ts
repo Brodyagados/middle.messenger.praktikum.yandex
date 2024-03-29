@@ -10,7 +10,7 @@ export class DialogHeader extends Block {
   constructor(props: IDialogHeader) {
     super({
       ...props,
-      attr: { class: 'dialog__header'}
+      attr: { class: 'dialog__header' },
     });
   }
 

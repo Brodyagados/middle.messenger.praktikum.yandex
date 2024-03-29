@@ -16,7 +16,7 @@ export class ErrorPage extends Block {
   constructor(props: IErrorPage) {
     super({
       main: new DialogMain({ content: Object.values(props) }),
-      attr: { class: 'error-page' }
+      attr: { class: 'error-page' },
     });
   }
 

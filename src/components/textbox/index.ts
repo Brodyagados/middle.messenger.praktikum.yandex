@@ -16,12 +16,12 @@ interface ITextBox {
 export class TextBox extends Block {
   constructor(props: ITextBox) {
     const { label, inputProps: { attr: { validation } }, attr: { class: cssClass = '' } } = props;
-    
+
     super({
       label,
       error: validation ? Validation.getByType(validation)?.message : '',
       input: new Input({ ...props.inputProps }),
-      attr: { class: `textbox ${cssClass}`}
+      attr: { class: `textbox ${cssClass}` },
     });
   }
 

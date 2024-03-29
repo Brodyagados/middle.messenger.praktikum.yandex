@@ -17,8 +17,8 @@ export class Avatar extends Block {
         alt,
         src: src ?? baseSrc,
         class: 'avatar',
-        name: 'avatar'
-      }
+        name: 'avatar',
+      },
     }, 'img');
   }
 

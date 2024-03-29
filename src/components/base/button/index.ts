@@ -20,14 +20,13 @@ export interface IButton {
 export class Button extends Block {
   constructor(props: IButton) {
     const { attr: { class: cssClass = '' } } = props;
-    
+
     super({
       ...props,
-      attr: { 
-        ...props.attr, 
-        class: `button ${cssClass}`
-        
-      }
+      attr: {
+        ...props.attr,
+        class: `button ${cssClass}`,
+      },
     }, 'button');
   }
 

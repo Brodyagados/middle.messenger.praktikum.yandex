@@ -21,9 +21,9 @@ export const UserSettingPage = (userData: IUserData) => {
             attr: {
               name: 'email',
               value: email,
-              disabled: true
-            }
-          }
+              disabled: true,
+            },
+          },
         }),
         new TextBox({
           label: 'Логин',
@@ -32,9 +32,9 @@ export const UserSettingPage = (userData: IUserData) => {
             attr: {
               name: 'login',
               value: login,
-              disabled: true
-            }
-          }
+              disabled: true,
+            },
+          },
         }),
         new TextBox({
           label: 'Имя',
@@ -43,9 +43,9 @@ export const UserSettingPage = (userData: IUserData) => {
             attr: {
               name: 'first_name',
               value: firstName,
-              disabled: true
-            }
-          }
+              disabled: true,
+            },
+          },
         }),
         new TextBox({
           label: 'Фамилия',
@@ -54,9 +54,9 @@ export const UserSettingPage = (userData: IUserData) => {
             attr: {
               name: 'second_name',
               value: secondName,
-              disabled: true
-            }
-          }
+              disabled: true,
+            },
+          },
         }),
         new TextBox({
           label: 'Телефон',
@@ -65,9 +65,9 @@ export const UserSettingPage = (userData: IUserData) => {
             attr: {
               name: 'phone',
               value: phone,
-              disabled: true
-            }
-          }
+              disabled: true,
+            },
+          },
         }),
       ],
       footer: [

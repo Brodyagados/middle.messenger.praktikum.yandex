@@ -13,7 +13,7 @@ export const ChangePasswordPage = () => {
             name: 'oldPassword',
             type: 'password',
             validation: ValidationType.PASSOWRD,
-          }
+          },
         },
       }),
       new TextBox({
@@ -24,7 +24,7 @@ export const ChangePasswordPage = () => {
             name: 'newPassword',
             type: 'password',
             validation: ValidationType.PASSOWRD,
-          }
+          },
         },
       }),
       new TextBox({
@@ -35,7 +35,7 @@ export const ChangePasswordPage = () => {
             name: 'newPassword_equal',
             type: 'password',
             validation: ValidationType.PASSOWRD,
-          }
+          },
         },
       }),
     ],
@@ -46,7 +46,7 @@ export const ChangePasswordPage = () => {
           class: 'button_color_blue button_text_center',
           page: '/user-setting',
           type: 'submit',
-        }
+        },
       }),
     ],
   };

@@ -14,10 +14,10 @@ export interface ILink {
 export class Link extends Block {
   constructor(props: ILink) {
     const { attr: { class: cssClass = '', href = '' } } = props;
-    
+
     super({
       ...props,
-      attr: { ...props.attr, href, class: `link ${cssClass}` }
+      attr: { ...props.attr, href, class: `link ${cssClass}` },
     }, 'a');
   }
 

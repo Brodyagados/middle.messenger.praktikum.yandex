@@ -1,6 +1,6 @@
 import { Avatar, Button, TextBox } from '../../../components';
 import { IUserData, UserPage } from '..';
-import { Validation, ValidationType } from '../../../utils/ValidationType';
+import { ValidationType } from '../../../utils/ValidationType';
 
 export const UserSettingEditPage = (userData: IUserData) => {
   const context = (userData: IUserData) => {
@@ -11,7 +11,7 @@ export const UserSettingEditPage = (userData: IUserData) => {
 
     return {
       header: [
-        new Avatar({ attr: { alt: 'Аватар пользователя.' } })
+        new Avatar({ attr: { alt: 'Аватар пользователя.' } }),
       ],
       main: [
         new TextBox({
@@ -22,8 +22,8 @@ export const UserSettingEditPage = (userData: IUserData) => {
               name: 'email',
               value: email,
               validation: ValidationType.EMAIL,
-            }
-          }
+            },
+          },
         }),
         new TextBox({
           label: 'Логин',
@@ -33,8 +33,8 @@ export const UserSettingEditPage = (userData: IUserData) => {
               name: 'login',
               value: login,
               validation: ValidationType.LOGIN,
-            }
-          }
+            },
+          },
         }),
         new TextBox({
           label: 'Имя',
@@ -44,8 +44,8 @@ export const UserSettingEditPage = (userData: IUserData) => {
               name: 'first_name',
               value: firstName,
               validation: ValidationType.USER,
-            }
-          }
+            },
+          },
         }),
         new TextBox({
           label: 'Фамилия',
@@ -55,8 +55,8 @@ export const UserSettingEditPage = (userData: IUserData) => {
               name: 'second_name',
               value: secondName,
               validation: ValidationType.USER,
-            }
-          }
+            },
+          },
         }),
         new TextBox({
           label: 'Телефон',
@@ -66,8 +66,8 @@ export const UserSettingEditPage = (userData: IUserData) => {
               name: 'phone',
               value: phone,
               validation: ValidationType.PHONE,
-            }
-          }
+            },
+          },
         }),
       ],
       footer: [
@@ -77,7 +77,7 @@ export const UserSettingEditPage = (userData: IUserData) => {
             class: 'button_color_blue button_text_center',
             page: '/user-setting',
             type: 'submit',
-          }
+          },
         }),
       ],
     };

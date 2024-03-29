@@ -2,7 +2,6 @@ import { DialogFooter, DialogHeader, DialogMain } from '../../components';
 import './user-page.scss';
 import Block from '../../utils/Block';
 import template from './user-page.hbs?raw';
-import renderTemplate from '../../utils/render-template';
 
 export { ChangePasswordPage } from './change-password-page';
 export { UserSettingPage } from './user-setting-page';
@@ -25,12 +24,12 @@ interface IUserPage {
 export class UserPage extends Block {
   constructor(props: IUserPage) {
     const { header, main, footer } = props;
-    
+
     super({
       header: header ? new DialogHeader({ content: Object.values(header) }) : null,
       main: new DialogMain({ content: Object.values(main) }),
       footer: new DialogFooter({ content: Object.values(footer) }),
-      attr: { class: 'user-page' }
+      attr: { class: 'user-page' },
     });
   }
 

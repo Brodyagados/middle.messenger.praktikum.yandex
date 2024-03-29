@@ -10,10 +10,10 @@ export class DialogMain extends Block {
   constructor(props: IDialogMain) {
     super({
       ...props,
-      attr: { class: 'dialog__main'}
+      attr: { class: 'dialog__main' },
     });
   }
-  
+
   render() {
     return this.compile(template, this._props);
   }
