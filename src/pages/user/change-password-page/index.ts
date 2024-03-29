@@ -39,7 +39,7 @@ export const ChangePasswordPage = () => {
 
   const page = new UserPage(context).getContent();
   const form = page.querySelector('form');
-  Validation.formValidate(form);
+  Validation.validateForm(form);
 
   return page;
 };

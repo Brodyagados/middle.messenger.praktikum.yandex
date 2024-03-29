@@ -64,7 +64,7 @@ export const UserSettingEditPage = (userData: IUserData) => {
 
   const page = new UserPage(context(userData)).getContent();
   const form = page.querySelector('form');
-  Validation.formValidate(form);
+  Validation.validateForm(form);
 
   return page;
 };

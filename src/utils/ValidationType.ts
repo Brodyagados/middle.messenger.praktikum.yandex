@@ -31,7 +31,7 @@ export class Validation {
     return validationTypes.find((item) => item.type === type);
   }
 
-  static inputValidate(input: HTMLInputElement) {
+  static validateInput(input: HTMLInputElement) {
     const typeName = input.getAttribute('data-validation-type');
     if (!typeName) {
       return true;
@@ -53,14 +53,14 @@ export class Validation {
     return isValid;
   }
 
-  static formValidate(form: HTMLFormElement | null) {
+  static validateForm(form: HTMLFormElement | null) {
     if (!form) {
       return;
     }
 
     const inputs = form.querySelectorAll('input');
     inputs.forEach((input) => {
-      input.addEventListener('blur', () => this.inputValidate(input));
+      input.addEventListener('blur', () => this.validateInput(input));
     });
 
     form.addEventListener('submit', (e) => {
@@ -69,7 +69,7 @@ export class Validation {
       const formData: Record<string, string | null> = {};
 
       inputs.forEach((input) => {
-        const isValid = this.inputValidate(input);
+        const isValid = this.validateInput(input);
         formData[input.name] = isValid ? input.value : null;
       });
 

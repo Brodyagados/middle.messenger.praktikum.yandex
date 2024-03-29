@@ -66,7 +66,7 @@ export const SignInPage = () => {
 
   const page = new AccountPage(context).getContent();
   const form = page.querySelector('form');
-  Validation.formValidate(form);
+  Validation.validateForm(form);
 
   return page;
 };
