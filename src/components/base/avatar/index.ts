@@ -1,22 +1,28 @@
 import Block from '../../../utils/Block';
 import './avatar.scss';
 import baseSrc from '../../../assets/icons/base-avatar.svg';
-import template from './avatar.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
 
 interface IAvatar {
-    src?: string,
-    alt: string
+  attr: {
+    alt?: string,
+    src?: string
+  }
 }
 
 export class Avatar extends Block {
   constructor(props: IAvatar) {
-    super(props);
-    this._props = props;
+    const { attr: { alt, src } } = props;
+    super({
+      attr: {
+        alt,
+        src: src ?? baseSrc,
+        class: 'avatar',
+        name: 'avatar'
+      }
+    }, 'img');
   }
 
-  render(): string {
-    const context = { ...this._props, src: this._props.src ?? baseSrc };
-    return renderTemplate(template, context);
+  render() {
+    return this.compile('', this._props);
   }
 }

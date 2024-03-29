@@ -1,26 +1,34 @@
 import Block from '../../../utils/Block';
 import './input.scss';
-import template from './input.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
 
 export interface IInput {
     isAlignRight?: boolean,
-    placeholder?: string,
-    title?: string,
-    disabled?: boolean,
-    value?: string,
-    type?: string,
-    name: string,
-    validationType?: string
+    attr: {
+      validation?: string,
+      placeholder?: string,
+      title?: string,
+      disabled?: boolean,
+      value?: string,
+      type?: string,
+      name: string,
+    }
 }
 
 export class Input extends Block {
   constructor(props: IInput) {
-    super(props);
-    this._props = props;
+    const { isAlignRight = false } = props;
+    
+    super({
+      ...props,
+      attr: { 
+        ...props.attr, 
+        class: `input${isAlignRight ? ' input_align_right' : ''}`
+        
+      }
+    }, 'input');
   }
 
-  render(): string {
-    return renderTemplate(template, this._props);
+  render() {
+    return this.compile('', this._props);
   }
 }
