@@ -21,12 +21,11 @@ export class Form extends Block {
           if (!isValid || !submitter) {
             return;
           }
-    
+
           const path = submitter.getAttribute('page');
           if (path) {
             Page.getByPath(path)?.route();
           }
-
         },
       },
     }, 'form');
