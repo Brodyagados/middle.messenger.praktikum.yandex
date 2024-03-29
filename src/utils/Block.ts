@@ -24,7 +24,6 @@ export default class Block {
   _eventBus: () => EventBus;
 
   constructor(propsAndChildren: TProps, tagName: string = 'div') {
-    console.log(this.constructor.name, propsAndChildren);
     const eventBus = new EventBus();
     const { children, props } = this._getPropsAndChildren(propsAndChildren);
     this._children = children;
@@ -173,11 +172,6 @@ export default class Block {
 
   getContent() {
     return this._element;
-  }
-
-  // удалить
-  getContentAsString() {
-    return this._element!.innerHTML;
   }
 
   _makePropsProxy(props: TProps) {
