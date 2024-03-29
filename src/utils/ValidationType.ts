@@ -80,7 +80,7 @@ const validationTypes = [
   ),
   new Validation(
     ValidationType.PASSOWRD,
-    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/g,
+    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-zA-Z]).{8,40}$/,
     'Пароль должен содержать от 8 до 40 символов, минимум одну заглавную букву и цифру',
   ),
   new Validation(
