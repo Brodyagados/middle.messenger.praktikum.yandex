@@ -1,4 +1,6 @@
-enum HttpMethod {
+type THttpMethod = (url: string, options?: IOptions) => Promise<unknown>;
+
+enum METHOD {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
@@ -6,7 +8,7 @@ enum HttpMethod {
 }
 
 interface IOptions {
-    method?: HttpMethod,
+    method?: METHOD,
     headers?: Record<string, string>,
     data?: Record<string, unknown>,
     timeout?: number
@@ -19,24 +21,24 @@ function queryStringify(data: Record<string, unknown>) {
 }
 
 export default class ApiClient {
-  get = (url: string, options: IOptions = {}) => {
+  get: THttpMethod = (url, options = {}) => {
     const { data, timeout } = options;
     const resultUrl = data
       ? `${url}?${queryStringify(data)}`
       : url;
-    return this.request(resultUrl, { ...options, method: HttpMethod.GET }, timeout);
+    return this.request(resultUrl, { ...options, method: METHOD.GET }, timeout);
   };
 
-  post = (url: string, options: IOptions = {}) => {
-    return this.request(url, { ...options, method: HttpMethod.POST }, options.timeout);
+  post: THttpMethod = (url, options = {}) => {
+    return this.request(url, { ...options, method: METHOD.POST }, options.timeout);
   };
 
-  put = (url: string, options: IOptions = {}) => {
-    return this.request(url, { ...options, method: HttpMethod.PUT }, options.timeout);
+  put: THttpMethod = (url, options = {}) => {
+    return this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
   };
 
-  delete = (url: string, options: IOptions = {}) => {
-    return this.request(url, { ...options, method: HttpMethod.DELETE }, options.timeout);
+  delete: THttpMethod = (url, options = {}) => {
+    return this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
   };
 
   request = (url: string, options: IOptions = {}, timeout = 5000) => {
@@ -62,7 +64,7 @@ export default class ApiClient {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      method === HttpMethod.GET || !!data
+      method === METHOD.GET || !!data
         ? xhr.send()
         : xhr.send(data);
     });
