@@ -1,4 +1,5 @@
 import Block from '../../../utils/Block';
+import { Validation } from '../../../utils/ValidationType';
 import './input.scss';
 
 export interface IInput {
@@ -24,6 +25,9 @@ export class Input extends Block {
         ...props.attr,
         class: `input${isAlignRight ? ' input_align_right' : ''}`,
       },
+      events: props.attr.validation 
+        ? { blur: ({ target }: Event) => Validation.validateInput(target as HTMLInputElement) }
+        : {}
     }, 'input');
   }
 

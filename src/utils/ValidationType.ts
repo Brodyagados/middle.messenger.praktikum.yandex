@@ -32,7 +32,7 @@ export class Validation {
   }
 
   static validateInput(input: HTMLInputElement) {
-    const typeName = input.getAttribute('data-validation-type');
+    const typeName = input.getAttribute('validation');
     if (!typeName) {
       return true;
     }
@@ -49,6 +49,8 @@ export class Validation {
     isValid
       ? textbox?.classList.remove(validateErrorClass)
       : textbox?.classList.add(validateErrorClass);
+
+    input.setAttribute('data-valid', isValid.toString())
 
     return isValid;
   }
