@@ -1,9 +1,7 @@
 import './chat-list-item.scss';
 import template from './chat-list-item.hbs?raw';
-import renderTemplate from '../../../../utils/render-template';
 import Block from '../../../../utils/Block';
 import { Avatar } from '../../..';
-
 
 interface IChatListItem {
     isActive?: boolean,
@@ -16,18 +14,17 @@ interface IChatListItem {
 }
 
 export class ChatListItem extends Block {
-    constructor(props: IChatListItem) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IChatListItem) {
+    const { avatarSrc, isActive, ...itemProps } = props;
 
-    render(): string {
-        const { avatarSrc, ...itemProps } = this._props;
-        const context = {
-            ...itemProps,
-            avatar: new Avatar({ src: avatarSrc, alt: 'Аватар чата.' }).getContentAsString()
-        };
+    super({
+      ...itemProps,
+      avatar: new Avatar({ attr: { src: avatarSrc, alt: 'Аватар чата.' } }),
+      attr: { class: `chat-list__item${isActive ? ' chat-list__item_active' : ''}` },
+    }, 'li');
+  }
 
-        return renderTemplate(template, context);
-    }
+  render() {
+    return this.compile(template, this._props);
+  }
 }

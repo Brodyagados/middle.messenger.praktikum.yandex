@@ -1,20 +1,20 @@
 import Block from '../../../utils/Block';
 import './dialog-footer.scss';
 import template from './dialog-footer.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
-
 
 interface IDialogFooter {
-    content: string
+  content: Block[]
 }
 
 export class DialogFooter extends Block {
-    constructor(props: IDialogFooter) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IDialogFooter) {
+    super({
+      ...props,
+      attr: { class: 'dialog__footer' },
+    });
+  }
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+  render() {
+    return this.compile(template, this._props);
+  }
 }

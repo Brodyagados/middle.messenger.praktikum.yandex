@@ -1,27 +1,37 @@
 import Block from '../../../utils/Block';
+import { Validation } from '../../../utils/ValidationType';
 import './input.scss';
-import template from './input.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
-
 
 export interface IInput {
     isAlignRight?: boolean,
-    placeholder?: string,
-    title?: string,
-    disabled?: boolean,
-    value?: string,
-    type?: string,
-    name: string,
-    validationType?: string
+    attr: {
+      validation?: string,
+      placeholder?: string,
+      title?: string,
+      disabled?: boolean,
+      value?: string,
+      type?: string,
+      name: string,
+    }
 }
 
 export class Input extends Block {
-    constructor(props: IInput) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IInput) {
+    const { isAlignRight = false } = props;
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+    super({
+      ...props,
+      attr: {
+        ...props.attr,
+        class: `input${isAlignRight ? ' input_align_right' : ''}`,
+      },
+      events: props.attr.validation
+        ? { blur: ({ target }: Event) => Validation.validateInput(target as HTMLInputElement) }
+        : {},
+    }, 'input');
+  }
+
+  render() {
+    return this.compile('', this._props);
+  }
 }

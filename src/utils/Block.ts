@@ -1,141 +1,224 @@
+import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
+type TProps = Record<string, any>;
+
 export default class Block {
-    static EVENTS = {
-        INIT: 'init',
-        FLOW_CDM: 'flow:component-did-mount',
-        FLOW_CDU: 'flow:component-did-update',
-        FLOW_RENDER: 'flow:render'
-    };
+  static EVENTS = {
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
+  };
 
-    _element: HTMLElement | null = null;
-    _meta: { tagName: string, props: object } | null = null;
-    _props: Record<string, any>;
-    _eventBus: () => EventBus;
+  _id = Math.floor(100000 + Math.random() * 900000).toString();
 
-    constructor(props: object = {}, tagName: string = 'div') {
-        const eventBus = new EventBus();
+  _element: HTMLElement | null = null;
 
-        this._meta = {
-            tagName,
-            props
-        };
+  _meta: { tagName: string, props: TProps } | null = null;
 
-        this._props = this._makePropsProxy(props);
-        this._eventBus = () => eventBus;
+  _props: TProps;
 
-        this._registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT);
-    }
+  _children: Record<string, Block | Block[]>;
 
-    _addEvents() {
-        const { events = {} } = this._props;
-        Object.keys(events).forEach((eventName) => {
-            this._element?.firstChild?.addEventListener(eventName, events[eventName]);
-        });
-    }
+  _eventBus: () => EventBus;
 
-    _removeEvents() {
-        const { events = {} } = this._props;
-        Object.keys(events).forEach((eventName) => {
-            this._element?.firstChild?.removeEventListener(eventName, events[eventName]);
-        });
-    }
+  constructor(propsAndChildren: TProps, tagName: string = 'div') {
+    const eventBus = new EventBus();
+    const { children, props } = this._getPropsAndChildren(propsAndChildren);
+    this._children = children;
+    this._meta = { tagName, props };
+    this._props = this._makePropsProxy({ id: this._id, ...props });
+    this._eventBus = () => eventBus;
+    this._registerEvents(eventBus);
+    eventBus.emit(Block.EVENTS.INIT);
+  }
 
-    _registerEvents(eventBus: EventBus) {
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-    }
+  _getPropsAndChildren(propsAndChildren: TProps) {
+    const children: Record<string, Block | Block[]> = {};
+    const props: TProps = {};
 
-    init() {
-        this._element = this._createDocumentElement(this._meta!.tagName)
-        this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
-    }
+    Object.entries(propsAndChildren).forEach(([key, value]) => {
+      if (value instanceof Block || (Array.isArray(value) && value.every((item) => item instanceof Block))) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
 
-    _componentDidMount() {
-        this.componentDidMount();
-    }
+    return { props, children };
+  }
 
-    componentDidMount() { }
+  compile(template: string, props: TProps) {
+    const propsAndStubs = { ...props };
 
-    dispatchComponentDidMount() {
-        this._eventBus().emit(Block.EVENTS.FLOW_CDM);
-    }
+    Object.entries(this._children).forEach(([key, child]) => {
+      propsAndStubs[key] = child instanceof Block
+        ? `<div data-id="${child._id}"></div>`
+        : child.map((block) => `<div data-id="${block._id}"></div>`).join('');
+    });
 
-    _componentDidUpdate() {
-        const response = this.componentDidUpdate();
-        if (!response) {
+    const fragment = this._createDocumentElement('template');
+    fragment.innerHTML = this._renderTemplate(template, propsAndStubs);
+
+    Object.values(this._children).forEach((child) => {
+      const children = child instanceof Block ? [child] : child;
+      children.forEach((block) => {
+        if (fragment instanceof HTMLTemplateElement) {
+          const stub = fragment.content.querySelector(`[data-id="${block._id}"]`);
+          const content = block.getContent();
+
+          if (!stub || !content) {
             return;
+          }
+
+          stub.replaceWith(content);
         }
-        this._render();
+      });
+    });
+
+    if (fragment instanceof HTMLTemplateElement) {
+      return fragment.content;
     }
 
-    componentDidUpdate() {
+    return undefined;
+  }
+
+  _addAttributes() {
+    const { attr = {} } = this._props;
+    Object.keys(attr).forEach((attrName) => {
+      this._element?.setAttribute(attrName, attr[attrName]);
+    });
+  }
+
+  _addEvents() {
+    const { events = {} } = this._props;
+    Object.keys(events).forEach((eventName) => {
+      this._element?.addEventListener(eventName, events[eventName]);
+    });
+  }
+
+  _removeEvents() {
+    const { events = {} } = this._props;
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+    });
+  }
+
+  _registerEvents(eventBus: EventBus) {
+    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+  }
+
+  init() {
+    this._element = this._createDocumentElement(this._meta!.tagName);
+    this._eventBus().emit(Block.EVENTS.FLOW_RENDER);
+  }
+
+  _componentDidMount() {
+    Object.values(this._children).forEach((child) => {
+      if (child instanceof Block) {
+        child.dispatchComponentDidMount();
+      } else {
+        child.forEach((c) => c.dispatchComponentDidMount());
+      }
+    });
+  }
+
+  componentDidMount() { }
+
+  dispatchComponentDidMount() {
+    this._eventBus().emit(Block.EVENTS.FLOW_CDM);
+  }
+
+  _componentDidUpdate() {
+    const response = this.componentDidUpdate();
+    if (!response) {
+      return;
+    }
+    this._render();
+  }
+
+  componentDidUpdate() {
+    return true;
+  }
+
+  setProps(nextProps: TProps) {
+    if (!nextProps) {
+      return;
+    }
+
+    Object.assign(this._props, nextProps);
+  }
+
+  get element() {
+    return this._element;
+  }
+
+  _render() {
+    const block = this.render();
+    if (!this._element || !block) {
+      return;
+    }
+
+    this._removeEvents();
+    this._element.replaceChildren(block);
+    this._addEvents();
+    this._addAttributes();
+  }
+
+  render() {
+    const fragment = this._createDocumentElement('template');
+    if (fragment instanceof HTMLTemplateElement) {
+      return fragment.content;
+    }
+
+    return undefined;
+  }
+
+  getContent() {
+    return this._element;
+  }
+
+  _makePropsProxy(props: TProps) {
+    return new Proxy(props, {
+      get(target: Record<string, unknown>, prop: string) {
+        if (prop.indexOf('_') === 0) {
+          throw new Error('No access');
+        }
+
+        const value = target[prop];
+        return typeof value === 'function' ? value.bind(target) : value;
+      },
+      set(target: Record<string, unknown>, prop: string, value: unknown) {
+        target[prop] = value;
         return true;
-    }
+      },
+      deleteProperty() {
+        throw new Error('No access');
+      },
+    });
+  }
 
-    setProps(nextProps: Record<string, unknown>) {
-        if (!nextProps) {
-            return;
-        }
+  _createDocumentElement(tagName: string) {
+    const element = document.createElement(tagName);
+    element.setAttribute('data-id', this._id);
 
-        Object.assign(this._props, nextProps);
-    }
+    return element;
+  }
 
-    get element() {
-        return this._element;
-    }
+  show() {
+    this.getContent()!.style.display = 'block';
+  }
 
-    _render() {
-        this._removeEvents();
-        const block = this.render();
-        this._element!.innerHTML = block;
-        this._addEvents();
-    }
+  hide() {
+    this.getContent()!.style.display = 'none';
+  }
 
-    render() {
-        return '';
-    }
-
-    getContent() {
-        return this._element!.firstChild as HTMLElement;
-    }
-
-    getContentAsString() {
-        return this._element!.innerHTML;
-    }
-
-    _makePropsProxy(props: object) {
-        return new Proxy(props, {
-            get(target: Record<string, unknown>, prop: string) {
-                if (prop.indexOf('_') === 0) {
-                    throw new Error('No access');
-                }
-
-                const value = target[prop];
-                return typeof value === 'function' ? value.bind(target) : value;
-            },
-            set(target: Record<string, unknown>, prop: string, value: unknown) {
-                target[prop] = value;
-                return true;
-            },
-            deleteProperty() {
-                throw new Error('No access');
-            }
-        });
-    }
-
-    _createDocumentElement(tagName: string) {
-        return document.createElement(tagName);
-    }
-
-    show() {
-        this.getContent()!.style.display = 'block';
-    }
-
-    hide() {
-        this.getContent()!.style.display = 'none';
-    }
+  _renderTemplate(template: string, context: object) {
+    const hbsTemplate = Handlebars.compile(template);
+    return hbsTemplate(context);
+  }
 }

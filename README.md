@@ -3,7 +3,7 @@
 
 ## PR
 - [Sprint 1](https://github.com/Brodyagados/middle.messenger.praktikum.yandex/pull/39)
-- Sprint 2
+- [Sprint 2](https://github.com/Brodyagados/middle.messenger.praktikum.yandex/pull/80)
 - Sprint 3
 - Sprint 4
 
@@ -24,5 +24,6 @@
 
 ## Установка и сборка
 - `npm install` — установка пакетов,
+- `npm run lint` - запуск StyleLint и ESLint с автофиксом 
 - `npm run dev` - запуск в режиме разработки,
 - `npm run build` — сборка и запуск проекта на 3000 порту.

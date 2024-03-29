@@ -1,23 +1,27 @@
 import Block from '../../../utils/Block';
 import './link.scss';
 import template from './link.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
-
 
 export interface ILink {
-    url?: string,
+  text: string,
+  attr: {
+    href?: string,
     class?: string,
     page?: string,
-    text: string
+  }
 }
 
 export class Link extends Block {
-    constructor(props: ILink) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: ILink) {
+    const { attr: { class: cssClass = '', href = '' } } = props;
 
-    render(): string {
-        return renderTemplate(template, this._props);
-    }
+    super({
+      ...props,
+      attr: { ...props.attr, href, class: `link ${cssClass}` },
+    }, 'a');
+  }
+
+  render() {
+    return this.compile(template, this._props);
+  }
 }

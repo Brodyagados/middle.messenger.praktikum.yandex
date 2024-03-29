@@ -1,30 +1,31 @@
 import './chat-dialog.scss';
 import Block from '../../../utils/Block';
 import template from './chat-dialog.hbs?raw';
-import renderTemplate from '../../../utils/render-template';
 import { DialogFooter, DialogHeader, DialogMain } from '../../../components';
 
+export { ChatDialogInput } from './chat-dialog-input';
+export { ChatDialogMessage } from './chat-dialog-message';
+export { ChatDialogUser } from './chat-dialog-user';
 
 export interface IChatDialog {
-    header: string[],
-    main: string[],
-    footer: string[]
+  header: Block[],
+  main: Block[],
+  footer: Block[]
 }
 
 export class ChatDialog extends Block {
-    constructor(props: IChatDialog) {
-        super(props);
-        this._props = props;
-    }
+  constructor(props: IChatDialog) {
+    const { header, main, footer } = props;
 
-    render(): string {
-        const { header, main, footer } = this._props;
-        const context = {
-            header: new DialogHeader({ content: Object.values(header).join('') }).getContentAsString(),
-            main: new DialogMain({ content: Object.values(main).join('') }).getContentAsString(),
-            footer: new DialogFooter({ content: Object.values(footer).join('') }).getContentAsString()
-        };
+    super({
+      header: new DialogHeader({ content: Object.values(header) }),
+      main: new DialogMain({ content: Object.values(main) }),
+      footer: new DialogFooter({ content: Object.values(footer) }),
+      attr: { class: 'chat-dialog' },
+    });
+  }
 
-        return renderTemplate(template, context);
-    }
+  render() {
+    return this.compile(template, this._props);
+  }
 }

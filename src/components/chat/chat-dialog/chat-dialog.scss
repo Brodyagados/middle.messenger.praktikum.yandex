@@ -25,13 +25,4 @@
             bottom: $border;
         }
     }
-
-    .chat-user {
-        flex-grow: 1;
-        color: $color-black;
-        font: {
-            size: 13px;
-            weight: 600;
-        }
-    }
 }
