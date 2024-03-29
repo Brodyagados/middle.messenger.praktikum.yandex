@@ -5,7 +5,7 @@ export const InternalServerErrorPage = () => {
   const context = {
     title: new PageTitle({ text: '500' }),
     description: new PageDescription({ text: 'Внутренная ошибка сервера' }),
-    homeLink: new Link({ page: '/', text: 'Назад к чатам' }),
+    homeLink: new Link({ attr: { page: '/' }, text: 'Назад к чатам' }),
   };
 
   return new ErrorPage(context).getContent();
