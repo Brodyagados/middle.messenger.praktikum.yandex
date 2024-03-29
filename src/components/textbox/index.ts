@@ -8,14 +8,15 @@ import { IInput } from '../base/input';
 interface ITextBox {
     label?: string,
     inputProps: IInput,
-    attr: {
+    attr?: {
       class?: string
     }
 }
 
 export class TextBox extends Block {
   constructor(props: ITextBox) {
-    const { label, inputProps: { attr: { validation } }, attr: { class: cssClass = '' } } = props;
+    const { label, inputProps: { attr: { validation } }, attr } = props;
+    const cssClass = attr?.class;
 
     super({
       label,
