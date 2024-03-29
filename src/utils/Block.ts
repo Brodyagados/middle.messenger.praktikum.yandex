@@ -84,6 +84,13 @@ export default class Block {
     return undefined;
   }
 
+  _addAttributes() {
+    const { attr = {} } = this._props;
+    Object.keys(attr).forEach((attrName) => {
+      this._element?.setAttribute(attrName, attr[attrName]);
+    });
+  }
+
   _addEvents() {
     const { events = {} } = this._props;
     Object.keys(events).forEach((eventName) => {
@@ -159,6 +166,7 @@ export default class Block {
     this._removeEvents();
     this._element.replaceChildren(block);
     this._addEvents();
+    this._addAttributes();
   }
 
   render() {
