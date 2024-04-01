@@ -1,2 +1,36 @@
+import Block from '../../../utils/Block';
 import './button.scss';
-export { default as Button } from './button.hbs?raw';
+import template from './button.hbs?raw';
+
+export interface IButton {
+  text?: string,
+  img?: {
+    src: string,
+    alt: string
+  },
+  attr: {
+    class?: string,
+    page?: string,
+    disabled?: boolean,
+    title?: string,
+    type?: string
+  }
+}
+
+export class Button extends Block {
+  constructor(props: IButton) {
+    const { attr: { class: cssClass = '' } } = props;
+
+    super({
+      ...props,
+      attr: {
+        ...props.attr,
+        class: `button ${cssClass}`,
+      },
+    }, 'button');
+  }
+
+  render() {
+    return this.compile(template, this._props);
+  }
+}
