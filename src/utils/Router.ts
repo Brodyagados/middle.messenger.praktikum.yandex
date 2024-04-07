@@ -1,4 +1,4 @@
-import Route from './Route';
+import Route, { TView } from './Route';
 
 export default class Router {
   static __instance: Router;
@@ -24,7 +24,7 @@ export default class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: any) {
+  use(pathname: string, block: TView) {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
     this.routes.push(route);
     return this;

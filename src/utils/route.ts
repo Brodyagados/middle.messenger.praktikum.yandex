@@ -1,17 +1,18 @@
 import Block from './Block';
 
+export type TView = any;
 type TProps = Record<string, string>;
 
 export default class Route {
   _pathname: string;
 
-  _blockClass: any;
+  _blockClass: TView;
 
   _block: Block | null;
 
   _props: TProps;
 
-  constructor(pathname: string, view: any, props: TProps) {
+  constructor(pathname: string, view: TView, props: TProps) {
     this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
