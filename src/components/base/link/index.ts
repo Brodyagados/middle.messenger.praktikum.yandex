@@ -8,7 +8,8 @@ export interface ILink {
     href?: string,
     class?: string,
     page?: string,
-  }
+  },
+  events: Record<string, unknown>
 }
 
 export class Link extends Block {
