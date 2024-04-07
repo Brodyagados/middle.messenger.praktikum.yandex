@@ -53,4 +53,4 @@ export class ChangePasswordPage extends UserPage {
         ] }),
       ] });
   }
-};
+}
