@@ -48,5 +48,5 @@ export const LoginPage = () => {
     ],
   };
 
-  return new AccountPage(context).getContent();
+  return new AccountPage(context);
 };

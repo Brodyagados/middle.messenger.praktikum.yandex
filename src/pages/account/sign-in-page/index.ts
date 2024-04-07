@@ -96,5 +96,5 @@ export const SignInPage = () => {
     ],
   };
 
-  return new AccountPage(context).getContent();
+  return new AccountPage(context);
 };
