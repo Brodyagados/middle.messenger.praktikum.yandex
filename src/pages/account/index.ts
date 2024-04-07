@@ -4,7 +4,7 @@ import template from './account-page.hbs?raw';
 import { Form } from '../../components';
 
 export { LoginPage } from './login-page';
-export { SignInPage } from './sign-in-page';
+export { SignUpPage } from './sign-up-page';
 
 interface IAccountPage {
   form: Block[]
