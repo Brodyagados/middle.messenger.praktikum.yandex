@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router
     .use('/', Pages.LoginPage)
     .use('/sign-up', Pages.SignUpPage)
+    .use('/change-password', Pages.ChangePasswordPage)
     .use('/not-found', Pages.NotFoundErrorPage)
     .use('/internal-server-error', Pages.InternalServerErrorPage)
     .start();
