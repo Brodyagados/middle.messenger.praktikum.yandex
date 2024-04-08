@@ -33,6 +33,9 @@
         "no-unused-expressions": "off",
         "no-control-regex": "off",
         "prefer-promise-reject-errors": "off",
-        "no-constructor-return": "off"
+        "no-constructor-return": "off",
+        "no-restricted-syntax": "off",
+        "no-prototype-builtins": "off",
+        "no-continue": "off"
     }
 }
