@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   router
     .use(PAGE_PATH.login, Pages.LoginPage)
     .use(PAGE_PATH.signUp, Pages.SignUpPage)
+    .use(PAGE_PATH.userSetting, Pages.UserSettingPage)
+    .use(PAGE_PATH.userSettingEdit, Pages.UserSettingEditPage)
     .use(PAGE_PATH.changePassword, Pages.ChangePasswordPage)
     .use(PAGE_PATH.notFound, Pages.NotFoundErrorPage)
     .use(PAGE_PATH.internalServerError, Pages.InternalServerErrorPage)
