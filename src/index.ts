@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const router = new Router('#app');
 
   router
+    .use(PAGE_PATH.messenger, Pages.ChatPage)
     .use(PAGE_PATH.login, Pages.LoginPage)
     .use(PAGE_PATH.signUp, Pages.SignUpPage)
     .use(PAGE_PATH.userSetting, Pages.UserSettingPage)

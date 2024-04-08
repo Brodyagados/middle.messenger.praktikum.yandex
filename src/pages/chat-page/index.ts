@@ -1,16 +1,40 @@
-import { Avatar, Button, ChatDialogInput, ChatDialogMessage,
-  ChatDialogUser,
-  ChatListAccountLink, ChatListHeader, ChatListItem,
+import './chat-page.scss';
+import {
+  Avatar, Button, ChatDialogInput, ChatDialogMessage,
+  ChatDialogUser, ChatListAccountLink, ChatListHeader,
+  ChatListItem, ChatDialog, ChatList, IChatDialog, IChatList
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
 import attachmentButtonIconSrc from '../../assets/icons/attachment.svg';
 import sendButtonIconSrc from '../../assets/icons/arrow-right.svg';
-import Page, { IChatListItem, IChatMessage } from './chat-page';
+import template from './chat-page.hbs?raw';
+import Block from '../../utils/Block';
 
-export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessage[]) => {
-  const context = (chats: IChatListItem[], chatDialogMessages: IChatMessage[]) => {
-    return {
-      dialog: {
+export interface IChatListItem {
+  user: string,
+  message: string,
+  count?: string,
+  isOwner?: boolean,
+  isActive?: boolean,
+  date: string
+}
+
+export interface IChatMessage {
+  time: string,
+  text?: string,
+  imgSrc?: string,
+  isOwner?: boolean
+}
+
+export class ChatPage extends Block {
+  constructor() {
+    super({
+      list: new ChatList({
+        accountLink: new ChatListAccountLink(),
+        header: new ChatListHeader(),
+        items: [],
+      }),
+      dialog: new ChatDialog({
         header: [
           new Avatar({ attr: { alt: 'Аватар текущего чата.' } }),
           new ChatDialogUser({ text: 'Вадим' }),
@@ -22,7 +46,7 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
             attr: { title: 'Дополнительно' },
           }),
         ],
-        main: chatDialogMessages.map((message) => new ChatDialogMessage(message)),
+        main: [],
         footer: [
           new Button({
             img: {
@@ -43,14 +67,12 @@ export const ChatPage = (chats: IChatListItem[], chatDialogMessages: IChatMessag
             },
           }),
         ],
-      },
-      list: {
-        accountLink: new ChatListAccountLink(),
-        header: new ChatListHeader(),
-        items: chats.map((item) => new ChatListItem(item)),
-      },
-    };
-  };
+      }),
+      attr: { class: 'chat-page' },
+    });
+  }
 
-  return new Page(context(chats, chatDialogMessages)).getContent();
-};
+  render() {
+    return this.compile(template, this._props);
+  }
+}
