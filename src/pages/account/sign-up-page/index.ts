@@ -1,8 +1,11 @@
 import { AccountPage } from '..';
 import { Button, DialogFooter, DialogHeader, DialogMain, Link, PageTitle, TextBox } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
+import SignUpController from '../../../controllers/sign-up-controller';
+import { connect } from '../../../utils/HOC';
 import Router from '../../../utils/Router';
-import { ValidationType } from '../../../utils/ValidationType';
+import { Validation, ValidationType } from '../../../utils/ValidationType';
+import { Indexed } from '../../../utils/utils';
 
 export class SignUpPage extends AccountPage {
   constructor() {
@@ -83,7 +86,7 @@ export class SignUpPage extends AccountPage {
                   placeholder: 'Пароль еще раз',
                   name: 'password_equal',
                   type: 'password',
-                  validation: ValidationType.EQUAL_PASSWORD,
+                  validation: ValidationType.PASSOWRD,
                 },
               },
             }),
@@ -96,7 +99,19 @@ export class SignUpPage extends AccountPage {
               attr: {
                 class: 'button_color_blue',
                 page: '/login',
-                type: 'submit',
+              },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+
+                  const target = event.target as HTMLElement;
+                  const form = target.closest('form') as HTMLFormElement;
+                  const { isValid, formData } = Validation.validateForm(form);
+                  
+                  if (isValid) {
+                    SignUpController.signUp(formData);
+                  }
+                },
               },
             }),
             new Link({
@@ -116,3 +131,9 @@ export class SignUpPage extends AccountPage {
     });
   }
 }
+
+function mapUserToProps(state: Indexed) {
+  return {};
+}
+
+export default connect(SignUpPage, mapUserToProps);
