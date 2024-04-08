@@ -3,16 +3,12 @@ import './user-page.scss';
 import Block from '../../utils/Block';
 import template from './user-page.hbs?raw';
 
-export { ChangePasswordPage } from './change-password-page';
-export { UserSettingPage } from './user-setting-page';
-export { UserSettingEditPage } from './user-setting-edit-page';
-
 export interface IUserData {
-    firstName: string,
-    secondName: string,
-    email: string,
-    login: string,
-    phone: string
+  firstName: string,
+  secondName: string,
+  email: string,
+  login: string,
+  phone: string
 }
 
 interface IUserPage {
