@@ -1,6 +1,7 @@
 import { Link, PageDescription, PageTitle } from '../../../components';
 import { ErrorPage } from '..';
 import { PAGE_PATH } from '../../../constants/PagePath';
+import Router from '../../../utils/Router';
 
 export class NotFoundErrorPage extends ErrorPage {
   constructor() {
@@ -8,8 +9,15 @@ export class NotFoundErrorPage extends ErrorPage {
       title: new PageTitle({ text: '404' }),
       description: new PageDescription({ text: 'Страница не найдена' }),
       homeLink: new Link({
-        attr: { href: PAGE_PATH.messenger },
         text: 'Назад к чатам',
+        events: {
+          click: (event: Event) => {
+            event.preventDefault();
+
+            const router = new Router('#app');
+            router.go(PAGE_PATH.messenger);
+          }
+        }
       }),
     });
   }

@@ -4,19 +4,24 @@ import template from './link.hbs?raw';
 
 export interface ILink {
   text: string,
-  attr: {
+  attr?: {
     href?: string,
     class?: string,
-  }
+  },
+  events: Record<string, unknown>
 }
 
 export class Link extends Block {
   constructor(props: ILink) {
-    const { attr: { class: cssClass = '', href = '' } } = props;
+    const { attr } = props;
 
     super({
       ...props,
-      attr: { ...props.attr, href, class: `link ${cssClass}` },
+      attr: {
+        ...props.attr,
+        href: attr?.href ?? '',
+        class: `link ${attr?.class ?? ''}`
+      },
     }, 'a');
   }
 

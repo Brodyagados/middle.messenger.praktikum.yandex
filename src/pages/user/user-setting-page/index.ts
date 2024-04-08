@@ -3,9 +3,13 @@ import {
   DialogMain, Link, PageTitle, TextBox,
 } from '../../../components';
 import { IUserData, UserPage } from '..';
+import { PAGE_PATH } from '../../../constants/PagePath';
+import Router from '../../../utils/Router';
 
 export class UserSettingPage extends UserPage {
   constructor() {
+    const router = new Router('#app');
+
     super({
       form: [
         new DialogHeader({
@@ -70,9 +74,34 @@ export class UserSettingPage extends UserPage {
         }),
         new DialogFooter({
           content: [
-            new Link({ text: 'Изменить данные', attr: { page: '/user-setting-edit' } }),
-            new Link({ text: 'Изменить пароль', attr: { page: '/change-password' } }),
-            new Link({ text: 'Выйти', attr: { class: 'link_color_red', page: '/login' } }),
+            new Link({
+              text: 'Изменить данные',
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+                  router.go(PAGE_PATH.userSettingEdit);
+                }
+              }
+            }),
+            new Link({
+              text: 'Изменить пароль',
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+                  router.go(PAGE_PATH.changePassword);
+                }
+              }
+            }),
+            new Link({
+              text: 'Выйти',
+              attr: { class: 'link_color_red' },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+                  router.go(PAGE_PATH.login);
+                }
+              }
+            }),
           ]
         }),
       ],
