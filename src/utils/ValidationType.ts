@@ -63,7 +63,7 @@ export class Validation {
     console.log(formData);
 
     const isValid = !Object.values(formData).includes(null);
-    return isValid;
+    return { isValid, formData };
   }
 }
 
