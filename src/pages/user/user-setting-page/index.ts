@@ -2,7 +2,7 @@ import {
   Avatar, DialogFooter, DialogHeader,
   DialogMain, Link, PageTitle, TextBox,
 } from '../../../components';
-import { IUserData, UserPage } from '..';
+import { UserPage } from '..';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import Router from '../../../utils/Router';
 
@@ -16,7 +16,7 @@ export class UserSettingPage extends UserPage {
           content: [
             new Avatar({ attr: { alt: 'Аватар пользователя.' } }),
             new PageTitle({ text: '' }),
-          ]
+          ],
         }),
         new DialogMain({
           content: [
@@ -70,7 +70,7 @@ export class UserSettingPage extends UserPage {
                 },
               },
             }),
-          ]
+          ],
         }),
         new DialogFooter({
           content: [
@@ -80,8 +80,8 @@ export class UserSettingPage extends UserPage {
                 click: (event: Event) => {
                   event.preventDefault();
                   router.go(PAGE_PATH.userSettingEdit);
-                }
-              }
+                },
+              },
             }),
             new Link({
               text: 'Изменить пароль',
@@ -89,8 +89,8 @@ export class UserSettingPage extends UserPage {
                 click: (event: Event) => {
                   event.preventDefault();
                   router.go(PAGE_PATH.changePassword);
-                }
-              }
+                },
+              },
             }),
             new Link({
               text: 'Выйти',
@@ -99,12 +99,12 @@ export class UserSettingPage extends UserPage {
                 click: (event: Event) => {
                   event.preventDefault();
                   router.go(PAGE_PATH.login);
-                }
-              }
+                },
+              },
             }),
-          ]
+          ],
         }),
       ],
     });
   }
-};
+}

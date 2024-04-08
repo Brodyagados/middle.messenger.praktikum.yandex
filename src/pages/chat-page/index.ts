@@ -1,8 +1,8 @@
 import './chat-page.scss';
 import {
-  Avatar, Button, ChatDialogInput, ChatDialogMessage,
-  ChatDialogUser, ChatListAccountLink, ChatListHeader,
-  ChatListItem, ChatDialog, ChatList, IChatDialog, IChatList
+  Avatar, Button, ChatDialogInput,
+  ChatDialogUser, ChatListAccountLink,
+  ChatListHeader, ChatDialog, ChatList,
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
 import attachmentButtonIconSrc from '../../assets/icons/attachment.svg';

@@ -20,7 +20,7 @@ export class Link extends Block {
       attr: {
         ...props.attr,
         href: attr?.href ?? '',
-        class: `link ${attr?.class ?? ''}`
+        class: `link ${attr?.class ?? ''}`,
       },
     }, 'a');
   }

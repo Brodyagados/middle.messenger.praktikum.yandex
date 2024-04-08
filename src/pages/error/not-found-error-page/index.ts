@@ -16,8 +16,8 @@ export class NotFoundErrorPage extends ErrorPage {
 
             const router = new Router('#app');
             router.go(PAGE_PATH.messenger);
-          }
-        }
+          },
+        },
       }),
     });
   }

@@ -14,7 +14,7 @@ export class LoginPage extends AccountPage {
         new DialogHeader({
           content: [
             new PageTitle({ text: 'Вход' }),
-          ]
+          ],
         }),
         new DialogMain({
           content: [
@@ -39,7 +39,7 @@ export class LoginPage extends AccountPage {
                 },
               },
             }),
-          ]
+          ],
         }),
         new DialogFooter({
           content: [
@@ -59,10 +59,10 @@ export class LoginPage extends AccountPage {
 
                   const router = new Router('#app');
                   router.go(PAGE_PATH.signUp);
-                }
-              }
+                },
+              },
             }),
-          ]
+          ],
         }),
       ],
     });

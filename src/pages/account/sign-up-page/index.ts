@@ -11,7 +11,7 @@ export class SignUpPage extends AccountPage {
         new DialogHeader({
           content: [
             new PageTitle({ text: 'Регистрация' }),
-          ]
+          ],
         }),
         new DialogMain({
           content: [
@@ -87,7 +87,7 @@ export class SignUpPage extends AccountPage {
                 },
               },
             }),
-          ]
+          ],
         }),
         new DialogFooter({
           content: [
@@ -107,10 +107,10 @@ export class SignUpPage extends AccountPage {
 
                   const router = new Router('#app');
                   router.go(PAGE_PATH.login);
-                }
-              }
+                },
+              },
             }),
-          ]
+          ],
         }),
       ],
     });

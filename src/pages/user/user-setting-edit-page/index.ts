@@ -2,7 +2,7 @@ import {
   Avatar, Button, DialogFooter,
   DialogHeader, DialogMain, TextBox,
 } from '../../../components';
-import { IUserData, UserPage } from '..';
+import { UserPage } from '..';
 import { ValidationType } from '../../../utils/ValidationType';
 
 export class UserSettingEditPage extends UserPage {
@@ -12,7 +12,7 @@ export class UserSettingEditPage extends UserPage {
         new DialogHeader({
           content: [
             new Avatar({ attr: { alt: 'Аватар пользователя.' } }),
-          ]
+          ],
         }),
         new DialogMain({
           content: [
@@ -66,7 +66,7 @@ export class UserSettingEditPage extends UserPage {
                 },
               },
             }),
-          ]
+          ],
         }),
         new DialogFooter({
           content: [
@@ -78,7 +78,7 @@ export class UserSettingEditPage extends UserPage {
                 type: 'submit',
               },
             }),
-          ]
+          ],
         }),
       ],
     });

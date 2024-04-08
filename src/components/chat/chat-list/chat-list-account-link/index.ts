@@ -16,8 +16,8 @@ export class ChatListAccountLink extends Block {
 
             const router = new Router('#app');
             router.go(PAGE_PATH.userSetting);
-          }
-        }
+          },
+        },
       }),
       attr: { class: 'chat-list__account-link' },
     });
