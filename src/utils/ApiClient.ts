@@ -64,9 +64,14 @@ class ApiClient {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      method === METHOD.GET || !!data
-        ? xhr.send()
-        : xhr.send(data);
+      if (method === METHOD.GET || !data) {
+        xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
+      } else {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
+      }
     });
   };
 }
