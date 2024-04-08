@@ -20,7 +20,7 @@ function queryStringify(data: Record<string, unknown>) {
     .join('&');
 }
 
-export default class ApiClient {
+class ApiClient {
   get: THttpMethod = (url, options = {}) => {
     const { data, timeout } = options;
     const resultUrl = data
@@ -70,3 +70,5 @@ export default class ApiClient {
     });
   };
 }
+
+export default new ApiClient();
