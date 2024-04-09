@@ -1,6 +1,8 @@
 import Block from '../../../utils/Block';
 import './error-message.scss';
 import template from './error-message.hbs?raw';
+import { Indexed } from '../../../utils/utils';
+import { connect } from '../../../utils/HOC';
 
 export interface IErrorMessage {
   text: string,
@@ -9,7 +11,7 @@ export interface IErrorMessage {
   }
 }
 
-export class ErrorMessage extends Block {
+class ErrorMessage extends Block {
   constructor(props: IErrorMessage) {
     const { attr } = props;
 
@@ -26,3 +28,9 @@ export class ErrorMessage extends Block {
     return this.compile(template, this._props);
   }
 }
+
+export const SignUpErrorMessage = connect(ErrorMessage, (state: Indexed) => {
+  return {
+    text: state.signUpPage.error
+  };
+});

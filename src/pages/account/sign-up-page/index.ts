@@ -1,12 +1,11 @@
 import { AccountPage } from '..';
 import {
   Button, DialogFooter, DialogHeader,
-  DialogMain, ErrorMessage, Link,
-  PageTitle, TextBox
+  DialogMain, Link, PageTitle, TextBox,
+  SignUpErrorMessage
 } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import SignUpController from '../../../controllers/sign-up-controller';
-import Block from '../../../utils/Block';
 import { connect } from '../../../utils/HOC';
 import Router from '../../../utils/Router';
 import Store from '../../../utils/Store';
@@ -100,7 +99,7 @@ class SignUpPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
-            new ErrorMessage({ text: Store.getState().signUpPage.error }),
+            new SignUpErrorMessage({ text: Store.getState().signUpPage.error }),
             new Button({
               text: 'Зарегистрироваться',
               attr: {
