@@ -151,6 +151,7 @@ export default class Block {
     }
 
     Object.assign(this._props, nextProps);
+    this._eventBus().emit(Block.EVENTS.FLOW_CDU);
   }
 
   get element() {
