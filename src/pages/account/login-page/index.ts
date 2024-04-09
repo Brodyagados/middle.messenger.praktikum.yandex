@@ -1,11 +1,13 @@
 import { AccountPage } from '..';
 import {
   Button, DialogFooter, DialogHeader,
-  DialogMain, Link, PageTitle, TextBox,
+  DialogMain, Link, LoginErrorMessage, PageTitle, TextBox,
 } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
+import loginController from '../../../controllers/login-controller';
 import Router from '../../../utils/Router';
-import { ValidationType } from '../../../utils/ValidationType';
+import Store from '../../../utils/Store';
+import { Validation, ValidationType } from '../../../utils/ValidationType';
 
 export class LoginPage extends AccountPage {
   constructor() {
@@ -43,12 +45,26 @@ export class LoginPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
+            new LoginErrorMessage({ text: Store.getState().loginPage.error }),
             new Button({
               text: 'Войти',
               attr: {
                 class: 'button_color_blue',
-                page: '/',
-                type: 'submit',
+              },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+
+                  const target = event.target as HTMLElement;
+                  const form = target.closest('form') as HTMLFormElement;
+                  const { isValid, formData } = Validation.validateForm(form);
+
+                  if (isValid) {
+                    loginController.login(formData);
+                  } else {
+                    Store.set('loginPage.error', 'Все поля должны быть заполнены!');
+                  }
+                },
               },
             }),
             new Link({
