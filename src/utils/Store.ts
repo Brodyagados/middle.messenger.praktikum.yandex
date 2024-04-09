@@ -2,11 +2,15 @@ import EventBus from './EventBus';
 import { Indexed, set } from './utils';
 
 export enum StoreEvents {
-    Updated = 'updated',
+  Updated = 'updated',
 }
 
 class Store extends EventBus {
-  _state: Indexed = {};
+  _state: Indexed = {
+    signUpPage: {
+      error: '',
+    },
+  };
 
   getState() {
     return this._state;

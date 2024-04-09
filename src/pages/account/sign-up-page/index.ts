@@ -1,9 +1,14 @@
 import { AccountPage } from '..';
-import { Button, DialogFooter, DialogHeader, DialogMain, Link, PageTitle, TextBox } from '../../../components';
+import {
+  Button, DialogFooter, DialogHeader,
+  DialogMain, ErrorMessage, Link,
+  PageTitle, TextBox
+} from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import SignUpController from '../../../controllers/sign-up-controller';
 import { connect } from '../../../utils/HOC';
 import Router from '../../../utils/Router';
+import Store from '../../../utils/Store';
 import { Validation, ValidationType } from '../../../utils/ValidationType';
 import { Indexed } from '../../../utils/utils';
 
@@ -94,6 +99,7 @@ export class SignUpPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
+            new ErrorMessage({ text: Store.getState().signUpPage.error }),
             new Button({
               text: 'Зарегистрироваться',
               attr: {
@@ -107,9 +113,11 @@ export class SignUpPage extends AccountPage {
                   const target = event.target as HTMLElement;
                   const form = target.closest('form') as HTMLFormElement;
                   const { isValid, formData } = Validation.validateForm(form);
-                  
+
                   if (isValid) {
                     SignUpController.signUp(formData);
+                  } else {
+                    Store.set('signUpPage.error', 'Все поля должны быть заполнены!');
                   }
                 },
               },
@@ -133,7 +141,9 @@ export class SignUpPage extends AccountPage {
 }
 
 function mapUserToProps(state: Indexed) {
-  return {};
+  return {
+    error: state.signUpPage.error
+  };
 }
 
 export default connect(SignUpPage, mapUserToProps);
