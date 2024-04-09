@@ -1,6 +1,6 @@
 export { ChatPage } from './chat-page';
 export { LoginPage } from './account/login-page';
-export { SignUpPage } from './account/sign-up-page';
+export { default as SignUpPage } from './account/sign-up-page';
 export { InternalServerErrorPage } from './error/internal-server-error-page';
 export { NotFoundErrorPage } from './error/not-found-error-page';
 export { ChangePasswordPage } from './user/change-password-page';

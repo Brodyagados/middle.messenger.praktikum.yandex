@@ -6,13 +6,14 @@ import {
 } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import SignUpController from '../../../controllers/sign-up-controller';
+import Block from '../../../utils/Block';
 import { connect } from '../../../utils/HOC';
 import Router from '../../../utils/Router';
 import Store from '../../../utils/Store';
 import { Validation, ValidationType } from '../../../utils/ValidationType';
 import { Indexed } from '../../../utils/utils';
 
-export class SignUpPage extends AccountPage {
+class SignUpPage extends AccountPage {
   constructor() {
     super({
       form: [
