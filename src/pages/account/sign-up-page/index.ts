@@ -102,7 +102,6 @@ export class SignUpPage extends AccountPage {
               text: 'Зарегистрироваться',
               attr: {
                 class: 'button_color_blue',
-                page: '/login',
               },
               events: {
                 click: (event: Event) => {

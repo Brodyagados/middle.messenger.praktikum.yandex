@@ -34,3 +34,9 @@ export const SignUpErrorMessage = connect(ErrorMessage, (state: Indexed) => {
     text: state.signUpPage.error,
   };
 });
+
+export const LoginErrorMessage = connect(ErrorMessage, (state: Indexed) => {
+  return {
+    text: state.loginPage.error,
+  };
+});
