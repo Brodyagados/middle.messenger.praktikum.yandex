@@ -1,6 +1,7 @@
 import AuthApi from '../api/auth-api';
 import { PAGE_PATH } from '../constants/PagePath';
 import Router from '../utils/Router';
+import Store from '../utils/Store';
 
 class SignUpController {
   async signUp(data: Record<string, unknown>) {
@@ -11,10 +12,12 @@ class SignUpController {
         const router = new Router('#app');
         router.go(PAGE_PATH.login);
       } else {
-        console.log(responseText);
+        Store.set('signUpPage.error', responseText);
       }
     } catch (e) {
-      throw Error('Ошибка регистрации пользователя.');
+      const errorMessage = 'Ошибка регистрации пользователя.';
+      Store.set('signUpPage.error', errorMessage);
+      throw Error(errorMessage);
     }
   }
 }

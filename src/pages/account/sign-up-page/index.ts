@@ -2,17 +2,15 @@ import { AccountPage } from '..';
 import {
   Button, DialogFooter, DialogHeader,
   DialogMain, Link, PageTitle, TextBox,
-  SignUpErrorMessage
+  SignUpErrorMessage,
 } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import SignUpController from '../../../controllers/sign-up-controller';
-import { connect } from '../../../utils/HOC';
 import Router from '../../../utils/Router';
 import Store from '../../../utils/Store';
 import { Validation, ValidationType } from '../../../utils/ValidationType';
-import { Indexed } from '../../../utils/utils';
 
-class SignUpPage extends AccountPage {
+export class SignUpPage extends AccountPage {
   constructor() {
     super({
       form: [
@@ -139,11 +137,3 @@ class SignUpPage extends AccountPage {
     });
   }
 }
-
-function mapUserToProps(state: Indexed) {
-  return {
-    error: state.signUpPage.error
-  };
-}
-
-export default connect(SignUpPage, mapUserToProps);

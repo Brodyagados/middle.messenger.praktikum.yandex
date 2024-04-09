@@ -31,6 +31,6 @@ class ErrorMessage extends Block {
 
 export const SignUpErrorMessage = connect(ErrorMessage, (state: Indexed) => {
   return {
-    text: state.signUpPage.error
+    text: state.signUpPage.error,
   };
 });
