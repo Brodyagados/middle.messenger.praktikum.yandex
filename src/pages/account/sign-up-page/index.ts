@@ -1,8 +1,14 @@
 import { AccountPage } from '..';
-import { Button, DialogFooter, DialogHeader, DialogMain, Link, PageTitle, TextBox } from '../../../components';
+import {
+  Button, DialogFooter, DialogHeader,
+  DialogMain, Link, PageTitle, TextBox,
+  SignUpErrorMessage,
+} from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
+import SignUpController from '../../../controllers/sign-up-controller';
 import Router from '../../../utils/Router';
-import { ValidationType } from '../../../utils/ValidationType';
+import Store from '../../../utils/Store';
+import { Validation, ValidationType } from '../../../utils/ValidationType';
 
 export class SignUpPage extends AccountPage {
   constructor() {
@@ -83,7 +89,7 @@ export class SignUpPage extends AccountPage {
                   placeholder: 'Пароль еще раз',
                   name: 'password_equal',
                   type: 'password',
-                  validation: ValidationType.EQUAL_PASSWORD,
+                  validation: ValidationType.PASSOWRD,
                 },
               },
             }),
@@ -91,12 +97,27 @@ export class SignUpPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
+            new SignUpErrorMessage({ text: Store.getState().signUpPage.error }),
             new Button({
               text: 'Зарегистрироваться',
               attr: {
                 class: 'button_color_blue',
                 page: '/login',
-                type: 'submit',
+              },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+
+                  const target = event.target as HTMLElement;
+                  const form = target.closest('form') as HTMLFormElement;
+                  const { isValid, formData } = Validation.validateForm(form);
+
+                  if (isValid) {
+                    SignUpController.signUp(formData);
+                  } else {
+                    Store.set('signUpPage.error', 'Все поля должны быть заполнены!');
+                  }
+                },
               },
             }),
             new Link({

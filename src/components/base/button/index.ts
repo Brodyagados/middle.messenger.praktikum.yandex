@@ -14,7 +14,8 @@ export interface IButton {
     disabled?: boolean,
     title?: string,
     type?: string
-  }
+  },
+  events: Record<string, unknown>
 }
 
 export class Button extends Block {

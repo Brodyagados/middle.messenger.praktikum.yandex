@@ -20,7 +20,7 @@ function queryStringify(data: Record<string, unknown>) {
     .join('&');
 }
 
-export default class ApiClient {
+class ApiClient {
   get: THttpMethod = (url, options = {}) => {
     const { data, timeout } = options;
     const resultUrl = data
@@ -64,9 +64,16 @@ export default class ApiClient {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      method === METHOD.GET || !!data
-        ? xhr.send()
-        : xhr.send(data);
+      if (method === METHOD.GET || !data) {
+        xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
+      } else {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
+      }
     });
   };
 }
+
+export default new ApiClient();
