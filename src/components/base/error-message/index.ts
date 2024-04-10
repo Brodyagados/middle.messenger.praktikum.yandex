@@ -29,14 +29,19 @@ class ErrorMessage extends Block {
   }
 }
 
-export const SignUpErrorMessage = connect(ErrorMessage, (state: Indexed) => {
-  return {
-    text: state.signUpPage.error,
-  };
-});
+export enum ERROR_MESSAGE_TYPE {
+  signUpPage,
+  loginPage
+}
 
-export const LoginErrorMessage = connect(ErrorMessage, (state: Indexed) => {
-  return {
-    text: state.loginPage.error,
-  };
-});
+export default (type: ERROR_MESSAGE_TYPE) => (
+  connect(ErrorMessage, (state: Indexed) => {
+    switch (type) {
+      case ERROR_MESSAGE_TYPE.signUpPage:
+        return { text: state.signUpPage.error };
+      case ERROR_MESSAGE_TYPE.loginPage:
+        return { text: state.loginPage.error };
+      default: return {};
+    }
+  })
+);

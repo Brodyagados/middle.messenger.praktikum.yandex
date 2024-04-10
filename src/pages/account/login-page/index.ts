@@ -1,7 +1,8 @@
 import { AccountPage } from '..';
 import {
   Button, DialogFooter, DialogHeader,
-  DialogMain, Link, LoginErrorMessage, PageTitle, TextBox,
+  DialogMain, Link, PageTitle, TextBox,
+  ErrorMessage, ERROR_MESSAGE_TYPE,
 } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import loginController from '../../../controllers/login-controller';
@@ -45,7 +46,7 @@ export class LoginPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
-            new LoginErrorMessage({ text: Store.getState().loginPage.error }),
+            new (ErrorMessage(ERROR_MESSAGE_TYPE.loginPage))({ text: Store.getState().loginPage.error }),
             new Button({
               text: 'Войти',
               attr: {
