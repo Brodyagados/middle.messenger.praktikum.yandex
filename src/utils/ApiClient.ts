@@ -1,17 +1,18 @@
 type THttpMethod = (url: string, options?: IOptions) => Promise<unknown>;
 
 enum METHOD {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    DELETE = 'DELETE'
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
 }
 
 interface IOptions {
-    method?: METHOD,
-    headers?: Record<string, string>,
-    data?: Record<string, unknown>,
-    timeout?: number
+  method?: METHOD,
+  headers?: Record<string, string>,
+  data?: Record<string, unknown>,
+  timeout?: number,
+  withCredentials?: boolean
 }
 
 function queryStringify(data: Record<string, unknown>) {
@@ -43,7 +44,7 @@ class ApiClient {
 
   request = (url: string, options: IOptions = {}, timeout = 5000) => {
     return new Promise((resolve, reject) => {
-      const { method, data, headers = {} } = options;
+      const { method, data, withCredentials = true, headers = {} } = options;
 
       if (!method) {
         reject('No method');
@@ -58,7 +59,7 @@ class ApiClient {
       });
 
       xhr.onload = () => resolve(xhr);
-
+      xhr.withCredentials = withCredentials;
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
       xhr.onabort = reject;
