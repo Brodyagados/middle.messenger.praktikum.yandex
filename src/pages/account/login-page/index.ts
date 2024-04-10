@@ -46,7 +46,7 @@ export class LoginPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
-            new (ErrorMessage(ERROR_MESSAGE_TYPE.loginPage))({ text: Store.getState().loginPage.error }),
+            new (ErrorMessage(ERROR_MESSAGE_TYPE.loginPage))({}),
             new Button({
               text: 'Войти',
               attr: {
@@ -83,5 +83,10 @@ export class LoginPage extends AccountPage {
         }),
       ],
     });
+  }
+
+  render() {
+    Store.set('loginPage.error', '');
+    return super.render();
   }
 }

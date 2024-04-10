@@ -97,7 +97,7 @@ export class SignUpPage extends AccountPage {
         }),
         new DialogFooter({
           content: [
-            new (ErrorMessage(ERROR_MESSAGE_TYPE.signUpPage))({ text: Store.getState().signUpPage.error }),
+            new (ErrorMessage(ERROR_MESSAGE_TYPE.signUpPage))({}),
             new Button({
               text: 'Зарегистрироваться',
               attr: {
@@ -134,5 +134,10 @@ export class SignUpPage extends AccountPage {
         }),
       ],
     });
+  }
+
+  render() {
+    Store.set('signUpPage.error', '');
+    return super.render();
   }
 }
