@@ -5,6 +5,7 @@ import {
 import { UserPage } from '..';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import Router from '../../../utils/Router';
+import logoutController from '../../../controllers/logout-controller';
 
 export class UserSettingPage extends UserPage {
   constructor() {
@@ -98,7 +99,7 @@ export class UserSettingPage extends UserPage {
               events: {
                 click: (event: Event) => {
                   event.preventDefault();
-                  router.go(PAGE_PATH.login);
+                  logoutController.logout();
                 },
               },
             }),
