@@ -1,3 +1,4 @@
+import { PAGE_PATH } from '../constants/PagePath';
 import Route, { TView } from './Route';
 
 export default class Router {
@@ -41,6 +42,11 @@ export default class Router {
 
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
+
+    if (!route) {
+      this.go(PAGE_PATH.notFound);
+      return;
+    }
 
     if (this._currentRoute) {
       this._currentRoute.leave();
