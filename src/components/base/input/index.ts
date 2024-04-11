@@ -6,20 +6,21 @@ import './input.scss';
 
 export interface IInput {
   isAlignRight?: boolean,
-  value?: string,
   attr: {
     validation?: string,
     placeholder?: string,
     title?: string,
     disabled?: boolean,
     type?: string,
+    value?: string,
     name: string,
   }
 }
 
 export class Input extends Block {
   constructor(props: IInput) {
-    const { isAlignRight = false, value = '' } = props;
+    const { isAlignRight = false, attr } = props;
+    const { value = '' } = attr;
 
     super({
       ...props,
@@ -51,15 +52,15 @@ export const UserSettingInput = (field: string) => (
   connect(Input, (state: Indexed) => {
     switch (field) {
       case UserSettingInputField.login:
-        return { value: state.user.login };
+        return { attr: { value: state.user.login } };
       case UserSettingInputField.firstName:
-        return { value: state.user.first_name };
+        return { attr: { value: state.user.first_name } };
       case UserSettingInputField.secondName:
-        return { value: state.user.second_name };
+        return { attr: { value: state.user.second_name } };
       case UserSettingInputField.phone:
-        return { value: state.user.phone };
+        return { attr: { value: state.user.phone } };
       case UserSettingInputField.email:
-        return { value: state.user.email };
+        return { attr: { value: state.user.email } };
       default: return {};
     }
   })

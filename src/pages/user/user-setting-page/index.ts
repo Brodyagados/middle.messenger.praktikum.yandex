@@ -11,7 +11,7 @@ import { UserSettingInputField } from '../../../components/base/input';
 
 export class UserSettingPage extends UserPage {
   init() {
-    userController.get();
+    //userController.get();
     super.init();
   }
 

@@ -150,7 +150,12 @@ export default class Block {
       return;
     }
 
-    Object.assign(this._props, nextProps);
+    const { attr = {}, ...props } = nextProps;
+    Object.entries(attr).forEach(([key, value]) => {
+      this._props.attr[key] = value;
+    });
+
+    Object.assign(this._props, props);
     this._eventBus().emit(Block.EVENTS.FLOW_CDU);
   }
 
