@@ -13,6 +13,9 @@ class Store extends EventBus {
     loginPage: {
       error: '',
     },
+    changePasswordPage: {
+      error: '',
+    },
     user: {},
   };
 

@@ -13,7 +13,7 @@ class LoginController {
         const router = new Router('#app');
         router.go(PAGE_PATH.messenger);
       } else {
-        Store.set('signUpPage.error', responseText);
+        Store.set('loginPage.error', responseText);
       }
     } catch (e) {
       const errorMessage = 'Ошибка входа в систему.';

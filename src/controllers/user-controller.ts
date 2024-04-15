@@ -1,4 +1,7 @@
 import AuthApi from '../api/auth-api';
+import UserApi from '../api/user-api';
+import { PAGE_PATH } from '../constants/PagePath';
+import Router from '../utils/Router';
 import Store from '../utils/Store';
 
 class UserController {
@@ -10,6 +13,24 @@ class UserController {
       Store.set('user', user);
     } catch (e) {
       const errorMessage = 'Ошибка получения данных пользователя.';
+      throw Error(errorMessage);
+    }
+  }
+
+  async changePassword(data: Record<string, unknown>) {
+    try {
+      const request = await UserApi.changePassword(data) as XMLHttpRequest;
+      const { status, responseText } = request;
+
+      if (status === 200) {
+        const router = new Router('#app');
+        router.go(PAGE_PATH.messenger);
+      } else {
+        Store.set('changePasswordPage.error', responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка смены пароля.';
+      Store.set('changePasswordPage.error', errorMessage);
       throw Error(errorMessage);
     }
   }
