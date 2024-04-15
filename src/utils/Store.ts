@@ -13,6 +13,7 @@ class Store extends EventBus {
     loginPage: {
       error: '',
     },
+    user: {},
   };
 
   getState() {

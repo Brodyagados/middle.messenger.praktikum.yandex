@@ -5,8 +5,16 @@ import {
 import { UserPage } from '..';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import Router from '../../../utils/Router';
+import logoutController from '../../../controllers/logout-controller';
+import userController from '../../../controllers/user-controller';
+import { UserSettingInputField } from '../../../components/base/input';
 
 export class UserSettingPage extends UserPage {
+  init() {
+    userController.get();
+    super.init();
+  }
+
   constructor() {
     const router = new Router('#app');
 
@@ -25,7 +33,7 @@ export class UserSettingPage extends UserPage {
               attr: { class: 'textbox_inline' },
               inputProps: {
                 attr: {
-                  name: 'email',
+                  name: UserSettingInputField.email,
                   disabled: true,
                 },
               },
@@ -35,7 +43,7 @@ export class UserSettingPage extends UserPage {
               attr: { class: 'textbox_inline' },
               inputProps: {
                 attr: {
-                  name: 'login',
+                  name: UserSettingInputField.login,
                   disabled: true,
                 },
               },
@@ -45,7 +53,7 @@ export class UserSettingPage extends UserPage {
               attr: { class: 'textbox_inline' },
               inputProps: {
                 attr: {
-                  name: 'first_name',
+                  name: UserSettingInputField.firstName,
                   disabled: true,
                 },
               },
@@ -55,7 +63,7 @@ export class UserSettingPage extends UserPage {
               attr: { class: 'textbox_inline' },
               inputProps: {
                 attr: {
-                  name: 'second_name',
+                  name: UserSettingInputField.secondName,
                   disabled: true,
                 },
               },
@@ -65,7 +73,7 @@ export class UserSettingPage extends UserPage {
               attr: { class: 'textbox_inline' },
               inputProps: {
                 attr: {
-                  name: 'phone',
+                  name: UserSettingInputField.phone,
                   disabled: true,
                 },
               },
@@ -98,7 +106,7 @@ export class UserSettingPage extends UserPage {
               events: {
                 click: (event: Event) => {
                   event.preventDefault();
-                  router.go(PAGE_PATH.login);
+                  logoutController.logout();
                 },
               },
             }),
