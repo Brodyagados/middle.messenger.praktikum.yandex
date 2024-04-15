@@ -2,7 +2,7 @@ import { AccountPage } from '..';
 import {
   Button, DialogFooter, DialogHeader,
   DialogMain, Link, PageTitle, TextBox,
-  ErrorMessage, ERROR_MESSAGE_TYPE
+  ErrorMessage, ERROR_MESSAGE_TYPE,
 } from '../../../components';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import SignUpController from '../../../controllers/sign-up-controller';

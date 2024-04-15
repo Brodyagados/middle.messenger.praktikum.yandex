@@ -1,12 +1,12 @@
 import Block from './Block';
 import store, { StoreEvents } from './Store';
-import { Indexed, isEqual } from './utils';
+import { Indexed, isEqual, merge } from './utils';
 
 export function connect(Component: typeof Block, mapStateToProps: (state: Indexed) => Indexed) {
   return class extends Component {
     constructor(props: Record<string, unknown>) {
       let state = mapStateToProps(store.getState());
-      super({ ...props, ...state });
+      super({ ...merge(props, state) });
 
       store.on(StoreEvents.Updated, () => {
         const newState = mapStateToProps(store.getState());
