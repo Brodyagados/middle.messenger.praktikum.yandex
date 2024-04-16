@@ -6,7 +6,7 @@ class AuthAPI extends BaseAPI {
 
   constructor() {
     super();
-    this._authUrl = `${this._baseUrl}/auth`;
+    this._authUrl = `${BaseAPI.baseUrl}/auth`;
   }
 
   signUp(data: Record<string, unknown>) {

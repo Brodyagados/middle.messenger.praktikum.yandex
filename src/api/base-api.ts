@@ -1,5 +1,5 @@
 export class BaseAPI {
-  _baseUrl = 'https://ya-praktikum.tech/api/v2';
+  static baseUrl = 'https://ya-praktikum.tech/api/v2';
 
   create() { throw new Error('Not implemented'); }
 

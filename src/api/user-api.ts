@@ -6,14 +6,14 @@ class UserAPI extends BaseAPI {
 
   constructor() {
     super();
-    this._userUrl = `${this._baseUrl}/user`;
+    this._userUrl = `${BaseAPI.baseUrl}/user`;
   }
 
   updateSettings(data: Record<string, unknown>) {
     return ApiClient.put(`${this._userUrl}/profile`, { data });
   }
 
-  updateAvatar(data: Record<string, unknown>) {
+  updateAvatar(data: FormData) {
     return ApiClient.put(`${this._userUrl}/profile/avatar`, { data });
   }
 
