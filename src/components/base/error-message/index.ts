@@ -33,6 +33,7 @@ export enum ERROR_MESSAGE_TYPE {
   signUpPage,
   loginPage,
   changePasswordPage,
+  userSettingPage,
   userSettingEditPage
 }
 
@@ -43,6 +44,8 @@ export default (type: ERROR_MESSAGE_TYPE) => (
         return { text: state.signUpPage.error };
       case ERROR_MESSAGE_TYPE.loginPage:
         return { text: state.loginPage.error };
+      case ERROR_MESSAGE_TYPE.userSettingPage:
+        return { text: state.userSettingPage.avatarError };
       case ERROR_MESSAGE_TYPE.userSettingEditPage:
         return { text: state.userSettingEditPage.error };
       case ERROR_MESSAGE_TYPE.changePasswordPage:
