@@ -2,7 +2,7 @@ import Block from '../../../utils/Block';
 import './avatar.scss';
 import baseSrc from '../../../assets/icons/base-avatar.svg';
 
-interface IAvatar {
+export interface IAvatar {
   attr: {
     alt?: string,
     src?: string
