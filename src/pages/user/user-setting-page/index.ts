@@ -1,5 +1,5 @@
 import {
-  Avatar, DialogFooter, DialogHeader,
+  AvatarButton, DialogFooter, DialogHeader,
   DialogMain, Link, PageTitle, TextBox,
 } from '../../../components';
 import { UserPage } from '..';
@@ -8,6 +8,7 @@ import Router from '../../../utils/Router';
 import logoutController from '../../../controllers/logout-controller';
 import userController from '../../../controllers/user-controller';
 import { UserSettingInputField } from '../../../components/base/input';
+import { Modal } from '../../../components/base/modal';
 
 export class UserSettingPage extends UserPage {
   init() {
@@ -22,8 +23,20 @@ export class UserSettingPage extends UserPage {
       form: [
         new DialogHeader({
           content: [
-            new Avatar({ attr: { alt: 'Аватар пользователя.' } }),
+            new AvatarButton({
+              avatarProps: {
+                attr: { alt: 'Аватар пользователя.' }
+              },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+
+                  document.querySelector('dialog')?.showModal()
+                },
+              }
+            }),
             new PageTitle({ text: '' }),
+            new Modal({ content: 'Test' }),
           ],
         }),
         new DialogMain({
