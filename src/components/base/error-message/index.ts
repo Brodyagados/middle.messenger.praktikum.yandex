@@ -32,7 +32,8 @@ class ErrorMessage extends Block {
 export enum ERROR_MESSAGE_TYPE {
   signUpPage,
   loginPage,
-  changePasswordPage
+  changePasswordPage,
+  userSettingEditPage
 }
 
 export default (type: ERROR_MESSAGE_TYPE) => (
@@ -42,6 +43,8 @@ export default (type: ERROR_MESSAGE_TYPE) => (
         return { text: state.signUpPage.error };
       case ERROR_MESSAGE_TYPE.loginPage:
         return { text: state.loginPage.error };
+      case ERROR_MESSAGE_TYPE.userSettingEditPage:
+        return { text: state.userSettingEditPage.error };
       case ERROR_MESSAGE_TYPE.changePasswordPage:
         return { text: state.changePasswordPage.error };
       default: return {};

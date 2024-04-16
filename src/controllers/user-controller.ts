@@ -17,6 +17,24 @@ class UserController {
     }
   }
 
+  async update(data: Record<string, unknown>) {
+    try {
+      const request = await UserApi.updateSettings(data) as XMLHttpRequest;
+      const { status, responseText } = request;
+
+      if (status === 200) {
+        const router = new Router('#app');
+        router.go(PAGE_PATH.userSetting);
+      } else {
+        Store.set('userSettingEditPage.error', responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка смены пароля.';
+      Store.set('userSettingEditPage.error', errorMessage);
+      throw Error(errorMessage);
+    }
+  }
+
   async changePassword(data: Record<string, unknown>) {
     try {
       const request = await UserApi.changePassword(data) as XMLHttpRequest;
