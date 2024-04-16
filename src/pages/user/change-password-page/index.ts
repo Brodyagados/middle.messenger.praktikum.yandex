@@ -69,11 +69,17 @@ export class ChangePasswordPage extends UserPage {
                   const form = target.closest('form') as HTMLFormElement;
                   const { isValid, formData } = Validation.validateForm(form);
 
-                  if (isValid) {
-                    userController.changePassword(formData);
-                  } else {
+                  if (!isValid) {
                     Store.set('changePasswordPage.error', 'Все поля должны быть заполнены!');
+                    return;
                   }
+
+                  if (formData.newPassword != formData.newPassword_equal) {
+                    Store.set('changePasswordPage.error', 'Пароли не совпадают!');
+                    return;
+                  }
+
+                  userController.changePassword(formData);
                 },
               },
             }),

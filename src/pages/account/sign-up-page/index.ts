@@ -111,11 +111,17 @@ export class SignUpPage extends AccountPage {
                   const form = target.closest('form') as HTMLFormElement;
                   const { isValid, formData } = Validation.validateForm(form);
 
-                  if (isValid) {
-                    SignUpController.signUp(formData);
-                  } else {
+                  if (!isValid) {
                     Store.set('signUpPage.error', 'Все поля должны быть заполнены!');
+                    return;
                   }
+
+                  if (formData.password != formData.password_equal) {
+                    Store.set('signUpPage.error', 'Пароли не совпадают!');
+                    return;
+                  }
+
+                  SignUpController.signUp(formData);
                 },
               },
             }),
