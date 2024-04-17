@@ -2,6 +2,18 @@ import chatApi from '../api/chat-api';
 import Store from '../utils/Store';
 
 class ChatController {
+    async getList() {
+        try {
+            const { response } = await chatApi.getChats() as XMLHttpRequest;
+            const chats = JSON.parse(response);
+
+            Store.set('chatPage.list', chats);
+        } catch (e) {
+            const errorMessage = 'Ошибка получения данных пользователя.';
+            throw Error(errorMessage);
+        }
+    }
+
     async create(data: Record<string, unknown>) {
         try {
             const request = await chatApi.createChat(data) as XMLHttpRequest;

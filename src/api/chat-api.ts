@@ -9,6 +9,10 @@ class ChatAPI extends BaseAPI {
         this._chatUrl = `${BaseAPI.baseUrl}/chats`;
     }
 
+    getChats() {
+        return ApiClient.get(`${this._chatUrl}`);
+    }
+
     createChat(data: Record<string, unknown>) {
         return ApiClient.post(`${this._chatUrl}`, { data });
     }
