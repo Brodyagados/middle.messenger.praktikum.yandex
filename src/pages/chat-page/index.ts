@@ -1,14 +1,19 @@
 import './chat-page.scss';
 import {
-  Avatar, Button, ChatDialogInput,
+  Avatar, Button, ChatDialogInput, TextBox,
   ChatDialogUser, ChatListAccountLink,
   ChatListHeader, ChatDialog, ChatList,
+  Form, ErrorMessage, ERROR_MESSAGE_TYPE,
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
 import attachmentButtonIconSrc from '../../assets/icons/attachment.svg';
 import sendButtonIconSrc from '../../assets/icons/arrow-right.svg';
 import template from './chat-page.hbs?raw';
 import Block from '../../utils/Block';
+import chatController from '../../controllers/chat-controller';
+import { Validation, ValidationType } from '../../utils/ValidationType';
+import Store from '../../utils/Store';
+import { Modal } from '../../components/base/modal';
 
 export interface IChatListItem {
   user: string,
@@ -37,8 +42,54 @@ export class ChatPage extends Block {
             class: 'button_color_blue button_text_center button_flex-centered',
           },
           events: {
-            click: () => { }
-          }
+            click: (event: Event) => {
+              event.preventDefault();
+
+              document.querySelector('dialog')?.showModal();
+            },
+          },
+        }),
+        addChatModal: new Modal({
+          content: [
+            new Form({
+              content: [
+                new TextBox({
+                  label: 'Наименование чата',
+                  inputProps: {
+                    attr: {
+                      placeholder: 'Наименование чата',
+                      name: 'title',
+                      validation: ValidationType.NOT_EMPTY,
+                    },
+                  },
+                }),
+                new (ErrorMessage(ERROR_MESSAGE_TYPE.chatPage))({}),
+                new Button({
+                  text: 'Сохранить',
+                  attr: {
+                    class: 'button_color_blue button_text_center',
+                  },
+                  events: {
+                    click: async (event: Event) => {
+                      event.preventDefault();
+
+                      const target = event.target as HTMLElement;
+                      const form = target.closest('form') as HTMLFormElement;
+                      const { isValid, formData } = Validation.validateForm(form);
+
+                      if (!isValid) {
+                        Store.set('chatPage.error', 'Наименование чата должно быть заполнено!');
+                        return;
+                      }
+
+                      await chatController.create(formData);
+                      form.closest('dialog')?.close();
+                    },
+                  },
+                }),
+              ],
+            }),
+          ],
         }),
         header: new ChatListHeader(),
         items: [],

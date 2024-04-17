@@ -22,6 +22,9 @@ class Store extends EventBus {
     userSettingEditPage: {
       error: '',
     },
+    chatPage: {
+      error: '',
+    },
     user: {
       login: '',
       first_name: '',

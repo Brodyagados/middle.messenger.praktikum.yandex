@@ -9,6 +9,7 @@ export { ChatListItem } from './chat-list-item';
 export interface IChatList {
   accountLink: Block,
   addChatButton: Block,
+  addChatModal: Block,
   header: Block,
   items: Block[]
 }
