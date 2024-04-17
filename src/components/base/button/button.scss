@@ -36,4 +36,9 @@
     &:not(:disabled):hover {
         cursor: pointer;
     }
+
+    &.button_flex-centered {
+        align-self: center;
+        width: 100%;
+    }
 }

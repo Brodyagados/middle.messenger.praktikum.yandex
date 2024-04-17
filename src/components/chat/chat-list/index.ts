@@ -7,9 +7,10 @@ export { ChatListHeader } from './chat-list-header';
 export { ChatListItem } from './chat-list-item';
 
 export interface IChatList {
-    accountLink: Block,
-    header: Block,
-    items: Block[]
+  accountLink: Block,
+  addChatButton: Block,
+  header: Block,
+  items: Block[]
 }
 
 export class ChatList extends Block {

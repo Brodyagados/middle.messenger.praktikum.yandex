@@ -31,6 +31,15 @@ export class ChatPage extends Block {
     super({
       list: new ChatList({
         accountLink: new ChatListAccountLink(),
+        addChatButton: new Button({
+          text: 'Добавить чат',
+          attr: {
+            class: 'button_color_blue button_text_center button_flex-centered',
+          },
+          events: {
+            click: () => { }
+          }
+        }),
         header: new ChatListHeader(),
         items: [],
       }),
