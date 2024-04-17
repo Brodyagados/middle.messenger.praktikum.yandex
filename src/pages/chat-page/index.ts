@@ -2,7 +2,7 @@ import './chat-page.scss';
 import {
   Avatar, Button, ChatDialogInput, TextBox,
   ChatDialogUser, ChatListAccountLink,
-  ChatListHeader, ChatDialog, ChatList,
+  ChatListHeader, ChatDialog, StoredChatList,
   Form, ErrorMessage, ERROR_MESSAGE_TYPE,
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
@@ -15,15 +15,6 @@ import { Validation, ValidationType } from '../../utils/ValidationType';
 import Store from '../../utils/Store';
 import { Modal } from '../../components/base/modal';
 
-export interface IChatListItem {
-  user: string,
-  message: string,
-  count?: string,
-  isOwner?: boolean,
-  isActive?: boolean,
-  date: string
-}
-
 export interface IChatMessage {
   time: string,
   text?: string,
@@ -32,9 +23,14 @@ export interface IChatMessage {
 }
 
 export class ChatPage extends Block {
+  init() {
+    chatController.getList();
+    super.init();
+  }
+
   constructor() {
     super({
-      list: new ChatList({
+      list: new StoredChatList({
         accountLink: new ChatListAccountLink(),
         addChatButton: new Button({
           text: 'Добавить чат',

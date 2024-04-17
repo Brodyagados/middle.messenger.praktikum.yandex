@@ -1,10 +1,12 @@
 import './chat-list.scss';
 import Block from '../../../utils/Block';
 import template from './chat-list.hbs?raw';
+import { connect } from '../../../utils/HOC';
+import { ChatListItem } from './chat-list-item';
+import { Indexed } from '../../../utils/utils';
 
 export { ChatListAccountLink } from './chat-list-account-link';
 export { ChatListHeader } from './chat-list-header';
-export { ChatListItem } from './chat-list-item';
 
 export interface IChatList {
   accountLink: Block,
@@ -14,7 +16,7 @@ export interface IChatList {
   items: Block[]
 }
 
-export class ChatList extends Block {
+class ChatList extends Block {
   constructor(props: IChatList) {
     super({
       ...props,
@@ -26,3 +28,11 @@ export class ChatList extends Block {
     return this.compile(template, this._props);
   }
 }
+
+export const StoredChatList = connect(ChatList, (state: Indexed) => {
+  return {
+    items: state.chatPage.list.map((item: IChatListItem) => (
+      new ChatListItem(item)
+    ))
+  };
+});

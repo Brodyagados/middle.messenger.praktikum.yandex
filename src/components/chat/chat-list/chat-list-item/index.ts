@@ -2,25 +2,46 @@ import './chat-list-item.scss';
 import template from './chat-list-item.hbs?raw';
 import Block from '../../../../utils/Block';
 import { Avatar } from '../../..';
+import { BaseAPI } from '../../../../api/base-api';
+import Store from '../../../../utils/Store';
 
 interface IChatListItem {
-    isActive?: boolean,
-    avatarSrc?: string,
-    user: string,
-    isOwner?: boolean,
-    message: string,
-    date: string,
-    count?: string
+  isActive?: boolean,
+  avatar?: string,
+  title: string,
+  unread_count?: number,
+  last_message?: {
+    id: number,
+    content: string,
+    time: string
+  }
 }
 
 export class ChatListItem extends Block {
   constructor(props: IChatListItem) {
-    const { avatarSrc, isActive, ...itemProps } = props;
+    const { avatar, isActive, last_message, ...itemProps } = props;
+    const fullDate = last_message ? new Date(last_message.time) : null;
+    const locale = 'ru-RU';
+    const date = fullDate
+      ? fullDate.toLocaleDateString(locale) === new Date().toLocaleDateString(locale)
+        ? fullDate.toLocaleTimeString(locale, { hour12: false, hour: 'numeric', minute: 'numeric' })
+        : fullDate.toLocaleDateString(locale)
+      : null;
 
     super({
       ...itemProps,
-      avatar: new Avatar({ attr: { src: avatarSrc, alt: 'Аватар чата.' } }),
-      attr: { class: `chat-list__item${isActive ? ' chat-list__item_active' : ''}` },
+      message: last_message?.content,
+      date,
+      isOwner: last_message?.id === Store.getState().user?.id,
+      avatar: new Avatar({
+        attr: {
+          src: avatar ? `${BaseAPI.baseUrl}/resources${avatar}` : undefined,
+          alt: 'Аватар чата.'
+        }
+      }),
+      attr: {
+        class: `chat-list__item${isActive ? ' chat-list__item_active' : ''}`
+      },
     }, 'li');
   }
 
