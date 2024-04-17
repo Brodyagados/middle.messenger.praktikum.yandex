@@ -16,10 +16,19 @@ class Store extends EventBus {
     changePasswordPage: {
       error: '',
     },
+    userSettingPage: {
+      avatarError: '',
+    },
     userSettingEditPage: {
       error: '',
     },
-    user: {},
+    user: {
+      login: '',
+      first_name: '',
+      second_name: '',
+      phone: '',
+      email: '',
+    },
   };
 
   getState() {

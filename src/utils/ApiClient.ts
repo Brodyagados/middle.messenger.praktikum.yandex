@@ -10,7 +10,7 @@ enum METHOD {
 interface IOptions {
   method?: METHOD,
   headers?: Record<string, string>,
-  data?: Record<string, unknown>,
+  data?: Record<string, unknown> | FormData,
   timeout?: number,
   withCredentials?: boolean
 }
@@ -24,7 +24,7 @@ function queryStringify(data: Record<string, unknown>) {
 class ApiClient {
   get: THttpMethod = (url, options = {}) => {
     const { data, timeout } = options;
-    const resultUrl = data
+    const resultUrl = data && !(data instanceof FormData)
       ? `${url}?${queryStringify(data)}`
       : url;
     return this.request(resultUrl, { ...options, method: METHOD.GET }, timeout);

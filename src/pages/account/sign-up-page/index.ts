@@ -116,7 +116,7 @@ export class SignUpPage extends AccountPage {
                     return;
                   }
 
-                  if (formData.password != formData.password_equal) {
+                  if (formData.password !== formData.password_equal) {
                     Store.set('signUpPage.error', 'Пароли не совпадают!');
                     return;
                   }

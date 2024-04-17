@@ -1,17 +1,21 @@
 import {
-  Avatar, DialogFooter, DialogHeader,
-  DialogMain, Link, PageTitle, TextBox,
+  AvatarButton, Button, DialogFooter, DialogHeader,
+  DialogMain, ERROR_MESSAGE_TYPE, ErrorMessage,
+  Form, Link, PageTitle, TextBox,
 } from '../../../components';
 import { UserPage } from '..';
 import { PAGE_PATH } from '../../../constants/PagePath';
 import Router from '../../../utils/Router';
 import logoutController from '../../../controllers/logout-controller';
 import userController from '../../../controllers/user-controller';
-import { UserSettingInputField } from '../../../components/base/input';
+import { Input, UserSettingInputField } from '../../../components/base/input';
+import { Modal } from '../../../components/base/modal';
+import Store from '../../../utils/Store';
 
 export class UserSettingPage extends UserPage {
   init() {
     userController.get();
+    Store.set('userSettingPage.avatarError', '');
     super.init();
   }
 
@@ -22,8 +26,53 @@ export class UserSettingPage extends UserPage {
       form: [
         new DialogHeader({
           content: [
-            new Avatar({ attr: { alt: 'Аватар пользователя.' } }),
+            new AvatarButton({
+              avatarProps: {
+                attr: { alt: 'Аватар пользователя.' },
+              },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+
+                  document.querySelector('dialog')?.showModal();
+                },
+              },
+            }),
             new PageTitle({ text: '' }),
+            new Modal({
+              content: [
+                new Form({
+                  content: [
+                    new Input({ attr: { name: 'avatar', type: 'file' } }),
+                    new (ErrorMessage(ERROR_MESSAGE_TYPE.userSettingPage))({}),
+                    new Button({
+                      text: 'Отправить',
+                      attr: {
+                        class: 'button_color_blue button_text_center',
+                      },
+                      events: {
+                        click: async (event: Event) => {
+                          event.preventDefault();
+
+                          const target = event.target as HTMLElement;
+                          const form = target.closest('form') as HTMLFormElement;
+                          const input = form.querySelector('input[name=avatar]') as HTMLInputElement;
+
+                          if (input.files && input.files.length > 0) {
+                            const [avatar] = input.files;
+                            await userController.updateAvatar(avatar);
+
+                            form.closest('dialog')?.close();
+                          } else {
+                            Store.set('userSettingPage.avatarError', 'Необходимо выбрать изображение!');
+                          }
+                        },
+                      },
+                    }),
+                  ],
+                }),
+              ],
+            }),
           ],
         }),
         new DialogMain({

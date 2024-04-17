@@ -52,6 +52,30 @@ class UserController {
       throw Error(errorMessage);
     }
   }
+
+  async updateAvatar(file: File) {
+    const errorField = 'userSettingPage.avatarError';
+
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+      const request = await UserApi.updateAvatar(formData) as XMLHttpRequest;
+      const { response, status, responseText } = request;
+
+      if (status === 200) {
+        const user = JSON.parse(response);
+
+        Store.set('user', user);
+        Store.set(errorField, '');
+      } else {
+        Store.set(errorField, responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка загрузки аватара.';
+      Store.set(errorField, errorMessage);
+      throw Error(errorMessage);
+    }
+  }
 }
 
 export default new UserController();
