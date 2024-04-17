@@ -13,7 +13,7 @@ export class AvatarButton extends Block {
     super({
       avatar: new (AvatarByType(AvatarType.user))({ ...props.avatarProps }),
       attr: { class: 'avatar-button' },
-      ...props
+      ...props,
     });
   }
 

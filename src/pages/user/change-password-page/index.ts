@@ -74,7 +74,7 @@ export class ChangePasswordPage extends UserPage {
                     return;
                   }
 
-                  if (formData.newPassword != formData.newPassword_equal) {
+                  if (formData.newPassword !== formData.newPassword_equal) {
                     Store.set('changePasswordPage.error', 'Пароли не совпадают!');
                     return;
                   }

@@ -37,9 +37,10 @@ export enum AvatarType {
 export const AvatarByType = (type: AvatarType) => (
   connect(Avatar, (state: Indexed) => {
     switch (type) {
-      case AvatarType.user:
+      case AvatarType.user: {
         const path = state.user?.avatar;
         return { attr: { src: path ? `${BaseAPI.baseUrl}/resources${path}` : null } };
+      }
       default: return {};
     }
   })
