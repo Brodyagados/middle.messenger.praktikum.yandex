@@ -22,7 +22,13 @@ class Store extends EventBus {
     userSettingEditPage: {
       error: '',
     },
-    user: {},
+    user: {
+      login: '',
+      first_name: '',
+      second_name: '',
+      phone: '',
+      email: '',
+    },
   };
 
   getState() {
