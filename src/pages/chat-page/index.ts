@@ -4,6 +4,7 @@ import {
   StoredChatDialogTitle, ChatListAccountLink,
   ChatListHeader, ChatDialog, StoredChatList,
   Form, ErrorMessage, ERROR_MESSAGE_TYPE,
+  DropDownButton,
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
 import attachmentButtonIconSrc from '../../assets/icons/attachment.svg';
@@ -97,13 +98,59 @@ export class ChatPage extends Block {
             attr: { alt: 'Аватар текущего чата.' },
           }),
           new StoredChatDialogTitle({ text: '' }),
-          new Button({
-            img: {
-              src: additionalButtonIconSrc,
-              alt: 'Кнопка открытия меню дополнительных действий с чатом.',
-            },
-            attr: { title: 'Дополнительно' },
-          }),
+          new DropDownButton({
+            button: new Button({
+              img: {
+                src: additionalButtonIconSrc,
+                alt: 'Кнопка открытия меню дополнительных действий с чатом.',
+              },
+              attr: { title: 'Дополнительно' },
+              events: {
+                click: (event: Event) => {
+                  event.preventDefault();
+
+                  const button = event.currentTarget as HTMLElement;
+                  const content = button.closest('.dropdown')?.querySelector('.dropdown-content');
+                  content?.classList.toggle('dropdown-content_show')
+                }
+              }
+            }),
+            content: [
+              new Button({
+                text: 'Добавить пользователя',
+                attr: {
+                  class: 'button_color_blue button_text_center button_flex-centered',
+                },
+                events: {
+                  click: (event: Event) => {
+                    event.preventDefault();
+                  },
+                },
+              }),
+              new Button({
+                text: 'Удалить пользователя',
+                attr: {
+                  class: 'button_color_blue button_text_center button_flex-centered',
+                },
+                events: {
+                  click: (event: Event) => {
+                    event.preventDefault();
+                  },
+                },
+              }),
+              new Button({
+                text: 'Удалить чат',
+                attr: {
+                  class: 'button_color_blue button_text_center button_flex-centered',
+                },
+                events: {
+                  click: (event: Event) => {
+                    event.preventDefault();
+                  },
+                },
+              })
+            ]
+          })
         ],
         main: [],
         footer: [
