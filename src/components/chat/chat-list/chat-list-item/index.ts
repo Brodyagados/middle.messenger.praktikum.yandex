@@ -5,7 +5,8 @@ import { Avatar } from '../../..';
 import { BaseAPI } from '../../../../api/base-api';
 import Store from '../../../../utils/Store';
 
-interface IChatListItem {
+export interface IChatListItem {
+  id: number,
   isActive?: boolean,
   avatar?: string,
   title: string,
@@ -19,7 +20,7 @@ interface IChatListItem {
 
 export class ChatListItem extends Block {
   constructor(props: IChatListItem) {
-    const { avatar, isActive, last_message, ...itemProps } = props;
+    const { id, avatar, isActive, last_message, ...itemProps } = props;
     const fullDate = last_message ? new Date(last_message.time) : null;
     const locale = 'ru-RU';
     const date = fullDate
@@ -36,11 +37,25 @@ export class ChatListItem extends Block {
       avatar: new Avatar({
         attr: {
           src: avatar ? `${BaseAPI.baseUrl}/resources${avatar}` : undefined,
-          alt: 'Аватар чата.'
-        }
+          alt: 'Аватар чата.',
+        },
       }),
       attr: {
-        class: `chat-list__item${isActive ? ' chat-list__item_active' : ''}`
+        class: `chat-list__item${isActive ? ' chat-list__item_active' : ''}`,
+      },
+      events: {
+        click: (event: Event) => {
+          event.preventDefault();
+
+          const state = Store.getState().chatPage.list;
+          state.forEach((chat: IChatListItem) => {
+            chat.isActive = false;
+          });
+
+          const chat = state.find((chat: IChatListItem) => chat.id === id);
+          chat.isActive = true;
+          Store.set('chatPage.current', chat);
+        },
       },
     }, 'li');
   }
