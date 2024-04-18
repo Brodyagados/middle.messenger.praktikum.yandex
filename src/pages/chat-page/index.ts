@@ -111,9 +111,9 @@ export class ChatPage extends Block {
 
                   const button = event.currentTarget as HTMLElement;
                   const content = button.closest('.dropdown')?.querySelector('.dropdown-content');
-                  content?.classList.toggle('dropdown-content_show')
-                }
-              }
+                  content?.classList.toggle('dropdown-content_show');
+                },
+              },
             }),
             content: [
               new Button({
@@ -148,9 +148,9 @@ export class ChatPage extends Block {
                     event.preventDefault();
                   },
                 },
-              })
-            ]
-          })
+              }),
+            ],
+          }),
         ],
         main: [],
         footer: [
