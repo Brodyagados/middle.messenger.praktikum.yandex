@@ -20,7 +20,7 @@ class ChatController {
       const { status, responseText } = request;
 
       if (status === 200) {
-        // TODO: добавить метод получения списка чатов
+        this.getList();
         Store.set('chatPage.error', '');
       } else {
         Store.set('chatPage.error', responseText);
