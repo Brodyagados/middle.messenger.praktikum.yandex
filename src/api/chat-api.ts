@@ -2,20 +2,20 @@ import ApiClient from '../utils/ApiClient';
 import { BaseAPI } from './base-api';
 
 class ChatAPI extends BaseAPI {
-    _chatUrl: string;
+  _chatUrl: string;
 
-    constructor() {
-        super();
-        this._chatUrl = `${BaseAPI.baseUrl}/chats`;
-    }
+  constructor() {
+    super();
+    this._chatUrl = `${BaseAPI.baseUrl}/chats`;
+  }
 
-    getChats() {
-        return ApiClient.get(`${this._chatUrl}`);
-    }
+  getChats() {
+    return ApiClient.get(`${this._chatUrl}`);
+  }
 
-    createChat(data: Record<string, unknown>) {
-        return ApiClient.post(`${this._chatUrl}`, { data });
-    }
+  createChat(data: Record<string, unknown>) {
+    return ApiClient.post(`${this._chatUrl}`, { data });
+  }
 }
 
 export default new ChatAPI();
