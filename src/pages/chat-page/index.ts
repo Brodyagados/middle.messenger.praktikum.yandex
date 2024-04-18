@@ -14,6 +14,7 @@ import chatController from '../../controllers/chat-controller';
 import { Validation, ValidationType } from '../../utils/ValidationType';
 import Store from '../../utils/Store';
 import { Modal } from '../../components/base/modal';
+import { AvatarByType, AvatarType } from '../../components/base/avatar';
 
 export interface IChatMessage {
   time: string,
@@ -92,7 +93,9 @@ export class ChatPage extends Block {
       }),
       dialog: new ChatDialog({
         header: [
-          new Avatar({ attr: { alt: 'Аватар текущего чата.' } }),
+          new (AvatarByType(AvatarType.chatTitle))({
+            attr: { alt: 'Аватар текущего чата.' }
+          }),
           new StoredChatDialogTitle({ text: '' }),
           new Button({
             img: {
