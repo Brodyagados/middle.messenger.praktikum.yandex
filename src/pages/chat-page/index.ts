@@ -43,11 +43,13 @@ export class ChatPage extends Block {
             click: (event: Event) => {
               event.preventDefault();
 
-              document.querySelector('dialog')?.showModal();
+              const dialog = document.querySelector('dialog[id=addChatModal]') as HTMLDialogElement;
+              dialog.showModal();
             },
           },
         }),
         addChatModal: new Modal({
+          attr: { id: 'addChatModal' },
           content: [
             new Form({
               content: [

@@ -5,6 +5,7 @@ import template from './modal.hbs?raw';
 import additionalButtonIconSrc from '../../../assets/icons/close.svg';
 
 interface IModal {
+  attr: Record<string, unknown>,
   content: Block[]
 }
 
@@ -12,7 +13,7 @@ export class Modal extends Block {
   constructor(props: IModal) {
     super({
       ...props,
-      attr: { class: 'modal' },
+      attr: { ...props.attr, class: 'modal' },
       closeButton: new Button({
         img: {
           src: additionalButtonIconSrc,
