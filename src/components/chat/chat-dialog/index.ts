@@ -5,7 +5,7 @@ import { DialogFooter, DialogHeader, DialogMain } from '../../../components';
 
 export { ChatDialogInput } from './chat-dialog-input';
 export { ChatDialogMessage } from './chat-dialog-message';
-export { ChatDialogUser } from './chat-dialog-user';
+export { StoredChatDialogTitle } from './chat-dialog-title';
 
 export interface IChatDialog {
   header: Block[],

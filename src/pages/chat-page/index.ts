@@ -1,7 +1,7 @@
 import './chat-page.scss';
 import {
   Avatar, Button, ChatDialogInput, TextBox,
-  ChatDialogUser, ChatListAccountLink,
+  StoredChatDialogTitle, ChatListAccountLink,
   ChatListHeader, ChatDialog, StoredChatList,
   Form, ErrorMessage, ERROR_MESSAGE_TYPE,
 } from '../../components';
@@ -93,7 +93,7 @@ export class ChatPage extends Block {
       dialog: new ChatDialog({
         header: [
           new Avatar({ attr: { alt: 'Аватар текущего чата.' } }),
-          new ChatDialogUser({ text: 'Вадим' }),
+          new StoredChatDialogTitle({ text: '' }),
           new Button({
             img: {
               src: additionalButtonIconSrc,

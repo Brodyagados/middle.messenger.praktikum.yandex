@@ -24,6 +24,7 @@ class Store extends EventBus {
     },
     chatPage: {
       list: [],
+      current: {},
       error: '',
     },
     user: {
