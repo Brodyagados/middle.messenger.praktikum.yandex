@@ -138,6 +138,12 @@ export default class Block {
     if (!response) {
       return;
     }
+    
+    const { children } = this._getPropsAndChildren(this._props);
+    if (this._children.items) {
+      this._children.items = children.items;
+    }
+
     this._render();
   }
 
