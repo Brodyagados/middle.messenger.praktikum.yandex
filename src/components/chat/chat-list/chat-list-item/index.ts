@@ -33,7 +33,7 @@ export class ChatListItem extends Block {
       ...itemProps,
       message: last_message?.content,
       date,
-      isOwner: last_message?.id === Store.getState().user?.id,
+      isOwner: last_message && last_message.id === Store.getState().user?.id,
       avatar: new Avatar({
         attr: {
           src: avatar ? `${BaseAPI.baseUrl}/resources${avatar}` : undefined,
