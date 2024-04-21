@@ -54,6 +54,30 @@ class ChatController {
       throw Error(errorMessage);
     }
   }
+
+  async addUsers(users: number[]) {
+    try {
+      const current = Store.getState().chatPage.current;
+      if (!current) {
+        alert('Добавить пользователя можно только в текущий чат.');
+      }
+
+      const request = await chatApi.addUsers({ users, chatId: current.id }) as XMLHttpRequest;
+      const { status, responseText } = request;
+
+      if (status === 200) {
+        this.getList();
+        Store.set('chatPage.error', '');
+      } else {
+        Store.set('chatPage.error', responseText);
+        throw Error(responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка добавления пользователя в чат.';
+      Store.set('chatPage.error', errorMessage);
+      throw Error(errorMessage);
+    }
+  }
 }
 
 export default new ChatController();

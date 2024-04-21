@@ -20,6 +20,10 @@ class ChatAPI extends BaseAPI {
   removeChat(chatId: number) {
     return ApiClient.delete(`${this._chatUrl}`, { data: { chatId } });
   }
+
+  addUsers(data: Record<string, unknown>) {
+    return ApiClient.put(`${this._chatUrl}/users`, { data });
+  }
 }
 
 export default new ChatAPI();

@@ -76,6 +76,24 @@ class UserController {
       throw Error(errorMessage);
     }
   }
+
+  async searchByLogin(login: string) {
+    try {
+      const request = await UserApi.searchUserByLogin({ login }) as XMLHttpRequest;
+      const { status, response, responseText } = request;
+
+      if (status === 200) {
+        const [user] = JSON.parse(response);
+        return user.id;
+      } else {
+        Store.set('chatPage.error', responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка поиска пользователя.';
+      Store.set('chatPage.error', errorMessage);
+      throw Error(errorMessage);
+    }
+  }
 }
 
 export default new UserController();
