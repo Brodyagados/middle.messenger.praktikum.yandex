@@ -31,6 +31,29 @@ class ChatController {
       throw Error(errorMessage);
     }
   }
+
+  async removeCurrent() {
+    try {
+      const current = Store.getState().chatPage.current;
+      if (!current) {
+        alert('Удалить можно только текущий чат.');
+      }
+
+      const request = await chatApi.removeChat(current.id) as XMLHttpRequest;
+      const { status, responseText } = request;
+
+      if (status === 200) {
+        this.getList();
+        Store.set('chatPage.current', {});
+      } else {
+        alert(responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка удаления чата.';
+      alert(errorMessage);
+      throw Error(errorMessage);
+    }
+  }
 }
 
 export default new ChatController();

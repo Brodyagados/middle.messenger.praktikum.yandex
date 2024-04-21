@@ -148,6 +148,8 @@ export class ChatPage extends Block {
                 events: {
                   click: (event: Event) => {
                     event.preventDefault();
+
+                    chatController.removeCurrent();
                   },
                 },
               }),
