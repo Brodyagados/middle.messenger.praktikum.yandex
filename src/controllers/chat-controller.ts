@@ -66,7 +66,6 @@ class ChatController {
       const { status, responseText } = request;
 
       if (status === 200) {
-        this.getList();
         Store.set('chatPage.error', '');
       } else {
         Store.set('chatPage.error', responseText);
@@ -74,6 +73,29 @@ class ChatController {
       }
     } catch (e) {
       const errorMessage = 'Ошибка добавления пользователя в чат.';
+      Store.set('chatPage.error', errorMessage);
+      throw Error(errorMessage);
+    }
+  }
+
+  async removeUsers(users: number[]) {
+    try {
+      const current = Store.getState().chatPage.current;
+      if (!current) {
+        alert('Удалить пользователя можно только из текущего чата.');
+      }
+
+      const request = await chatApi.removeUsers({ users, chatId: current.id }) as XMLHttpRequest;
+      const { status, responseText } = request;
+
+      if (status === 200) {
+        Store.set('chatPage.error', '');
+      } else {
+        Store.set('chatPage.error', responseText);
+        throw Error(responseText);
+      }
+    } catch (e) {
+      const errorMessage = 'Ошибка удаления пользователя из чата.';
       Store.set('chatPage.error', errorMessage);
       throw Error(errorMessage);
     }

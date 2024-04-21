@@ -150,7 +150,7 @@ export class ChatPage extends Block {
                       }),
                       new (ErrorMessage(ERROR_MESSAGE_TYPE.chatPage))({}),
                       new Button({
-                        text: 'Добавить',
+                        text: 'Добавить пользователя',
                         attr: {
                           class: 'button_color_blue button_text_center',
                         },
@@ -185,8 +185,55 @@ export class ChatPage extends Block {
                 events: {
                   click: (event: Event) => {
                     event.preventDefault();
+
+                    const dialog = document.querySelector('dialog[id=removeUserFromChatModal]') as HTMLDialogElement;
+                    dialog.showModal();
                   },
                 },
+              }),
+              new Modal({
+                attr: { id: 'removeUserFromChatModal' },
+                content: [
+                  new Form({
+                    content: [
+                      new TextBox({
+                        label: 'Логин пользователя',
+                        inputProps: {
+                          attr: {
+                            placeholder: 'Логин пользователя',
+                            name: 'userLogin',
+                            validation: ValidationType.LOGIN,
+                          },
+                        },
+                      }),
+                      new (ErrorMessage(ERROR_MESSAGE_TYPE.chatPage))({}),
+                      new Button({
+                        text: 'Удалить пользователя',
+                        attr: {
+                          class: 'button_color_blue button_text_center',
+                        },
+                        events: {
+                          click: async (event: Event) => {
+                            event.preventDefault();
+      
+                            const target = event.target as HTMLElement;
+                            const form = target.closest('form') as HTMLFormElement;
+                            const { isValid, formData: { userLogin } } = Validation.validateForm(form);
+      
+                            if (!isValid || !userLogin) {
+                              Store.set('chatPage.error', 'Логин пользователя должен быть заполнен!');
+                              return;
+                            }
+      
+                            const userId = await userController.searchByLogin(userLogin);
+                            await chatController.removeUsers([userId]);
+                            form.closest('dialog')?.close();
+                          },
+                        },
+                      }),
+                    ],
+                  }),
+                ],
               }),
               new Button({
                 text: 'Удалить чат',
