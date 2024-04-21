@@ -39,7 +39,7 @@ export const AvatarByType = (type: AvatarType) => (
     switch (type) {
       case AvatarType.user: {
         const path = state.user?.avatar;
-        return { attr: { src: path ? `${BaseAPI.baseUrl}/resources${path}` : null } };
+        return { attr: { src: path ? `${BaseAPI.baseUrl}/resources${path}` : baseSrc } };
       }
       default: return {};
     }
