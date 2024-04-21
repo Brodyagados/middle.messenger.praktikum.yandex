@@ -2,9 +2,9 @@ import './chat-page.scss';
 import {
   Button, ChatDialogInput, TextBox,
   StoredChatDialogTitle, ChatListAccountLink,
-  ChatListHeader, ChatDialog, StoredChatList,
+  ChatListHeader, StoredChatList,
   Form, ErrorMessage, ERROR_MESSAGE_TYPE,
-  DropDownButton,
+  DropDownButton, StoredChatDialog,
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
 import attachmentButtonIconSrc from '../../assets/icons/attachment.svg';
@@ -95,7 +95,7 @@ export class ChatPage extends Block {
         header: new ChatListHeader(),
         items: [],
       }),
-      dialog: new ChatDialog({
+      dialog: new StoredChatDialog({
         header: [
           new (AvatarByType(AvatarType.chatTitle))({
             attr: { alt: 'Аватар текущего чата.' },
