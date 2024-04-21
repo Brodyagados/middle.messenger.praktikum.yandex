@@ -3,6 +3,9 @@
 .avatar {
     $size: 47px;
 
+    display: flex;
+    align-items: center;
+    text-align: center;
     width: $size;
     height: $size;
     border-radius: 50%;
