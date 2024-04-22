@@ -1,11 +1,11 @@
 export enum ValidationType {
-    USER = 'user',
-    LOGIN = 'login',
-    PASSOWRD = 'password',
-    EQUAL_PASSWORD = 'equal-password',
-    PHONE = 'phone',
-    EMAIL = 'email',
-    MESSAGE = 'message'
+  USER = 'user',
+  LOGIN = 'login',
+  PASSOWRD = 'password',
+  EQUAL_PASSWORD = 'equal-password',
+  PHONE = 'phone',
+  EMAIL = 'email',
+  NOT_EMPTY = 'not-empty'
 }
 
 export class Validation {
@@ -94,8 +94,8 @@ const validationTypes = [
     'Некорректный формат email`а',
   ),
   new Validation(
-    ValidationType.MESSAGE,
-    /^\s*$/,
+    ValidationType.NOT_EMPTY,
+    /^.+$/,
     'Поле не должно быть пустым',
   ),
 ];

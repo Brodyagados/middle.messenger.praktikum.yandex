@@ -1,5 +1,6 @@
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
+import { merge } from './utils';
 
 type TProps = Record<string, any>;
 
@@ -138,6 +139,10 @@ export default class Block {
     if (!response) {
       return;
     }
+
+    const { children } = this._getPropsAndChildren(this._props);
+    merge(this._children, children);
+
     this._render();
   }
 

@@ -32,15 +32,20 @@ export class Avatar extends Block {
 
 export enum AvatarType {
   user,
+  chatTitle
 }
+
+const createAvatarUrl = (path: string) => (
+  path ? `${BaseAPI.baseUrl}/resources${path}` : baseSrc
+);
 
 export const AvatarByType = (type: AvatarType) => (
   connect(Avatar, (state: Indexed) => {
     switch (type) {
-      case AvatarType.user: {
-        const path = state.user?.avatar;
-        return { attr: { src: path ? `${BaseAPI.baseUrl}/resources${path}` : baseSrc } };
-      }
+      case AvatarType.user:
+        return { attr: { src: createAvatarUrl(state.user?.avatar) } };
+      case AvatarType.chatTitle:
+        return { attr: { src: createAvatarUrl(state.chatPage.current?.avatar) } };
       default: return {};
     }
   })
