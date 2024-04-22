@@ -23,8 +23,12 @@ const wsClient = (userId: number, chatId: number, token: string) => {
     try {
       console.log('Получены данные', event.data);
       const data = JSON.parse(event.data);
-      const currentMessages = Store.getState().chatPage.messages;
 
+      if (['pong', 'user connected'].includes(data.type)) {
+        return;
+      }
+
+      const currentMessages = Store.getState().chatPage.messages;
       Store.set(
         'chatPage.messages',
         [...currentMessages, ...data].sort((first: IChatDialogMessage, second: IChatDialogMessage) => first.id - second.id)

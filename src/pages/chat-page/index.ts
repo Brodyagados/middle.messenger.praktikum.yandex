@@ -27,6 +27,7 @@ export interface IChatMessage {
 
 export class ChatPage extends Block {
   init() {
+    userController.get();
     chatController.getList();
     super.init();
   }

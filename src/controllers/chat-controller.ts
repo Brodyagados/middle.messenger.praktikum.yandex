@@ -110,7 +110,6 @@ class ChatController {
 
       const { response } = await chatApi.getToken(chatId) as XMLHttpRequest;
       const { token } = JSON.parse(response);
-      console.log('chatId до получения токена', chatId)
 
       return token;
     } catch (e) {
@@ -123,8 +122,7 @@ class ChatController {
     try {
       const token = await this.getToken();
       const { chatPage: { current }, user } = Store.getState();
-      console.log('token', token)
-      console.log('chatId после получения токена и перед WebSocket', current.id)
+      Store.set('chatPage.messages', []);
 
       return chatApi.connect(user.id, current.id, token);
     } catch (error) {
