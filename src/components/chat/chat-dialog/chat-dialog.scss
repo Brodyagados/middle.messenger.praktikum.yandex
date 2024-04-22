@@ -18,8 +18,10 @@
         $border: 1px solid $color-light-gray;
 
         @include vertical-scroll;
+        flex-direction: column-reverse;
         flex-grow: 1;
         padding: 10px;
+
         border: {
             top: $border;
             bottom: $border;
