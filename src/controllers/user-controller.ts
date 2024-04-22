@@ -7,10 +7,18 @@ import Store from '../utils/Store';
 class UserController {
   async get() {
     try {
-      const { response } = await AuthApi.user() as XMLHttpRequest;
+      const { status, response } = await AuthApi.user() as XMLHttpRequest;
       const user = JSON.parse(response);
 
-      Store.set('user', user);
+      if (status === 200) {
+        Store.set('user', user);
+      }
+
+      if (status === 401) {
+        const router = new Router('#app');
+        router.go(PAGE_PATH.login);
+      }
+
     } catch (e) {
       const errorMessage = 'Ошибка получения данных пользователя.';
       throw Error(errorMessage);
