@@ -14,7 +14,7 @@ export interface IButton {
     disabled?: boolean,
     title?: string,
     type?: string,
-    'data-type': string
+    'data-type'?: string
   },
   events: Record<string, unknown>
 }

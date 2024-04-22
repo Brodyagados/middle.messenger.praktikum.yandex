@@ -132,15 +132,12 @@ class ChatController {
     }
   }
 
-  sendMessage(message?: string) {
+  sendMessage(type: TWsMessageType, message?: string | { id: number }) {
     if (!message) {
       return;
     }
 
-    const data: TWsMessage = {
-      type: TWsMessageType.MESSAGE,
-      content: message
-    };
+    const data: TWsMessage = { type, content: message };
 
     window.webSocket?.send(JSON.stringify(data));
   }

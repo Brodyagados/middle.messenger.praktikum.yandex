@@ -15,7 +15,7 @@ export enum TWsMessageType {
 
 export type TWsMessage = {
   type: TWsMessageType,
-  content: string | Blob
+  content: string | Blob | number
 }
 
 const baseWsUrl = 'wss://ya-praktikum.tech/ws/chats';

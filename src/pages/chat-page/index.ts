@@ -5,6 +5,7 @@ import {
   ChatListHeader, StoredChatList,
   Form, ErrorMessage, ERROR_MESSAGE_TYPE,
   DropDownButton, StoredChatDialog,
+  Input,
 } from '../../components';
 import additionalButtonIconSrc from '../../assets/icons/vertical-dotes.svg';
 import attachmentButtonIconSrc from '../../assets/icons/attachment.svg';
@@ -17,6 +18,8 @@ import Store from '../../utils/Store';
 import { Modal } from '../../components/base/modal';
 import { AvatarByType, AvatarType } from '../../components/base/avatar';
 import userController from '../../controllers/user-controller';
+import resourceController from '../../controllers/resource-controller';
+import { TWsMessageType } from '../../utils/WsClient';
 
 export interface IChatMessage {
   time: string,
@@ -260,6 +263,51 @@ export class ChatPage extends Block {
               alt: 'Кнопка прикрепления файла для отправки в чат.',
             },
             attr: { title: 'Прикрепить файл' },
+            events: {
+              click: (event: Event) => {
+                event.preventDefault();
+  
+                const dialog = document.querySelector('dialog[id=uploadImageModal]') as HTMLDialogElement;
+                dialog.showModal();
+              },
+            },
+          }),
+          new Modal({
+            attr: { id: 'uploadImageModal' },
+            content: [
+              new Form({
+                content: [
+                  new Input({ attr: { name: 'resource', type: 'file' } }),
+                  new (ErrorMessage(ERROR_MESSAGE_TYPE.chatPage))({}),
+                  new Button({
+                    text: 'Отправить',
+                    attr: {
+                      class: 'button_color_blue button_text_center',
+                    },
+                    events: {
+                      click: async (event: Event) => {
+                        event.preventDefault();
+
+                        const target = event.target as HTMLElement;
+                        const form = target.closest('form') as HTMLFormElement;
+                        const input = form.querySelector('input[name=resource]') as HTMLInputElement;
+
+                        if (input.files && input.files.length > 0) {
+                          const [resource] = input.files;
+                          const id = await resourceController.upload(resource);
+                          chatController.sendMessage(TWsMessageType.FILE, id);
+
+                          form.closest('dialog')?.close();
+                          Store.set('chatPage.error', '');
+                        } else {
+                          Store.set('chatPage.error', 'Необходимо выбрать изображение!');
+                        }
+                      },
+                    },
+                  }),
+                ],
+              }),
+            ],
           }),
           new ChatDialogInput({ attr: { placeholder: 'Сообщение', name: 'message' } }),
           new Button({
@@ -276,7 +324,7 @@ export class ChatPage extends Block {
               click: (event: Event) => {
                 const target = event.currentTarget as HTMLElement;
                 const input = target.closest('.dialog__footer')?.querySelector('input') as HTMLInputElement;
-                chatController.sendMessage(input?.value);
+                chatController.sendMessage(TWsMessageType.MESSAGE, input?.value);
                 input.value = '';
               }
             }
