@@ -100,6 +100,24 @@ class ChatController {
       throw Error(errorMessage);
     }
   }
+
+  async getToken() {
+    try {
+      const chatId = Store.getState().chatPage.current?.id;
+      if (!chatId) {
+        return;
+      }
+
+      const { response } = await chatApi.getToken(chatId) as XMLHttpRequest;
+      const { token } = JSON.parse(response);
+      console.log(token)
+
+      Store.set('chatPage.token', token);
+    } catch (e) {
+      const errorMessage = 'Ошибка получения токена чата.';
+      throw Error(errorMessage);
+    }
+  }
 }
 
 export default new ChatController();

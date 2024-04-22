@@ -26,6 +26,7 @@ class Store extends EventBus {
       list: [],
       current: {},
       error: '',
+      token: '',
     },
     user: {
       login: '',
