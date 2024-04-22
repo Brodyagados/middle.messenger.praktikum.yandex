@@ -49,10 +49,10 @@ const wsClient = (userId: number, chatId: number, token: string) => {
       const newMessages = (Array.isArray(data) ? data : [data]).map((message: IChatDialogMessage) => {
         const locale = 'ru-RU';
         const date = new Date(message.time);
-        const time = date.toLocaleDateString(locale) +
-          (date.toLocaleDateString(locale) !== new Date().toLocaleDateString(locale)
-            ? ` ${date.toLocaleTimeString(locale, { hour12: false, hour: 'numeric', minute: 'numeric' })}`
-            : '');
+        const time = (date.toLocaleDateString(locale) !== new Date().toLocaleDateString(locale)
+          ? `${date.toLocaleDateString(locale)} `
+          : '')
+          + date.toLocaleTimeString(locale, { hour12: false, hour: 'numeric', minute: 'numeric' });
         const isOwner = message.user_id === Store.getState().user?.id;
 
         return { ...message, time, isOwner }
