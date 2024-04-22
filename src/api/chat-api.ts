@@ -1,4 +1,5 @@
 import ApiClient from '../utils/ApiClient';
+import wsClient from '../utils/WsClient';
 import { BaseAPI } from './base-api';
 
 class ChatAPI extends BaseAPI {
@@ -31,6 +32,10 @@ class ChatAPI extends BaseAPI {
 
   getToken(chatId: number) {
     return ApiClient.post(`${this._chatUrl}/token/${chatId}`);
+  }
+
+  connect(userId: number, chatId: number, token: string) {
+    return wsClient(userId, chatId, token);
   }
 }
 

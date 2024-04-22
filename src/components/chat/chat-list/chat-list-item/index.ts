@@ -4,6 +4,7 @@ import Block from '../../../../utils/Block';
 import { Avatar } from '../../..';
 import { BaseAPI } from '../../../../api/base-api';
 import Store from '../../../../utils/Store';
+import chatController from '../../../../controllers/chat-controller';
 
 export interface IChatListItem {
   id: number,
@@ -55,6 +56,8 @@ export class ChatListItem extends Block {
           const chat = state.find((chat: IChatListItem) => chat.id === id);
           chat.isActive = true;
           Store.set('chatPage.current', chat);
+
+          chatController.connect();
         },
       },
     }, 'li');

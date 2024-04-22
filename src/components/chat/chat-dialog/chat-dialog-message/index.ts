@@ -2,11 +2,21 @@ import './chat-dialog-message.scss';
 import template from './chat-dialog-message.hbs?raw';
 import Block from '../../../../utils/Block';
 
-interface IChatDialogMessage {
-    isOwner?: boolean,
-    imgSrc?: string,
-    text?: string,
-    time: string
+enum MessageType {
+  MESSAGE = 'message',
+  FILE = 'file'
+};
+
+//TODO: Доработать структуру сообщения
+export interface IChatDialogMessage {
+  id: number,
+  chat_id: number,
+  time: string,
+  type: MessageType,
+  user_id: number,
+  content?: string,
+  file?: string,
+  isOwner?: boolean,
 }
 
 export class ChatDialogMessage extends Block {

@@ -1,6 +1,9 @@
+import { IChatDialogMessage } from '../components/chat/chat-dialog/chat-dialog-message';
+import Store from './Store';
+
 const baseWsUrl = 'wss://ya-praktikum.tech/ws/chats';
 
-const wsClient = (userId: string, chatId: string, token: string) => {
+const wsClient = (userId: number, chatId: number, token: string) => {
   const webSocket = new WebSocket(`${baseWsUrl}/${userId}/${chatId}/${token}`);
 
   webSocket.addEventListener('open', () => {
@@ -12,6 +15,29 @@ const wsClient = (userId: string, chatId: string, token: string) => {
     }));
   });
 
+  const ping = setInterval(() => {
+    webSocket.send(JSON.stringify({ type: 'ping' }));
+  }, 10000);
+
+  webSocket.addEventListener('message', (event) => {
+    try {
+      console.log('Получены данные', event.data);
+      const data = JSON.parse(event.data);
+      const currentMessages = Store.getState().chatPage.messages;
+
+      Store.set(
+        'chatPage.messages',
+        [...currentMessages, ...data].sort((first: IChatDialogMessage, second: IChatDialogMessage) => first.id - second.id)
+      )
+    } catch {
+      console.log('Невозможно обработать полученные данные', event.data);
+    }
+  });
+
+  webSocket.addEventListener('error', (event) => {
+    console.log('Ошибка', event);
+  });
+
   webSocket.addEventListener('close', (event) => {
     if (event.wasClean) {
       console.log('Соединение закрыто чисто');
@@ -20,21 +46,7 @@ const wsClient = (userId: string, chatId: string, token: string) => {
     }
 
     console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-  });
-
-  webSocket.addEventListener('message', (event) => {
-    try {
-      console.log('Получены данные', event.data);
-      // const data = JSON.parse(event.data);
-
-      // TODO: добавить обработку полученных данных
-    } catch {
-      console.log('Невозможно обработать полученные данные', event.data);
-    }
-  });
-
-  webSocket.addEventListener('error', (event) => {
-    console.log('Ошибка', event);
+    clearInterval(ping);
   });
 
   return webSocket;
