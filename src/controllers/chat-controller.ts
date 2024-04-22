@@ -124,10 +124,10 @@ class ChatController {
       const { chatPage: { current }, user } = Store.getState();
       Store.set('chatPage.messages', []);
 
-      return chatApi.connect(user.id, current.id, token);
+      window.webSocket?.close();
+      window.webSocket = chatApi.connect(user.id, current.id, token);
     } catch (error) {
       console.log(error);
-      return null;
     }
   }
 }

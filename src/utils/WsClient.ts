@@ -1,6 +1,12 @@
 import { IChatDialogMessage } from '../components/chat/chat-dialog/chat-dialog-message';
 import Store from './Store';
 
+declare global {
+  interface Window {
+    webSocket?: WebSocket;
+  }
+}
+
 const baseWsUrl = 'wss://ya-praktikum.tech/ws/chats';
 
 const wsClient = (userId: number, chatId: number, token: string) => {
