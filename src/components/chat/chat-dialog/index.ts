@@ -15,18 +15,18 @@ export { StoredChatDialogTitle } from './chat-dialog-title';
 
 export interface IChatDialog {
   header: Block[],
-  items: Block,
+  main: Block,
   footer: Block[],
   attr: Record<string, unknown>
 }
 
 class ChatDialog extends Block {
   constructor(props: IChatDialog) {
-    const { attr, header, items, footer } = props;
+    const { attr, header, main, footer } = props;
 
     super({
       header: new DialogHeader({ content: header }),
-      items,
+      main,
       footer: new DialogFooter({ content: footer }),
       attr,
     });
@@ -40,7 +40,7 @@ class ChatDialog extends Block {
 export const StoredChatDialog = connect(ChatDialog, (state: Indexed) => {
   return {
     attr: { class: `chat-dialog${state.chatPage.current?.hasOwnProperty('id') ? ' chat-dialog_visible' : ''}` },
-    items: new DialogMain({
+    main: new DialogMain({
       content: state.chatPage.messages.map((message: IChatDialogMessage) => (
         new ChatDialogMessage(message)
       ))
