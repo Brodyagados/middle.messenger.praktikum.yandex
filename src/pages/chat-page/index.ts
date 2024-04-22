@@ -157,16 +157,16 @@ export class ChatPage extends Block {
                         events: {
                           click: async (event: Event) => {
                             event.preventDefault();
-      
+
                             const target = event.target as HTMLElement;
                             const form = target.closest('form') as HTMLFormElement;
                             const { isValid, formData: { userLogin } } = Validation.validateForm(form);
-      
+
                             if (!isValid || !userLogin) {
                               Store.set('chatPage.error', 'Логин пользователя должен быть заполнен!');
                               return;
                             }
-      
+
                             const userId = await userController.searchByLogin(userLogin);
                             await chatController.addUsers([userId]);
                             form.closest('dialog')?.close();
@@ -215,16 +215,16 @@ export class ChatPage extends Block {
                         events: {
                           click: async (event: Event) => {
                             event.preventDefault();
-      
+
                             const target = event.target as HTMLElement;
                             const form = target.closest('form') as HTMLFormElement;
                             const { isValid, formData: { userLogin } } = Validation.validateForm(form);
-      
+
                             if (!isValid || !userLogin) {
                               Store.set('chatPage.error', 'Логин пользователя должен быть заполнен!');
                               return;
                             }
-      
+
                             const userId = await userController.searchByLogin(userLogin);
                             await chatController.removeUsers([userId]);
                             form.closest('dialog')?.close();

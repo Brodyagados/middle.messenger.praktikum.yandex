@@ -21,7 +21,7 @@ export class Modal extends Block {
         },
         attr: {
           title: 'Закрыть',
-          class: 'modal__close-button'
+          class: 'modal__close-button',
         },
         events: {
           click: (event: Event) => {
@@ -29,8 +29,8 @@ export class Modal extends Block {
 
             const button = event.currentTarget as HTMLElement;
             button.closest('dialog')?.close();
-          }
-        }
+          },
+        },
       }),
     }, 'dialog');
   }

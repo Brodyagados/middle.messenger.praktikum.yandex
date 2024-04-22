@@ -30,6 +30,11 @@
 
     .link {
         font-size: 16px;
+
+        &.link_back {
+            align-self: flex-start;
+            padding: 10px;
+        }
     }
 
     .dialog__main,
@@ -65,12 +70,5 @@
 
     .textbox {
         border: unset;
-    }
-    
-    .link {
-        &.link_back {  
-            align-self: flex-start;
-            padding: 10px;
-        }
     }
 }

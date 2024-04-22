@@ -34,7 +34,7 @@ class ChatController {
 
   async removeCurrent() {
     try {
-      const current = Store.getState().chatPage.current;
+      const { current } = Store.getState().chatPage;
       if (!current) {
         alert('Удалить можно только текущий чат.');
       }
@@ -57,7 +57,7 @@ class ChatController {
 
   async addUsers(users: number[]) {
     try {
-      const current = Store.getState().chatPage.current;
+      const { current } = Store.getState().chatPage;
       if (!current) {
         alert('Добавить пользователя можно только в текущий чат.');
       }
@@ -80,7 +80,7 @@ class ChatController {
 
   async removeUsers(users: number[]) {
     try {
-      const current = Store.getState().chatPage.current;
+      const { current } = Store.getState().chatPage;
       if (!current) {
         alert('Удалить пользователя можно только из текущего чата.');
       }

@@ -85,9 +85,8 @@ class UserController {
       if (status === 200) {
         const [user] = JSON.parse(response);
         return user.id;
-      } else {
-        Store.set('chatPage.error', responseText);
       }
+      Store.set('chatPage.error', responseText);
     } catch (e) {
       const errorMessage = 'Ошибка поиска пользователя.';
       Store.set('chatPage.error', errorMessage);
