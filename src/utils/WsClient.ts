@@ -57,8 +57,9 @@ const wsClient = (userId: number, chatId: number, token: string) => {
 
         return { ...message, time, isOwner }
       });
-      const messages = [...currentMessages, ...newMessages]
-        .sort((first: IChatDialogMessage, second: IChatDialogMessage) => first.id - second.id);
+      const messages = (Array.isArray(data)
+        ? [...currentMessages, ...newMessages]
+        : [...newMessages, ...currentMessages]);
 
       Store.set('chatPage.messages', messages);
     } catch {
