@@ -8,6 +8,18 @@ export class ChatDialogInput extends Block {
     super({
       input: new Input(props),
       attr: { class: 'chat-dialog__input' },
+      events: {
+        keypress: (event: KeyboardEvent) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+
+            const target = event.target as HTMLElement;
+            const button = target.closest('.dialog__footer')?.querySelector('button[data-type=sender]') as HTMLInputElement;
+
+            button.click();
+          }
+        }
+      }
     });
   }
 

@@ -270,7 +270,16 @@ export class ChatPage extends Block {
             attr: {
               class: 'button_color_blue button_circle',
               title: 'Отправить',
+              'data-type': 'sender',
             },
+            events: {
+              click: (event: Event) => {
+                const target = event.currentTarget as HTMLElement;
+                const input = target.closest('.dialog__footer')?.querySelector('input') as HTMLInputElement;
+                chatController.sendMessage(input?.value);
+                input.value = '';
+              }
+            }
           }),
         ],
       }),

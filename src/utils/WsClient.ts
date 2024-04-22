@@ -7,6 +7,17 @@ declare global {
   }
 }
 
+export enum TWsMessageType {
+  MESSAGE = 'message',
+  FILE = 'file',
+  PING = 'ping'
+};
+
+export type TWsMessage = {
+  type: TWsMessageType,
+  content: string | Blob
+}
+
 const baseWsUrl = 'wss://ya-praktikum.tech/ws/chats';
 
 const wsClient = (userId: number, chatId: number, token: string) => {
@@ -22,7 +33,7 @@ const wsClient = (userId: number, chatId: number, token: string) => {
   });
 
   const ping = setInterval(() => {
-    webSocket.send(JSON.stringify({ type: 'ping' }));
+    webSocket.send(JSON.stringify({ type: TWsMessageType.PING }));
   }, 10000);
 
   webSocket.addEventListener('message', (event) => {
@@ -35,7 +46,7 @@ const wsClient = (userId: number, chatId: number, token: string) => {
       }
 
       const currentMessages = Store.getState().chatPage.messages;
-      const newMessages = data.map((message: IChatDialogMessage) => {
+      const newMessages = (Array.isArray(data) ? data : [data]).map((message: IChatDialogMessage) => {
         const locale = 'ru-RU';
         const date = new Date(message.time);
         const time = date.toLocaleDateString(locale) +
@@ -46,10 +57,10 @@ const wsClient = (userId: number, chatId: number, token: string) => {
 
         return { ...message, time, isOwner }
       });
-      Store.set(
-        'chatPage.messages',
-        [...currentMessages, ...newMessages].sort((first: IChatDialogMessage, second: IChatDialogMessage) => first.id - second.id)
-      )
+      const messages = [...currentMessages, ...newMessages]
+        .sort((first: IChatDialogMessage, second: IChatDialogMessage) => first.id - second.id);
+
+      Store.set('chatPage.messages', messages);
     } catch {
       console.log('Невозможно обработать полученные данные', event.data);
     }

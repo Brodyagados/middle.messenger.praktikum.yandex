@@ -1,18 +1,14 @@
 import './chat-dialog-message.scss';
 import template from './chat-dialog-message.hbs?raw';
 import Block from '../../../../utils/Block';
-
-enum MessageType {
-  MESSAGE = 'message',
-  FILE = 'file'
-};
+import { TWsMessageType } from '../../../../utils/WsClient';
 
 //TODO: Доработать структуру сообщения
 export interface IChatDialogMessage {
   id: number,
   chat_id: number,
   time: string,
-  type: MessageType,
+  type: TWsMessageType,
   user_id: number,
   content?: string,
   file?: string,

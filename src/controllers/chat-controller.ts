@@ -1,5 +1,6 @@
 import chatApi from '../api/chat-api';
 import Store from '../utils/Store';
+import { TWsMessage, TWsMessageType } from '../utils/WsClient';
 
 class ChatController {
   async getList() {
@@ -129,6 +130,19 @@ class ChatController {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  sendMessage(message?: string) {
+    if (!message) {
+      return;
+    }
+
+    const data: TWsMessage = {
+      type: TWsMessageType.MESSAGE,
+      content: message
+    };
+
+    window.webSocket?.send(JSON.stringify(data));
   }
 }
 
