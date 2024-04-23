@@ -14,6 +14,7 @@ class ResourceController {
       }
     } catch (e) {
       const errorMessage = 'Ошибка загрузки файла.';
+      alert(errorMessage);
       throw Error(errorMessage);
     }
   }

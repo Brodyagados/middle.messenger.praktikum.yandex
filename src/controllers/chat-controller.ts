@@ -114,6 +114,7 @@ class ChatController {
       return token;
     } catch (e) {
       const errorMessage = 'Ошибка получения токена чата.';
+      alert(errorMessage);
       throw Error(errorMessage);
     }
   }
