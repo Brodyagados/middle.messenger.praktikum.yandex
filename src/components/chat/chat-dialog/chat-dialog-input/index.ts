@@ -10,7 +10,7 @@ export class ChatDialogInput extends Block {
       attr: { class: 'chat-dialog__input' },
       events: {
         keypress: (event: KeyboardEvent) => {
-          if (event.key === "Enter") {
+          if (event.key === 'Enter') {
             event.preventDefault();
 
             const target = event.target as HTMLElement;
@@ -18,8 +18,8 @@ export class ChatDialogInput extends Block {
 
             button.click();
           }
-        }
-      }
+        },
+      },
     });
   }
 

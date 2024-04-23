@@ -4,13 +4,13 @@ import Route, { TView } from './Route';
 export default class Router {
   static __instance: Router;
 
-  routes: Route[];
+  routes!: Route[];
 
-  history: History;
+  history!: History;
 
-  _currentRoute: Route | null;
+  _currentRoute!: Route | null;
 
-  _rootQuery: string;
+  _rootQuery!: string;
 
   constructor(rootQuery: string) {
     if (Router.__instance) {

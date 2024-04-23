@@ -23,7 +23,7 @@
         "no-use-before-define": "off",
         "class-methods-use-this": "off",
         "@typescript-eslint/no-this-alias": "off",
-        "consistent-return": "warn",
+        "consistent-return": "off",
         "no-param-reassign": "off",
         "import/no-extraneous-dependencies": "off",
         "func-names": "off",
@@ -40,6 +40,7 @@
         "no-prototype-builtins": "off",
         "no-continue": "off",
         "camelcase": "off",
-        "no-nested-ternary": "off"
+        "no-nested-ternary": "off",
+        "no-alert": "off"
     }
 }

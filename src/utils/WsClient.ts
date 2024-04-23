@@ -11,7 +11,7 @@ export enum TWsMessageType {
   MESSAGE = 'message',
   FILE = 'file',
   PING = 'ping'
-};
+}
 
 export type TWsMessage = {
   type: TWsMessageType,
@@ -55,7 +55,7 @@ const wsClient = (userId: number, chatId: number, token: string) => {
           + date.toLocaleTimeString(locale, { hour12: false, hour: 'numeric', minute: 'numeric' });
         const isOwner = message.user_id === Store.getState().user?.id;
 
-        return { ...message, time, isOwner }
+        return { ...message, time, isOwner };
       });
       const messages = (Array.isArray(data)
         ? [...currentMessages, ...newMessages]

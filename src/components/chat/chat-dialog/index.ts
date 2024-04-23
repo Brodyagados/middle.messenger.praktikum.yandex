@@ -3,7 +3,7 @@ import Block from '../../../utils/Block';
 import template from './chat-dialog.hbs?raw';
 import {
   ChatDialogMessage, DialogFooter,
-  DialogHeader, DialogMain
+  DialogHeader, DialogMain,
 } from '../../../components';
 import { connect } from '../../../utils/HOC';
 import { Indexed } from '../../../utils/utils';
@@ -43,7 +43,7 @@ export const StoredChatDialog = connect(ChatDialog, (state: Indexed) => {
     main: new DialogMain({
       content: state.chatPage.messages.map((message: IChatDialogMessage) => (
         new ChatDialogMessage(message)
-      ))
+      )),
     }),
   };
 });

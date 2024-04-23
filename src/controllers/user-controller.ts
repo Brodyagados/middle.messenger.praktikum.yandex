@@ -18,7 +18,6 @@ class UserController {
         const router = new Router('#app');
         router.go(PAGE_PATH.login);
       }
-
     } catch (e) {
       const errorMessage = 'Ошибка получения данных пользователя.';
       throw Error(errorMessage);

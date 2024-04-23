@@ -158,8 +158,8 @@ export class ChatPage extends Block {
                 const input = target.closest('.dialog__footer')?.querySelector('input') as HTMLInputElement;
                 chatController.sendMessage(TWsMessageType.MESSAGE, input?.value);
                 input.value = '';
-              }
-            }
+              },
+            },
           }),
         ],
       }),

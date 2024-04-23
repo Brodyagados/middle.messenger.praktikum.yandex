@@ -11,9 +11,8 @@ class ResourceController {
       if (status === 200) {
         const { id } = JSON.parse(response);
         return id;
-      } else {
-        throw Error(responseText);
       }
+      throw Error(responseText);
     } catch (e) {
       const errorMessage = 'Ошибка загрузки файла.';
       throw Error(errorMessage);

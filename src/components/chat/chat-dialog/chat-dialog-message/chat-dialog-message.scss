@@ -21,6 +21,13 @@
         border-top-left-radius: 0;
     }
 
+    .chat-dialog__message-time {
+        align-self: flex-end;
+        font-size: 9px;
+        color: $color-gray;
+        line-height: 1;
+    }
+
     &.chat-dialog__message_owner {
         align-self: flex-end;
         border-top-left-radius: $border-radius;
@@ -45,12 +52,5 @@
             margin-bottom: 10px;
             margin-right: 10px;
         }
-    }
-
-    .chat-dialog__message-time {
-        align-self: flex-end;
-        font-size: 9px;
-        color: $color-gray;
-        line-height: 1;
     }
 }

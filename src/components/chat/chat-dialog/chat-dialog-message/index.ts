@@ -4,7 +4,6 @@ import Block from '../../../../utils/Block';
 import { TWsMessageType } from '../../../../utils/WsClient';
 import { BaseAPI } from '../../../../api/base-api';
 
-//TODO: Доработать структуру сообщения
 export interface IChatDialogMessage {
   id: number,
   chat_id: number,
@@ -26,7 +25,7 @@ export class ChatDialogMessage extends Block {
       ...props,
       attr: { class: `chat-dialog__message${isOwner ? ' chat-dialog__message_owner' : ''}${file ? ' chat-dialog__message_image' : ''}` },
       file: file ? `${BaseAPI.baseUrl}/resources${file.path}` : null,
-      content: !file ? content : null
+      content: !file ? content : null,
     });
   }
 
