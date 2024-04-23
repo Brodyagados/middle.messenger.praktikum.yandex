@@ -11,7 +11,6 @@ export { ChatListHeader } from './chat-list-header';
 export interface IChatList {
   accountLink: Block,
   addChatButton: Block,
-  addChatModal: Block,
   header: Block,
   items: Block[]
 }

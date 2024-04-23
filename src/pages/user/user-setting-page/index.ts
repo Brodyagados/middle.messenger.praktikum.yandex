@@ -40,9 +40,11 @@ export class UserSettingPage extends UserPage {
             }),
             new PageTitle({ text: '' }),
             new Modal({
+              attr: { id: 'uploadUserAvatar' },
               content: [
                 new Form({
                   content: [
+                    new PageTitle({ text: 'Загрузка аватара' }),
                     new Input({ attr: { name: 'avatar', type: 'file' } }),
                     new (ErrorMessage(ERROR_MESSAGE_TYPE.userSettingPage))({}),
                     new Button({
