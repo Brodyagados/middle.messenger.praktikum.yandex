@@ -17,7 +17,7 @@ class SignUpController {
     } catch (e) {
       const errorMessage = 'Ошибка регистрации пользователя.';
       Store.set('signUpPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 }
