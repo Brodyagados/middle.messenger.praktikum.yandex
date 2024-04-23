@@ -48,14 +48,14 @@ export class ChatListItem extends Block {
         click: (event: Event) => {
           event.preventDefault();
 
-          const state = Store.getState().chatPage.list;
-          state.forEach((chat: IChatListItem) => {
-            chat.isActive = false;
+          const list = Store.getState().chatPage.list;
+          list.forEach((chat: IChatListItem) => {
+            chat.isActive = chat.id === id ? true : false;
           });
 
-          const chat = state.find((chat: IChatListItem) => chat.id === id);
-          chat.isActive = true;
-          Store.set('chatPage.current', chat);
+          const current = list.find((chat: IChatListItem) => chat.id === id);
+          Store.set('chatPage.list', list);
+          Store.set('chatPage.current', current);
 
           chatController.connect();
         },

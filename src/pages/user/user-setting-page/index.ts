@@ -15,7 +15,6 @@ import Store from '../../../utils/Store';
 export class UserSettingPage extends UserPage {
   init() {
     userController.get();
-    Store.set('userSettingPage.avatarError', '');
     super.init();
   }
 
@@ -34,6 +33,7 @@ export class UserSettingPage extends UserPage {
                 click: (event: Event) => {
                   event.preventDefault();
 
+                  Store.set('userSettingPage.avatarError', '');
                   document.querySelector('dialog')?.showModal();
                 },
               },

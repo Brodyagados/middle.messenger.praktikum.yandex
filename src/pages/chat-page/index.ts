@@ -48,6 +48,7 @@ export class ChatPage extends Block {
             click: (event: Event) => {
               event.preventDefault();
 
+              Store.set('chatPage.error', '');
               const dialog = document.querySelector('dialog[id=addChatModal]') as HTMLDialogElement;
               dialog.showModal();
             },
@@ -89,6 +90,7 @@ export class ChatPage extends Block {
                   click: (event: Event) => {
                     event.preventDefault();
 
+                    Store.set('chatPage.error', '');
                     const dialog = document.querySelector('dialog[id=addUserToChatModal]') as HTMLDialogElement;
                     dialog.showModal();
                   },
@@ -103,6 +105,7 @@ export class ChatPage extends Block {
                   click: (event: Event) => {
                     event.preventDefault();
 
+                    Store.set('chatPage.error', '');
                     const dialog = document.querySelector('dialog[id=removeUserFromChatModal]') as HTMLDialogElement;
                     dialog.showModal();
                   },
@@ -136,6 +139,7 @@ export class ChatPage extends Block {
               click: (event: Event) => {
                 event.preventDefault();
 
+                Store.set('chatPage.error', '');
                 const dialog = document.querySelector('dialog[id=uploadImageModal]') as HTMLDialogElement;
                 dialog.showModal();
               },
