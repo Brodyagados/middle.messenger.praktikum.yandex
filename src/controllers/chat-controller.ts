@@ -11,7 +11,8 @@ class ChatController {
       Store.set('chatPage.list', chats);
     } catch (e) {
       const errorMessage = 'Ошибка получения данных пользователя.';
-      throw Error(errorMessage);
+      alert(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -29,7 +30,7 @@ class ChatController {
     } catch (e) {
       const errorMessage = 'Ошибка создания чата.';
       Store.set('chatPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -52,7 +53,7 @@ class ChatController {
     } catch (e) {
       const errorMessage = 'Ошибка удаления чата.';
       alert(errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -70,12 +71,11 @@ class ChatController {
         Store.set('chatPage.error', '');
       } else {
         Store.set('chatPage.error', responseText);
-        throw Error(responseText);
       }
     } catch (e) {
       const errorMessage = 'Ошибка добавления пользователя в чат.';
       Store.set('chatPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -93,12 +93,11 @@ class ChatController {
         Store.set('chatPage.error', '');
       } else {
         Store.set('chatPage.error', responseText);
-        throw Error(responseText);
       }
     } catch (e) {
       const errorMessage = 'Ошибка удаления пользователя из чата.';
       Store.set('chatPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -115,7 +114,8 @@ class ChatController {
       return token;
     } catch (e) {
       const errorMessage = 'Ошибка получения токена чата.';
-      throw Error(errorMessage);
+      alert(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 

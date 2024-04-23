@@ -12,10 +12,11 @@ class ResourceController {
         const { id } = JSON.parse(response);
         return id;
       }
-      throw Error(responseText);
+      alert(responseText);
     } catch (e) {
       const errorMessage = 'Ошибка загрузки файла.';
-      throw Error(errorMessage);
+      alert(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 }

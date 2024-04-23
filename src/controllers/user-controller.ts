@@ -20,7 +20,8 @@ class UserController {
       }
     } catch (e) {
       const errorMessage = 'Ошибка получения данных пользователя.';
-      throw Error(errorMessage);
+      alert(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -38,7 +39,7 @@ class UserController {
     } catch (e) {
       const errorMessage = 'Ошибка смены пароля.';
       Store.set('userSettingEditPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -56,7 +57,7 @@ class UserController {
     } catch (e) {
       const errorMessage = 'Ошибка смены пароля.';
       Store.set('changePasswordPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -80,7 +81,7 @@ class UserController {
     } catch (e) {
       const errorMessage = 'Ошибка загрузки аватара.';
       Store.set(errorField, errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 
@@ -97,7 +98,7 @@ class UserController {
     } catch (e) {
       const errorMessage = 'Ошибка поиска пользователя.';
       Store.set('chatPage.error', errorMessage);
-      throw Error(errorMessage);
+      console.log(errorMessage, e);
     }
   }
 }
