@@ -41,16 +41,19 @@
     }
 
     &.chat-dialog__message_image {
+        position: relative;
         padding: unset;
         background: transparent;
 
         .chat-dialog__message-time {
+            position: absolute;
             background-color: $color-gray;
             color: white;
             padding: 3px 8px;
             border-radius: 30px;
             margin-bottom: 10px;
             margin-right: 10px;
+            bottom: 0;
         }
     }
 }
