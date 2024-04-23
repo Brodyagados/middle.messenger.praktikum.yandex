@@ -4,11 +4,11 @@ import Route, { TView } from './Route';
 export default class Router {
   static __instance: Router;
 
-  routes!: Route[];
+  routes: Route[] = [];
 
-  history!: History;
+  history: History = window.history;
 
-  _currentRoute!: Route | null;
+  _currentRoute: Route | null = null;
 
   _rootQuery!: string;
 
@@ -17,11 +17,7 @@ export default class Router {
       return Router.__instance;
     }
 
-    this.routes = [];
-    this.history = window.history;
-    this._currentRoute = null;
     this._rootQuery = rootQuery;
-
     Router.__instance = this;
   }
 

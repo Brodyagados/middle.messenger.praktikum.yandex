@@ -13,7 +13,13 @@ class LoginController {
         const router = new Router('#app');
         router.go(PAGE_PATH.messenger);
       } else {
-        Store.set('loginPage.error', responseText);
+        const reason = JSON.parse(responseText).reason;
+        if (reason === 'User already in system') {
+          const router = new Router('app');
+          router.go(PAGE_PATH.messenger);
+        } else {
+          Store.set('loginPage.error', responseText);
+        }
       }
     } catch (e) {
       const errorMessage = 'Ошибка входа в систему.';
