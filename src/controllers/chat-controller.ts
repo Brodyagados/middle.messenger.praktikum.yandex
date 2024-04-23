@@ -132,7 +132,7 @@ class ChatController {
     }
   }
 
-  sendMessage(type: TWsMessageType, message?: string | { id: number }) {
+  sendMessage(type: TWsMessageType, message?: string | number) {
     if (!message) {
       return;
     }
