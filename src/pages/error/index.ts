@@ -3,13 +3,10 @@ import Block from '../../utils/Block';
 import template from './error-page.hbs?raw';
 import { DialogMain } from '../../components';
 
-export { InternalServerErrorPage } from './internal-server-error-page';
-export { NotFoundErrorPage } from './not-found-error-page';
-
 interface IErrorPage {
-    title: Block,
-    description: Block,
-    homeLink: Block
+  title: Block,
+  description: Block,
+  homeLink: Block
 }
 
 export class ErrorPage extends Block {

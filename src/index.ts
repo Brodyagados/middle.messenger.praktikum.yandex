@@ -1,29 +1,18 @@
-import { Page, page } from './utils/route';
+import Router from './utils/Router';
+import * as Pages from './pages';
+import { PAGE_PATH } from './constants/PagePath';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const path = window.location.pathname;
-  const currentPage = Object.values(page).find((item) => item.path === path);
+  const router = new Router('#app');
 
-  if (!currentPage) {
-    window.location.href = page.notFound.path;
-    return;
-  }
-
-  currentPage.route();
-});
-
-document.addEventListener('click', (e) => {
-  const { target } = e;
-  if (!(target instanceof Element) || target.getAttribute('type') === 'submit') {
-    return;
-  }
-
-  const path = target.getAttribute('page');
-
-  if (path) {
-    Page.getByPath(path)?.route();
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  }
+  router
+    .use(PAGE_PATH.messenger, Pages.ChatPage)
+    .use(PAGE_PATH.login, Pages.LoginPage)
+    .use(PAGE_PATH.signUp, Pages.SignUpPage)
+    .use(PAGE_PATH.userSetting, Pages.UserSettingPage)
+    .use(PAGE_PATH.userSettingEdit, Pages.UserSettingEditPage)
+    .use(PAGE_PATH.changePassword, Pages.ChangePasswordPage)
+    .use(PAGE_PATH.notFound, Pages.NotFoundErrorPage)
+    .use(PAGE_PATH.internalServerError, Pages.InternalServerErrorPage)
+    .start();
 });

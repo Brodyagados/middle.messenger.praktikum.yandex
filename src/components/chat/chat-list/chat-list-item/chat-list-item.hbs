@@ -1,13 +1,13 @@
 <div class="chat-list__item-content">
     {{{avatar}}}
     <div class="chat-list__item-content-main">
-        <div class="chat-list__item-user">{{user}}</div>
+        <div class="chat-list__item-user">{{title}}</div>
         <div class="chat-list__item-message{{#if isOwner}} chat-list__item-message_owner{{/if}}">{{message}}</div>
     </div>
     <div class="chat-list__item-content-additional">
         <div class="chat-list__item-date">{{date}}</div>
-        {{#if count}}
-            <div class="chat-list__item-count">{{count}}</div>
+        {{#if unread_count}}
+        <div class="chat-list__item-count">{{unread_count}}</div>
         {{/if}}
     </div>
 </div>

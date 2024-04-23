@@ -13,8 +13,10 @@ export interface IButton {
     page?: string,
     disabled?: boolean,
     title?: string,
-    type?: string
-  }
+    type?: string,
+    'data-type'?: string
+  },
+  events: Record<string, unknown>
 }
 
 export class Button extends Block {

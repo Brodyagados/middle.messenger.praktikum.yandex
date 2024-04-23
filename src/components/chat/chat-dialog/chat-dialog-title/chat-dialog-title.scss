@@ -1,8 +1,9 @@
 @import '../../../../assets/constants';
 
-.chat-dialog__user {
+.chat-dialog__title {
     flex-grow: 1;
     color: $color-black;
+
     font: {
         size: 13px;
         weight: 600;

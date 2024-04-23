@@ -10,4 +10,10 @@
     &.link_color_red {
         color: $color-red;
     }
+
+    &.link_back {
+        &::before {
+            content: '< ';
+        }
+    }
 }
