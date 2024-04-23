@@ -24,7 +24,7 @@ class LoginController {
     } catch (e) {
       const errorMessage = 'Ошибка входа в систему.';
       Store.set('loginPage.error', errorMessage);
-      console.log(errorMessage, e);
+      throw Error(errorMessage);
     }
   }
 }

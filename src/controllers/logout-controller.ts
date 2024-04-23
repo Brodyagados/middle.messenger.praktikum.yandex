@@ -13,8 +13,7 @@ class LogoutController {
       router.go(PAGE_PATH.login);
     } catch (e) {
       const errorMessage = 'Ошибка выхода из системы.';
-      alert(errorMessage);
-      console.log(errorMessage, e);
+      throw Error(errorMessage);
     }
   }
 }
