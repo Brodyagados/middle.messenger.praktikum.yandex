@@ -13,7 +13,7 @@ class LoginController {
         const router = new Router('#app');
         router.go(PAGE_PATH.messenger);
       } else {
-        const reason = JSON.parse(responseText).reason;
+        const { reason } = JSON.parse(responseText);
         if (reason === 'User already in system') {
           const router = new Router('app');
           router.go(PAGE_PATH.messenger);
