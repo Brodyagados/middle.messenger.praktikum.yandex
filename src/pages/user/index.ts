@@ -1,18 +1,16 @@
-import { Form } from '../../components';
+import { Form, Link } from '../../components';
 import './user-page.scss';
 import Block from '../../utils/Block';
 import template from './user-page.hbs?raw';
-
-export { ChangePasswordPage } from './change-password-page';
-export { UserSettingPage } from './user-setting-page';
-export { UserSettingEditPage } from './user-setting-edit-page';
+import Router from '../../utils/Router';
+import { PAGE_PATH } from '../../constants/PagePath';
 
 export interface IUserData {
-    firstName: string,
-    secondName: string,
-    email: string,
-    login: string,
-    phone: string
+  firstName: string,
+  secondName: string,
+  email: string,
+  login: string,
+  phone: string
 }
 
 interface IUserPage {
@@ -24,6 +22,18 @@ export class UserPage extends Block {
     const { form } = props;
 
     super({
+      chatsLink: new Link({
+        text: 'Назад к чатам',
+        attr: { class: 'link_back' },
+        events: {
+          click: (event: Event) => {
+            event.preventDefault();
+
+            const router = new Router('#app');
+            router.go(PAGE_PATH.messenger);
+          },
+        },
+      }),
       form: new Form({ content: form }),
       attr: { class: 'user-page' },
     });

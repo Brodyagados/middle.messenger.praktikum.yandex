@@ -1,0 +1,29 @@
+.avatar-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+        &::after {
+            content: 'Загрузить аватар';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            position: absolute;
+            background-color: #00000070;
+            width: 100%;
+            height: 100%;
+            color: white;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+
+            font: {
+                size: 18px;
+                weight: 500;
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
 import Block from '../../../utils/Block';
 import { Validation } from '../../../utils/ValidationType';
-import { Page } from '../../../utils/route';
 import template from './form.hbs?raw';
 
 interface IForm {
@@ -13,19 +12,10 @@ export class Form extends Block {
       ...props,
       events: {
         submit: (e: SubmitEvent) => {
-          const { target: form, submitter } = e;
+          const { target: form } = e;
 
           e.preventDefault();
-          const isValid = Validation.validateForm(form as HTMLFormElement);
-
-          if (!isValid || !submitter) {
-            return;
-          }
-
-          const path = submitter.getAttribute('page');
-          if (path) {
-            Page.getByPath(path)?.route();
-          }
+          Validation.validateForm(form as HTMLFormElement);
         },
       },
     }, 'form');

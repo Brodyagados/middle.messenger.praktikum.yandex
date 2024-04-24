@@ -1,17 +1,18 @@
 type THttpMethod = (url: string, options?: IOptions) => Promise<unknown>;
 
 enum METHOD {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    DELETE = 'DELETE'
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
 }
 
 interface IOptions {
-    method?: METHOD,
-    headers?: Record<string, string>,
-    data?: Record<string, unknown>,
-    timeout?: number
+  method?: METHOD,
+  headers?: Record<string, string>,
+  data?: Record<string, unknown> | FormData,
+  timeout?: number,
+  withCredentials?: boolean
 }
 
 function queryStringify(data: Record<string, unknown>) {
@@ -20,10 +21,10 @@ function queryStringify(data: Record<string, unknown>) {
     .join('&');
 }
 
-export default class ApiClient {
+class ApiClient {
   get: THttpMethod = (url, options = {}) => {
     const { data, timeout } = options;
-    const resultUrl = data
+    const resultUrl = data && !(data instanceof FormData)
       ? `${url}?${queryStringify(data)}`
       : url;
     return this.request(resultUrl, { ...options, method: METHOD.GET }, timeout);
@@ -43,7 +44,7 @@ export default class ApiClient {
 
   request = (url: string, options: IOptions = {}, timeout = 5000) => {
     return new Promise((resolve, reject) => {
-      const { method, data, headers = {} } = options;
+      const { method, data, withCredentials = true, headers = {} } = options;
 
       if (!method) {
         reject('No method');
@@ -58,15 +59,22 @@ export default class ApiClient {
       });
 
       xhr.onload = () => resolve(xhr);
-
+      xhr.withCredentials = withCredentials;
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      method === METHOD.GET || !!data
-        ? xhr.send()
-        : xhr.send(data);
+      if (method === METHOD.GET || !data) {
+        xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
+      } else {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
+      }
     });
   };
 }
+
+export default new ApiClient();
