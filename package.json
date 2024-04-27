@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/chai": "^4.3.14",
     "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "chai": "^5.1.0",
@@ -27,6 +28,7 @@
     "husky": "^8.0.3",
     "mocha": "^10.4.0",
     "sass": "^1.71.1",
+    "sinon": "^17.0.1",
     "stylelint": "^16.2.1",
     "stylelint-scss": "^6.2.1",
     "typescript": "^5.2.2",
