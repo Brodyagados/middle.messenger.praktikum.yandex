@@ -10,7 +10,9 @@
     ],
     "skipLibCheck": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "mocha",
+      "chai"
     ],
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
