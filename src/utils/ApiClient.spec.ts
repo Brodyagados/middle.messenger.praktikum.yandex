@@ -19,8 +19,8 @@ describe('Тестирование ApiClient', () => {
 
     it('ApiClient.get() должен иметь тип запроса "GET"', () => {
         ApiClient.get('/');
-
         const [request] = requests;
+
         expect(request.method).to.eq(HttpMethod.GET);
     })
 });

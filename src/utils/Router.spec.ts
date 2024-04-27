@@ -12,8 +12,8 @@ describe('Тестирование Router', () => {
 
     it('Метод .use() должен добавить роут', () => {
         const router = new Router('#app');
-
         router.use(PAGE_PATH.messenger, new TestPage({}));
+
         expect(router.routes.length).to.eq(1);
     })
 });
