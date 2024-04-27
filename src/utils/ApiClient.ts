@@ -1,6 +1,6 @@
 type THttpMethod = (url: string, options?: IOptions) => Promise<unknown>;
 
-enum METHOD {
+export enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -8,7 +8,7 @@ enum METHOD {
 }
 
 interface IOptions {
-  method?: METHOD,
+  method?: HttpMethod,
   headers?: Record<string, string>,
   data?: Record<string, unknown> | FormData,
   timeout?: number,
@@ -27,19 +27,19 @@ class ApiClient {
     const resultUrl = data && !(data instanceof FormData)
       ? `${url}?${queryStringify(data)}`
       : url;
-    return this.request(resultUrl, { ...options, method: METHOD.GET }, timeout);
+    return this.request(resultUrl, { ...options, method: HttpMethod.GET }, timeout);
   };
 
   post: THttpMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHOD.POST }, options.timeout);
+    return this.request(url, { ...options, method: HttpMethod.POST }, options.timeout);
   };
 
   put: THttpMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHOD.PUT }, options.timeout);
+    return this.request(url, { ...options, method: HttpMethod.PUT }, options.timeout);
   };
 
   delete: THttpMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHOD.DELETE }, options.timeout);
+    return this.request(url, { ...options, method: HttpMethod.DELETE }, options.timeout);
   };
 
   request = (url: string, options: IOptions = {}, timeout = 5000) => {
@@ -65,7 +65,7 @@ class ApiClient {
       xhr.onabort = reject;
       xhr.onerror = reject;
 
-      if (method === METHOD.GET || !data) {
+      if (method === HttpMethod.GET || !data) {
         xhr.send();
       } else if (data instanceof FormData) {
         xhr.send(data);
