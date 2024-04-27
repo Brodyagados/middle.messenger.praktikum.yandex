@@ -10,7 +10,7 @@ describe('Тестирование Block', () => {
         }
     }
 
-    it('Рендер', () => {
+    it('Компонент должен отрендериться с указанными параметрами', () => {
         const text = 'Тестовый Block';
         const testBlock = new TestBlock({ text });
         const testBlockText = testBlock.element?.textContent;
